@@ -2,5 +2,5 @@
 
 from __future__ import annotations
 
-from .evaluate_create_params import EvaluateCreateParams as EvaluateCreateParams
-from .evaluate_create_response import EvaluateCreateResponse as EvaluateCreateResponse
+from .method_evaluate_params import MethodEvaluateParams as MethodEvaluateParams
+from .method_evaluate_response import MethodEvaluateResponse as MethodEvaluateResponse
