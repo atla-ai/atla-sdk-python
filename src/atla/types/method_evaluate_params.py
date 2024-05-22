@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import Dict, List, Union, Iterable, Optional
 from typing_extensions import Required, TypedDict
 
-__all__ = ["EvaluateCreateParams"]
+__all__ = ["MethodEvaluateParams"]
 
 
-class EvaluateCreateParams(TypedDict, total=False):
+class MethodEvaluateParams(TypedDict, total=False):
     context: Required[Optional[str]]
 
     input: Required[Union[str, Iterable[Dict[str, str]]]]
