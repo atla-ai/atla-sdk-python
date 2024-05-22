@@ -1,11 +1,11 @@
-# Evaluations
+# Evaluate
 
 Types:
 
 ```python
-from atla.types import EvaluationCreateResponse
+from atla.types import EvaluateCreateResponse
 ```
 
 Methods:
 
-- <code title="post /v1/evaluate">client.evaluations.<a href="./src/atla/resources/evaluations.py">create</a>(\*\*<a href="src/atla/types/evaluation_create_params.py">params</a>) -> <a href="./src/atla/types/evaluation_create_response.py">EvaluationCreateResponse</a></code>
+- <code title="post /v1/evaluate">client.evaluate.<a href="./src/atla/resources/evaluate.py">create</a>(\*\*<a href="src/atla/types/evaluate_create_params.py">params</a>) -> <a href="./src/atla/types/evaluate_create_response.py">EvaluateCreateResponse</a></code>

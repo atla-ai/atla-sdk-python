@@ -31,14 +31,14 @@ from atla import Atla
 
 client = Atla()
 
-evaluation_create_response = client.evaluations.create(
+evaluate_create_response = client.evaluate.create(
     context="string",
     input="string",
     metrics=["string", "string", "string"],
     reference="string",
     response="string",
 )
-print(evaluation_create_response.id)
+print(evaluate_create_response.id)
 ```
 
 ## Async usage
@@ -53,14 +53,14 @@ client = AsyncAtla()
 
 
 async def main() -> None:
-    evaluation_create_response = await client.evaluations.create(
+    evaluate_create_response = await client.evaluate.create(
         context="string",
         input="string",
         metrics=["string", "string", "string"],
         reference="string",
         response="string",
     )
-    print(evaluation_create_response.id)
+    print(evaluate_create_response.id)
 
 
 asyncio.run(main())
@@ -93,7 +93,7 @@ from atla import Atla
 client = Atla()
 
 try:
-    client.evaluations.create(
+    client.evaluate.create(
         context="string",
         input="string",
         metrics=["string", "string", "string"],
@@ -142,7 +142,7 @@ client = Atla(
 )
 
 # Or, configure per-request:
-client.with_options(max_retries=5).evaluations.create(
+client.with_options(max_retries=5).evaluate.create(
     context="string",
     input="string",
     metrics=["string", "string", "string"],
@@ -171,7 +171,7 @@ client = Atla(
 )
 
 # Override per-request:
-client.with_options(timeout=5.0).evaluations.create(
+client.with_options(timeout=5.0).evaluate.create(
     context="string",
     input="string",
     metrics=["string", "string", "string"],
@@ -216,7 +216,7 @@ The "raw" Response object can be accessed by prefixing `.with_raw_response.` to 
 from atla import Atla
 
 client = Atla()
-response = client.evaluations.with_raw_response.create(
+response = client.evaluate.with_raw_response.create(
     context="string",
     input="string",
     metrics=["string", "string", "string"],
@@ -225,8 +225,8 @@ response = client.evaluations.with_raw_response.create(
 )
 print(response.headers.get('X-My-Header'))
 
-evaluation = response.parse()  # get the object that `evaluations.create()` would have returned
-print(evaluation.id)
+evaluate = response.parse()  # get the object that `evaluate.create()` would have returned
+print(evaluate.id)
 ```
 
 These methods return an [`APIResponse`](https://github.com/stainless-sdks/atla-python/tree/main/src/atla/_response.py) object.
@@ -240,7 +240,7 @@ The above interface eagerly reads the full response body when you make the reque
 To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
 
 ```python
-with client.evaluations.with_streaming_response.create(
+with client.evaluate.with_streaming_response.create(
     context="string",
     input="string",
     metrics=["string", "string", "string"],
