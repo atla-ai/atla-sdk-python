@@ -36,7 +36,7 @@ evaluate_create_response = client.evaluate.create(
     metrics=["string", "string", "string"],
     response="string",
 )
-print(evaluate_create_response.id)
+print(evaluate_create_response.evaluations)
 ```
 
 ## Async usage
@@ -56,7 +56,7 @@ async def main() -> None:
         metrics=["string", "string", "string"],
         response="string",
     )
-    print(evaluate_create_response.id)
+    print(evaluate_create_response.evaluations)
 
 
 asyncio.run(main())
