@@ -5,7 +5,7 @@ description = "The official Python library for the atla API"
 dynamic = ["readme"]
 license = "Apache-2.0"
 authors = [
-{ name = "Atla", email = "dev-feedback@atla.com" },
+{ name = "Atla", email = "support@atla.com" },
 ]
 dependencies = [
     "httpx>=0.23.0, <1",
