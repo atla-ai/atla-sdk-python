@@ -1,19 +1,19 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .methods import (
-    MethodsResource,
-    AsyncMethodsResource,
-    MethodsResourceWithRawResponse,
-    AsyncMethodsResourceWithRawResponse,
-    MethodsResourceWithStreamingResponse,
-    AsyncMethodsResourceWithStreamingResponse,
+from .evaluate import (
+    EvaluateResource,
+    AsyncEvaluateResource,
+    EvaluateResourceWithRawResponse,
+    AsyncEvaluateResourceWithRawResponse,
+    EvaluateResourceWithStreamingResponse,
+    AsyncEvaluateResourceWithStreamingResponse,
 )
 
 __all__ = [
-    "MethodsResource",
-    "AsyncMethodsResource",
-    "MethodsResourceWithRawResponse",
-    "AsyncMethodsResourceWithRawResponse",
-    "MethodsResourceWithStreamingResponse",
-    "AsyncMethodsResourceWithStreamingResponse",
+    "EvaluateResource",
+    "AsyncEvaluateResource",
+    "EvaluateResourceWithRawResponse",
+    "AsyncEvaluateResourceWithRawResponse",
+    "EvaluateResourceWithStreamingResponse",
+    "AsyncEvaluateResourceWithStreamingResponse",
 ]
