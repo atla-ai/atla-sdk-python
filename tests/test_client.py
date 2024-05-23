@@ -669,7 +669,7 @@ class TestAtla:
                     object,
                     dict(
                         input="The sentence you are given might be too wordy, complicated, or unclear. Rewrite the sentence and make your writing clearer by keeping it concise. Whenever possible, break complex sentences into multiple sentences and eliminate unnecessary words.",
-                        metrics=["contradiction"],
+                        metrics=["precision", "recall"],
                         response="If you have any questions about my rate, please let me know.",
                     ),
                 ),
@@ -691,7 +691,7 @@ class TestAtla:
                     object,
                     dict(
                         input="The sentence you are given might be too wordy, complicated, or unclear. Rewrite the sentence and make your writing clearer by keeping it concise. Whenever possible, break complex sentences into multiple sentences and eliminate unnecessary words.",
-                        metrics=["contradiction"],
+                        metrics=["precision", "recall"],
                         response="If you have any questions about my rate, please let me know.",
                     ),
                 ),
@@ -1332,7 +1332,7 @@ class TestAsyncAtla:
                     object,
                     dict(
                         input="The sentence you are given might be too wordy, complicated, or unclear. Rewrite the sentence and make your writing clearer by keeping it concise. Whenever possible, break complex sentences into multiple sentences and eliminate unnecessary words.",
-                        metrics=["contradiction"],
+                        metrics=["precision", "recall"],
                         response="If you have any questions about my rate, please let me know.",
                     ),
                 ),
@@ -1354,7 +1354,7 @@ class TestAsyncAtla:
                     object,
                     dict(
                         input="The sentence you are given might be too wordy, complicated, or unclear. Rewrite the sentence and make your writing clearer by keeping it concise. Whenever possible, break complex sentences into multiple sentences and eliminate unnecessary words.",
-                        metrics=["contradiction"],
+                        metrics=["precision", "recall"],
                         response="If you have any questions about my rate, please let me know.",
                     ),
                 ),
