@@ -29,7 +29,7 @@ from atla import Atla
 client = Atla()
 
 evaluate_create_response = client.evaluate.create(
-    input="string",
+    input="Hello world",
     metrics=["string", "string", "string"],
     response="string",
 )
@@ -49,7 +49,7 @@ client = AsyncAtla()
 
 async def main() -> None:
     evaluate_create_response = await client.evaluate.create(
-        input="string",
+        input="Hello world",
         metrics=["string", "string", "string"],
         response="string",
     )
@@ -87,7 +87,7 @@ client = Atla()
 
 try:
     client.evaluate.create(
-        input="string",
+        input="Hello world",
         metrics=["string", "string", "string"],
         response="string",
     )
@@ -134,7 +134,7 @@ client = Atla(
 
 # Or, configure per-request:
 client.with_options(max_retries=5).evaluate.create(
-    input="string",
+    input="Hello world",
     metrics=["string", "string", "string"],
     response="string",
 )
@@ -161,7 +161,7 @@ client = Atla(
 
 # Override per-request:
 client.with_options(timeout=5.0).evaluate.create(
-    input="string",
+    input="Hello world",
     metrics=["string", "string", "string"],
     response="string",
 )
@@ -204,7 +204,7 @@ from atla import Atla
 
 client = Atla()
 response = client.evaluate.with_raw_response.create(
-    input="string",
+    input="Hello world",
     metrics=["string", "string", "string"],
     response="string",
 )
@@ -226,7 +226,7 @@ To stream the response body, use `.with_streaming_response` instead, which requi
 
 ```python
 with client.evaluate.with_streaming_response.create(
-    input="string",
+    input="Hello world",
     metrics=["string", "string", "string"],
     response="string",
 ) as response:

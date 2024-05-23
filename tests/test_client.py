@@ -665,7 +665,7 @@ class TestAtla:
         with pytest.raises(APITimeoutError):
             self.client.post(
                 "/v1/evaluate",
-                body=cast(object, dict(input="string", metrics=["string", "string", "string"], response="string")),
+                body=cast(object, dict(input="Hello world", metrics=["string", "string", "string"], response="string")),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -680,7 +680,7 @@ class TestAtla:
         with pytest.raises(APIStatusError):
             self.client.post(
                 "/v1/evaluate",
-                body=cast(object, dict(input="string", metrics=["string", "string", "string"], response="string")),
+                body=cast(object, dict(input="Hello world", metrics=["string", "string", "string"], response="string")),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -1314,7 +1314,7 @@ class TestAsyncAtla:
         with pytest.raises(APITimeoutError):
             await self.client.post(
                 "/v1/evaluate",
-                body=cast(object, dict(input="string", metrics=["string", "string", "string"], response="string")),
+                body=cast(object, dict(input="Hello world", metrics=["string", "string", "string"], response="string")),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -1329,7 +1329,7 @@ class TestAsyncAtla:
         with pytest.raises(APIStatusError):
             await self.client.post(
                 "/v1/evaluate",
-                body=cast(object, dict(input="string", metrics=["string", "string", "string"], response="string")),
+                body=cast(object, dict(input="Hello world", metrics=["string", "string", "string"], response="string")),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
