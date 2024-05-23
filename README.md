@@ -214,7 +214,7 @@ response = client.evaluate.with_raw_response.create(
 print(response.headers.get('X-My-Header'))
 
 evaluate = response.parse()  # get the object that `evaluate.create()` would have returned
-print(evaluate.id)
+print(evaluate.evaluations)
 ```
 
 These methods return an [`APIResponse`](https://github.com/stainless-sdks/atla-python/tree/main/src/atla/_response.py) object.
