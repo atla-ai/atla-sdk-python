@@ -20,7 +20,7 @@ or products provided by Atla please follow the respective company's security rep
 
 ### Atla Terms and Policies
 
-Please contact dev-feedback@atla.com for any questions or concerns regarding security of our services.
+Please contact support@atla.com for any questions or concerns regarding security of our services.
 
 ---
 

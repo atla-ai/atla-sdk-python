@@ -6,8 +6,6 @@ The Atla Python library provides convenient access to the Atla REST API from any
 application. The library includes type definitions for all request params and response fields,
 and offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).
 
-It is generated with [Stainless](https://www.stainlessapi.com/).
-
 ## Documentation
 
 The REST API documentation can be found [on docs.atla.com](https://docs.atla.com). The full API of this library can be found in [api.md](api.md).
@@ -16,7 +14,7 @@ The REST API documentation can be found [on docs.atla.com](https://docs.atla.com
 
 ```sh
 # install from the production repo
-pip install git+ssh://git@github.com/undefined/atla-sdk-python.git
+pip install git+ssh://git@github.com/atla-ai/atla-sdk-python.git
 ```
 
 > [!NOTE]
@@ -32,9 +30,9 @@ from atla import Atla
 client = Atla()
 
 evaluate_create_response = client.evaluate.create(
-    input="string",
-    metrics=["string", "string", "string"],
-    response="string",
+    input="The sentence you are given might be too wordy, complicated, or unclear. Rewrite the sentence and make your writing clearer by keeping it concise. Whenever possible, break complex sentences into multiple sentences and eliminate unnecessary words.",
+    metrics=["contradiction"],
+    response="If you have any questions about my rate, please let me know.",
 )
 print(evaluate_create_response.evaluations)
 ```
@@ -52,9 +50,9 @@ client = AsyncAtla()
 
 async def main() -> None:
     evaluate_create_response = await client.evaluate.create(
-        input="string",
-        metrics=["string", "string", "string"],
-        response="string",
+        input="The sentence you are given might be too wordy, complicated, or unclear. Rewrite the sentence and make your writing clearer by keeping it concise. Whenever possible, break complex sentences into multiple sentences and eliminate unnecessary words.",
+        metrics=["contradiction"],
+        response="If you have any questions about my rate, please let me know.",
     )
     print(evaluate_create_response.evaluations)
 
@@ -90,9 +88,9 @@ client = Atla()
 
 try:
     client.evaluate.create(
-        input="string",
-        metrics=["string", "string", "string"],
-        response="string",
+        input="The sentence you are given might be too wordy, complicated, or unclear. Rewrite the sentence and make your writing clearer by keeping it concise. Whenever possible, break complex sentences into multiple sentences and eliminate unnecessary words.",
+        metrics=["contradiction"],
+        response="If you have any questions about my rate, please let me know.",
     )
 except atla.APIConnectionError as e:
     print("The server could not be reached")
@@ -137,9 +135,9 @@ client = Atla(
 
 # Or, configure per-request:
 client.with_options(max_retries=5).evaluate.create(
-    input="string",
-    metrics=["string", "string", "string"],
-    response="string",
+    input="The sentence you are given might be too wordy, complicated, or unclear. Rewrite the sentence and make your writing clearer by keeping it concise. Whenever possible, break complex sentences into multiple sentences and eliminate unnecessary words.",
+    metrics=["contradiction"],
+    response="If you have any questions about my rate, please let me know.",
 )
 ```
 
@@ -164,9 +162,9 @@ client = Atla(
 
 # Override per-request:
 client.with_options(timeout=5.0).evaluate.create(
-    input="string",
-    metrics=["string", "string", "string"],
-    response="string",
+    input="The sentence you are given might be too wordy, complicated, or unclear. Rewrite the sentence and make your writing clearer by keeping it concise. Whenever possible, break complex sentences into multiple sentences and eliminate unnecessary words.",
+    metrics=["contradiction"],
+    response="If you have any questions about my rate, please let me know.",
 )
 ```
 
@@ -207,9 +205,9 @@ from atla import Atla
 
 client = Atla()
 response = client.evaluate.with_raw_response.create(
-    input="string",
-    metrics=["string", "string", "string"],
-    response="string",
+    input="The sentence you are given might be too wordy, complicated, or unclear. Rewrite the sentence and make your writing clearer by keeping it concise. Whenever possible, break complex sentences into multiple sentences and eliminate unnecessary words.",
+    metrics=["contradiction"],
+    response="If you have any questions about my rate, please let me know.",
 )
 print(response.headers.get('X-My-Header'))
 
@@ -217,9 +215,9 @@ evaluate = response.parse()  # get the object that `evaluate.create()` would hav
 print(evaluate.evaluations)
 ```
 
-These methods return an [`APIResponse`](https://github.com/undefined/atla-sdk-python/tree/main/src/atla/_response.py) object.
+These methods return an [`APIResponse`](https://github.com/atla-ai/atla-sdk-python/tree/main/src/atla/_response.py) object.
 
-The async client returns an [`AsyncAPIResponse`](https://github.com/undefined/atla-sdk-python/tree/main/src/atla/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
+The async client returns an [`AsyncAPIResponse`](https://github.com/atla-ai/atla-sdk-python/tree/main/src/atla/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
 
 #### `.with_streaming_response`
 
@@ -229,9 +227,9 @@ To stream the response body, use `.with_streaming_response` instead, which requi
 
 ```python
 with client.evaluate.with_streaming_response.create(
-    input="string",
-    metrics=["string", "string", "string"],
-    response="string",
+    input="The sentence you are given might be too wordy, complicated, or unclear. Rewrite the sentence and make your writing clearer by keeping it concise. Whenever possible, break complex sentences into multiple sentences and eliminate unnecessary words.",
+    metrics=["contradiction"],
+    response="If you have any questions about my rate, please let me know.",
 ) as response:
     print(response.headers.get("X-My-Header"))
 
@@ -311,7 +309,7 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/undefined/atla-sdk-python/issues) with questions, bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/atla-ai/atla-sdk-python/issues) with questions, bugs, or suggestions.
 
 ## Requirements
 

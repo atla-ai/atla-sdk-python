@@ -665,7 +665,14 @@ class TestAtla:
         with pytest.raises(APITimeoutError):
             self.client.post(
                 "/v1/evaluate",
-                body=cast(object, dict(input="string", metrics=["string", "string", "string"], response="string")),
+                body=cast(
+                    object,
+                    dict(
+                        input="The sentence you are given might be too wordy, complicated, or unclear. Rewrite the sentence and make your writing clearer by keeping it concise. Whenever possible, break complex sentences into multiple sentences and eliminate unnecessary words.",
+                        metrics=["contradiction"],
+                        response="If you have any questions about my rate, please let me know.",
+                    ),
+                ),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -680,7 +687,14 @@ class TestAtla:
         with pytest.raises(APIStatusError):
             self.client.post(
                 "/v1/evaluate",
-                body=cast(object, dict(input="string", metrics=["string", "string", "string"], response="string")),
+                body=cast(
+                    object,
+                    dict(
+                        input="The sentence you are given might be too wordy, complicated, or unclear. Rewrite the sentence and make your writing clearer by keeping it concise. Whenever possible, break complex sentences into multiple sentences and eliminate unnecessary words.",
+                        metrics=["contradiction"],
+                        response="If you have any questions about my rate, please let me know.",
+                    ),
+                ),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -1314,7 +1328,14 @@ class TestAsyncAtla:
         with pytest.raises(APITimeoutError):
             await self.client.post(
                 "/v1/evaluate",
-                body=cast(object, dict(input="string", metrics=["string", "string", "string"], response="string")),
+                body=cast(
+                    object,
+                    dict(
+                        input="The sentence you are given might be too wordy, complicated, or unclear. Rewrite the sentence and make your writing clearer by keeping it concise. Whenever possible, break complex sentences into multiple sentences and eliminate unnecessary words.",
+                        metrics=["contradiction"],
+                        response="If you have any questions about my rate, please let me know.",
+                    ),
+                ),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -1329,7 +1350,14 @@ class TestAsyncAtla:
         with pytest.raises(APIStatusError):
             await self.client.post(
                 "/v1/evaluate",
-                body=cast(object, dict(input="string", metrics=["string", "string", "string"], response="string")),
+                body=cast(
+                    object,
+                    dict(
+                        input="The sentence you are given might be too wordy, complicated, or unclear. Rewrite the sentence and make your writing clearer by keeping it concise. Whenever possible, break complex sentences into multiple sentences and eliminate unnecessary words.",
+                        metrics=["contradiction"],
+                        response="If you have any questions about my rate, please let me know.",
+                    ),
+                ),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
