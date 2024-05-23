@@ -6,7 +6,7 @@ from typing import Dict, List, Union, Iterable, Optional
 
 import httpx
 
-from ..types import evaluate_params
+from ..types import evaluate_create_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
     maybe_transform,
@@ -23,7 +23,7 @@ from .._response import (
 from .._base_client import (
     make_request_options,
 )
-from ..types.evaluate_response import EvaluateResponse
+from ..types.evaluate_create_response import EvaluateCreateResponse
 
 __all__ = ["EvaluateResource", "AsyncEvaluateResource"]
 
@@ -37,22 +37,22 @@ class EvaluateResource(SyncAPIResource):
     def with_streaming_response(self) -> EvaluateResourceWithStreamingResponse:
         return EvaluateResourceWithStreamingResponse(self)
 
-    def _(
+    def create(
         self,
         *,
-        context: Optional[str],
         input: Union[str, Iterable[Dict[str, str]]],
         metrics: List[str],
-        reference: Optional[str],
         response: str,
-        model: Optional[str] | NotGiven = NOT_GIVEN,
+        context: Optional[str] | NotGiven = NOT_GIVEN,
+        model: str | NotGiven = NOT_GIVEN,
+        reference: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> EvaluateResponse:
+    ) -> EvaluateCreateResponse:
         """
         Creates a model evaluation for a given LLM input and response.
 
@@ -69,19 +69,19 @@ class EvaluateResource(SyncAPIResource):
             "/v1/evaluate",
             body=maybe_transform(
                 {
-                    "context": context,
                     "input": input,
                     "metrics": metrics,
-                    "reference": reference,
                     "response": response,
+                    "context": context,
                     "model": model,
+                    "reference": reference,
                 },
-                evaluate_params.EvaluateParams,
+                evaluate_create_params.EvaluateCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=EvaluateResponse,
+            cast_to=EvaluateCreateResponse,
         )
 
 
@@ -94,22 +94,22 @@ class AsyncEvaluateResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncEvaluateResourceWithStreamingResponse:
         return AsyncEvaluateResourceWithStreamingResponse(self)
 
-    async def _(
+    async def create(
         self,
         *,
-        context: Optional[str],
         input: Union[str, Iterable[Dict[str, str]]],
         metrics: List[str],
-        reference: Optional[str],
         response: str,
-        model: Optional[str] | NotGiven = NOT_GIVEN,
+        context: Optional[str] | NotGiven = NOT_GIVEN,
+        model: str | NotGiven = NOT_GIVEN,
+        reference: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> EvaluateResponse:
+    ) -> EvaluateCreateResponse:
         """
         Creates a model evaluation for a given LLM input and response.
 
@@ -126,19 +126,19 @@ class AsyncEvaluateResource(AsyncAPIResource):
             "/v1/evaluate",
             body=await async_maybe_transform(
                 {
-                    "context": context,
                     "input": input,
                     "metrics": metrics,
-                    "reference": reference,
                     "response": response,
+                    "context": context,
                     "model": model,
+                    "reference": reference,
                 },
-                evaluate_params.EvaluateParams,
+                evaluate_create_params.EvaluateCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=EvaluateResponse,
+            cast_to=EvaluateCreateResponse,
         )
 
 
@@ -146,8 +146,8 @@ class EvaluateResourceWithRawResponse:
     def __init__(self, evaluate: EvaluateResource) -> None:
         self._evaluate = evaluate
 
-        self._ = to_raw_response_wrapper(
-            evaluate._,
+        self.create = to_raw_response_wrapper(
+            evaluate.create,
         )
 
 
@@ -155,8 +155,8 @@ class AsyncEvaluateResourceWithRawResponse:
     def __init__(self, evaluate: AsyncEvaluateResource) -> None:
         self._evaluate = evaluate
 
-        self._ = async_to_raw_response_wrapper(
-            evaluate._,
+        self.create = async_to_raw_response_wrapper(
+            evaluate.create,
         )
 
 
@@ -164,8 +164,8 @@ class EvaluateResourceWithStreamingResponse:
     def __init__(self, evaluate: EvaluateResource) -> None:
         self._evaluate = evaluate
 
-        self._ = to_streamed_response_wrapper(
-            evaluate._,
+        self.create = to_streamed_response_wrapper(
+            evaluate.create,
         )
 
 
@@ -173,6 +173,6 @@ class AsyncEvaluateResourceWithStreamingResponse:
     def __init__(self, evaluate: AsyncEvaluateResource) -> None:
         self._evaluate = evaluate
 
-        self._ = async_to_streamed_response_wrapper(
-            evaluate._,
+        self.create = async_to_streamed_response_wrapper(
+            evaluate.create,
         )
