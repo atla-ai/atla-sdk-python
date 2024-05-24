@@ -25,12 +25,14 @@ pip install git+ssh://git@github.com/atla-ai/atla-sdk-python.git
 The full API of this library can be found in [api.md](api.md).
 
 ```python
+import os
 from atla import Atla
 
 client = Atla(
+    # This is the default and can be omitted
+    api_key=os.environ.get("ATLA_API_KEY"),
     # defaults to "production".
     environment="development",
-    api_key="My API Key",
 )
 
 evaluate_create_response = client.evaluate.create(
@@ -41,18 +43,25 @@ evaluate_create_response = client.evaluate.create(
 print(evaluate_create_response.evaluations)
 ```
 
+While you can provide an `api_key` keyword argument,
+we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)
+to add `ATLA_API_KEY="My API Key"` to your `.env` file
+so that your API Key is not stored in source control.
+
 ## Async usage
 
 Simply import `AsyncAtla` instead of `Atla` and use `await` with each API call:
 
 ```python
+import os
 import asyncio
 from atla import AsyncAtla
 
 client = AsyncAtla(
+    # This is the default and can be omitted
+    api_key=os.environ.get("ATLA_API_KEY"),
     # defaults to "production".
     environment="development",
-    api_key="My API Key",
 )
 
 
@@ -92,9 +101,7 @@ All errors inherit from `atla.APIError`.
 import atla
 from atla import Atla
 
-client = Atla(
-    api_key="My API Key",
-)
+client = Atla()
 
 try:
     client.evaluate.create(
@@ -141,7 +148,6 @@ from atla import Atla
 client = Atla(
     # default is 2
     max_retries=0,
-    api_key="My API Key",
 )
 
 # Or, configure per-request:
@@ -164,13 +170,11 @@ from atla import Atla
 client = Atla(
     # 20 seconds (default is 1 minute)
     timeout=20.0,
-    api_key="My API Key",
 )
 
 # More granular control:
 client = Atla(
     timeout=httpx.Timeout(60.0, read=5.0, write=10.0, connect=2.0),
-    api_key="My API Key",
 )
 
 # Override per-request:
@@ -216,9 +220,7 @@ The "raw" Response object can be accessed by prefixing `.with_raw_response.` to 
 ```py
 from atla import Atla
 
-client = Atla(
-    api_key="My API Key",
-)
+client = Atla()
 response = client.evaluate.with_raw_response.create(
     input="The sentence you are given might be too wordy, complicated, or unclear. Rewrite the sentence and make your writing clearer by keeping it concise. Whenever possible, break complex sentences into multiple sentences and eliminate unnecessary words.",
     metrics=["precision", "recall"],
@@ -307,7 +309,6 @@ client = Atla(
         proxies="http://my.test.proxy.example.com",
         transport=httpx.HTTPTransport(local_address="0.0.0.0"),
     ),
-    api_key="My API Key",
 )
 ```
 

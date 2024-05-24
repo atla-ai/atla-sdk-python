@@ -19,7 +19,7 @@ from pydantic import ValidationError
 from atla import Atla, AsyncAtla, APIResponseValidationError
 from atla._models import BaseModel, FinalRequestOptions
 from atla._constants import RAW_RESPONSE_HEADER
-from atla._exceptions import APIStatusError, APITimeoutError, APIResponseValidationError
+from atla._exceptions import AtlaError, APIStatusError, APITimeoutError, APIResponseValidationError
 from atla._base_client import DEFAULT_TIMEOUT, HTTPX_DEFAULT_TIMEOUT, BaseClient, make_request_options
 
 from .utils import update_env
@@ -314,6 +314,15 @@ class TestAtla:
         request = client2._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("x-foo") == "stainless"
         assert request.headers.get("x-stainless-lang") == "my-overriding-header"
+
+    def test_validate_headers(self) -> None:
+        client = Atla(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
+        assert request.headers.get("Authorization") == f"Bearer {api_key}"
+
+        with pytest.raises(AtlaError):
+            client2 = Atla(base_url=base_url, api_key=None, _strict_response_validation=True)
+            _ = client2
 
     def test_default_query_option(self) -> None:
         client = Atla(
@@ -1010,6 +1019,15 @@ class TestAsyncAtla:
         request = client2._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("x-foo") == "stainless"
         assert request.headers.get("x-stainless-lang") == "my-overriding-header"
+
+    def test_validate_headers(self) -> None:
+        client = AsyncAtla(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
+        assert request.headers.get("Authorization") == f"Bearer {api_key}"
+
+        with pytest.raises(AtlaError):
+            client2 = AsyncAtla(base_url=base_url, api_key=None, _strict_response_validation=True)
+            _ = client2
 
     def test_default_query_option(self) -> None:
         client = AsyncAtla(
