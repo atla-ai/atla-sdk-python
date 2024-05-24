@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.5 (2024-05-24)
+
+Full Changelog: [v0.1.0-alpha.4...v0.1.0-alpha.5](https://github.com/atla-ai/atla-sdk-python/compare/v0.1.0-alpha.4...v0.1.0-alpha.5)
+
+### Features
+
+* **api:** update via SDK Studio ([#25](https://github.com/atla-ai/atla-sdk-python/issues/25)) ([ee0f639](https://github.com/atla-ai/atla-sdk-python/commit/ee0f639ac33731b874ca847ad66373f0023156e1))
+
 ## 0.1.0-alpha.4 (2024-05-24)
 
 Full Changelog: [v0.1.0-alpha.3...v0.1.0-alpha.4](https://github.com/atla-ai/atla-sdk-python/compare/v0.1.0-alpha.3...v0.1.0-alpha.4)
