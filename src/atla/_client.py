@@ -57,12 +57,14 @@ class Atla(SyncAPIClient):
     with_streaming_response: AtlaWithStreamedResponse
 
     # client options
+    api_key_auth: str
 
     _environment: Literal["production", "development"] | NotGiven
 
     def __init__(
         self,
         *,
+        api_key_auth: str,
         environment: Literal["production", "development"] | NotGiven = NOT_GIVEN,
         base_url: str | httpx.URL | None | NotGiven = NOT_GIVEN,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
@@ -84,6 +86,8 @@ class Atla(SyncAPIClient):
         _strict_response_validation: bool = False,
     ) -> None:
         """Construct a new synchronous atla client instance."""
+        self.api_key_auth = api_key_auth
+
         self._environment = environment
 
         base_url_env = os.environ.get("ATLA_BASE_URL")
@@ -142,6 +146,7 @@ class Atla(SyncAPIClient):
     def copy(
         self,
         *,
+        api_key_auth: str | None = None,
         environment: Literal["production", "development"] | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
@@ -176,6 +181,7 @@ class Atla(SyncAPIClient):
 
         http_client = http_client or self._client
         return self.__class__(
+            api_key_auth=api_key_auth or self.api_key_auth,
             base_url=base_url or self.base_url,
             environment=environment or self._environment,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
@@ -230,12 +236,14 @@ class AsyncAtla(AsyncAPIClient):
     with_streaming_response: AsyncAtlaWithStreamedResponse
 
     # client options
+    api_key_auth: str
 
     _environment: Literal["production", "development"] | NotGiven
 
     def __init__(
         self,
         *,
+        api_key_auth: str,
         environment: Literal["production", "development"] | NotGiven = NOT_GIVEN,
         base_url: str | httpx.URL | None | NotGiven = NOT_GIVEN,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
@@ -257,6 +265,8 @@ class AsyncAtla(AsyncAPIClient):
         _strict_response_validation: bool = False,
     ) -> None:
         """Construct a new async atla client instance."""
+        self.api_key_auth = api_key_auth
+
         self._environment = environment
 
         base_url_env = os.environ.get("ATLA_BASE_URL")
@@ -315,6 +325,7 @@ class AsyncAtla(AsyncAPIClient):
     def copy(
         self,
         *,
+        api_key_auth: str | None = None,
         environment: Literal["production", "development"] | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
@@ -349,6 +360,7 @@ class AsyncAtla(AsyncAPIClient):
 
         http_client = http_client or self._client
         return self.__class__(
+            api_key_auth=api_key_auth or self.api_key_auth,
             base_url=base_url or self.base_url,
             environment=environment or self._environment,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,

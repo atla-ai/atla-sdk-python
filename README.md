@@ -30,6 +30,7 @@ from atla import Atla
 client = Atla(
     # defaults to "production".
     environment="development",
+    api_key_auth="My API Key Auth",
 )
 
 evaluate_create_response = client.evaluate.create(
@@ -51,6 +52,7 @@ from atla import AsyncAtla
 client = AsyncAtla(
     # defaults to "production".
     environment="development",
+    api_key_auth="My API Key Auth",
 )
 
 
@@ -90,7 +92,9 @@ All errors inherit from `atla.APIError`.
 import atla
 from atla import Atla
 
-client = Atla()
+client = Atla(
+    api_key_auth="My API Key Auth",
+)
 
 try:
     client.evaluate.create(
@@ -137,6 +141,7 @@ from atla import Atla
 client = Atla(
     # default is 2
     max_retries=0,
+    api_key_auth="My API Key Auth",
 )
 
 # Or, configure per-request:
@@ -159,11 +164,13 @@ from atla import Atla
 client = Atla(
     # 20 seconds (default is 1 minute)
     timeout=20.0,
+    api_key_auth="My API Key Auth",
 )
 
 # More granular control:
 client = Atla(
     timeout=httpx.Timeout(60.0, read=5.0, write=10.0, connect=2.0),
+    api_key_auth="My API Key Auth",
 )
 
 # Override per-request:
@@ -209,7 +216,9 @@ The "raw" Response object can be accessed by prefixing `.with_raw_response.` to 
 ```py
 from atla import Atla
 
-client = Atla()
+client = Atla(
+    api_key_auth="My API Key Auth",
+)
 response = client.evaluate.with_raw_response.create(
     input="The sentence you are given might be too wordy, complicated, or unclear. Rewrite the sentence and make your writing clearer by keeping it concise. Whenever possible, break complex sentences into multiple sentences and eliminate unnecessary words.",
     metrics=["precision", "recall"],
@@ -298,6 +307,7 @@ client = Atla(
         proxies="http://my.test.proxy.example.com",
         transport=httpx.HTTPTransport(local_address="0.0.0.0"),
     ),
+    api_key_auth="My API Key Auth",
 )
 ```
 
