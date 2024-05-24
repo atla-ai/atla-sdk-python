@@ -27,7 +27,10 @@ The full API of this library can be found in [api.md](api.md).
 ```python
 from atla import Atla
 
-client = Atla()
+client = Atla(
+    # defaults to "production".
+    environment="development",
+)
 
 evaluate_create_response = client.evaluate.create(
     input="The sentence you are given might be too wordy, complicated, or unclear. Rewrite the sentence and make your writing clearer by keeping it concise. Whenever possible, break complex sentences into multiple sentences and eliminate unnecessary words.",
@@ -45,7 +48,10 @@ Simply import `AsyncAtla` instead of `Atla` and use `await` with each API call:
 import asyncio
 from atla import AsyncAtla
 
-client = AsyncAtla()
+client = AsyncAtla(
+    # defaults to "production".
+    environment="development",
+)
 
 
 async def main() -> None:
