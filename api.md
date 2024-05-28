@@ -3,7 +3,7 @@
 Types:
 
 ```python
-from atla.types import Evaluation, EvaluationParams
+from atla.types import Evaluation, Evaluatsion
 ```
 
 Methods:
