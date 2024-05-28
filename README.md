@@ -36,11 +36,9 @@ client = Atla(
 )
 
 evaluation = client.evaluate.create(
-    eval={
-        "metrics": ["string", "string", "string"],
-        "input": "string",
-        "response": "string",
-    },
+    input="The sentence you are given might be too wordy, complicated, or unclear. Rewrite the sentence and make your writing clearer by keeping it concise. Whenever possible, break complex sentences into multiple sentences and eliminate unnecessary words.",
+    metrics=["precision", "recall"],
+    response="If you have any questions about my rate, please let me know.",
 )
 print(evaluation.evaluations)
 ```
@@ -69,11 +67,9 @@ client = AsyncAtla(
 
 async def main() -> None:
     evaluation = await client.evaluate.create(
-        eval={
-            "metrics": ["string", "string", "string"],
-            "input": "string",
-            "response": "string",
-        },
+        input="The sentence you are given might be too wordy, complicated, or unclear. Rewrite the sentence and make your writing clearer by keeping it concise. Whenever possible, break complex sentences into multiple sentences and eliminate unnecessary words.",
+        metrics=["precision", "recall"],
+        response="If you have any questions about my rate, please let me know.",
     )
     print(evaluation.evaluations)
 
@@ -109,11 +105,9 @@ client = Atla()
 
 try:
     client.evaluate.create(
-        eval={
-            "metrics": ["string", "string", "string"],
-            "input": "string",
-            "response": "string",
-        },
+        input="The sentence you are given might be too wordy, complicated, or unclear. Rewrite the sentence and make your writing clearer by keeping it concise. Whenever possible, break complex sentences into multiple sentences and eliminate unnecessary words.",
+        metrics=["precision", "recall"],
+        response="If you have any questions about my rate, please let me know.",
     )
 except atla.APIConnectionError as e:
     print("The server could not be reached")
@@ -158,11 +152,9 @@ client = Atla(
 
 # Or, configure per-request:
 client.with_options(max_retries=5).evaluate.create(
-    eval={
-        "metrics": ["string", "string", "string"],
-        "input": "string",
-        "response": "string",
-    },
+    input="The sentence you are given might be too wordy, complicated, or unclear. Rewrite the sentence and make your writing clearer by keeping it concise. Whenever possible, break complex sentences into multiple sentences and eliminate unnecessary words.",
+    metrics=["precision", "recall"],
+    response="If you have any questions about my rate, please let me know.",
 )
 ```
 
@@ -187,11 +179,9 @@ client = Atla(
 
 # Override per-request:
 client.with_options(timeout=5.0).evaluate.create(
-    eval={
-        "metrics": ["string", "string", "string"],
-        "input": "string",
-        "response": "string",
-    },
+    input="The sentence you are given might be too wordy, complicated, or unclear. Rewrite the sentence and make your writing clearer by keeping it concise. Whenever possible, break complex sentences into multiple sentences and eliminate unnecessary words.",
+    metrics=["precision", "recall"],
+    response="If you have any questions about my rate, please let me know.",
 )
 ```
 
@@ -232,11 +222,9 @@ from atla import Atla
 
 client = Atla()
 response = client.evaluate.with_raw_response.create(
-    eval={
-        "metrics": ["string", "string", "string"],
-        "input": "string",
-        "response": "string",
-    },
+    input="The sentence you are given might be too wordy, complicated, or unclear. Rewrite the sentence and make your writing clearer by keeping it concise. Whenever possible, break complex sentences into multiple sentences and eliminate unnecessary words.",
+    metrics=["precision", "recall"],
+    response="If you have any questions about my rate, please let me know.",
 )
 print(response.headers.get('X-My-Header'))
 
@@ -256,11 +244,9 @@ To stream the response body, use `.with_streaming_response` instead, which requi
 
 ```python
 with client.evaluate.with_streaming_response.create(
-    eval={
-        "metrics": ["string", "string", "string"],
-        "input": "string",
-        "response": "string",
-    },
+    input="The sentence you are given might be too wordy, complicated, or unclear. Rewrite the sentence and make your writing clearer by keeping it concise. Whenever possible, break complex sentences into multiple sentences and eliminate unnecessary words.",
+    metrics=["precision", "recall"],
+    response="If you have any questions about my rate, please let me know.",
 ) as response:
     print(response.headers.get("X-My-Header"))
 
