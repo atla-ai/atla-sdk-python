@@ -40,7 +40,7 @@ evaluation = client.evaluate.create(
     metrics=["precision", "recall"],
     response="If you have any questions about my rate, please let me know.",
 )
-print(evaluation.evaluations)
+print(evaluation.evaluations.recall.score)
 ```
 
 While you can provide an `api_key` keyword argument,
@@ -71,7 +71,7 @@ async def main() -> None:
         metrics=["precision", "recall"],
         response="If you have any questions about my rate, please let me know.",
     )
-    print(evaluation.evaluations)
+    print(evaluation.evaluations.recall.score)
 
 
 asyncio.run(main())
@@ -229,7 +229,7 @@ response = client.evaluate.with_raw_response.create(
 print(response.headers.get('X-My-Header'))
 
 evaluate = response.parse()  # get the object that `evaluate.create()` would have returned
-print(evaluate.evaluations_recall)
+print(evaluate.evaluations_recall_score)
 ```
 
 These methods return an [`APIResponse`](https://github.com/atla-ai/atla-sdk-python/tree/main/src/atla/_response.py) object.
