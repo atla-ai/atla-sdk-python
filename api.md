@@ -3,7 +3,7 @@
 Types:
 
 ```python
-from atla.types import D, Evaluation
+from atla.types import Evaluation
 ```
 
 Methods:
