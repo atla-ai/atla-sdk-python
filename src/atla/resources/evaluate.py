@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Iterable, Optional
+from typing import Dict, List, Type, Union, Iterable, Optional, cast
 
 import httpx
 
@@ -20,10 +20,11 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from .._wrappers import EvaluationsWrapper
 from .._base_client import (
     make_request_options,
 )
-from ..types.evaluate import Evaluate
+from ..types.evaluate_create_response import EvaluateCreateResponse
 
 __all__ = ["EvaluateResource", "AsyncEvaluateResource"]
 
@@ -52,7 +53,7 @@ class EvaluateResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Evaluate:
+    ) -> EvaluateCreateResponse:
         """
         Creates a model evaluation for a given LLM input and response.
 
@@ -79,9 +80,13 @@ class EvaluateResource(SyncAPIResource):
                 evaluate_create_params.EvaluateCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=EvaluationsWrapper[EvaluateCreateResponse]._unwrapper,
             ),
-            cast_to=Evaluate,
+            cast_to=cast(Type[EvaluateCreateResponse], EvaluationsWrapper[EvaluateCreateResponse]),
         )
 
 
@@ -109,7 +114,7 @@ class AsyncEvaluateResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Evaluate:
+    ) -> EvaluateCreateResponse:
         """
         Creates a model evaluation for a given LLM input and response.
 
@@ -136,9 +141,13 @@ class AsyncEvaluateResource(AsyncAPIResource):
                 evaluate_create_params.EvaluateCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=EvaluationsWrapper[EvaluateCreateResponse]._unwrapper,
             ),
-            cast_to=Evaluate,
+            cast_to=cast(Type[EvaluateCreateResponse], EvaluationsWrapper[EvaluateCreateResponse]),
         )
 
 
