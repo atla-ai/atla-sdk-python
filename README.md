@@ -229,7 +229,7 @@ response = client.evaluate.with_raw_response.create(
 print(response.headers.get('X-My-Header'))
 
 evaluate = response.parse()  # get the object that `evaluate.create()` would have returned
-print(evaluate.evaluations)
+print(evaluate.evaluations_recall)
 ```
 
 These methods return an [`APIResponse`](https://github.com/atla-ai/atla-sdk-python/tree/main/src/atla/_response.py) object.
