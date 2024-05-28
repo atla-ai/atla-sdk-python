@@ -35,12 +35,12 @@ client = Atla(
     environment="development",
 )
 
-evaluate = client.evaluate.create(
+evaluate_create_response = client.evaluate.create(
     input="The sentence you are given might be too wordy, complicated, or unclear. Rewrite the sentence and make your writing clearer by keeping it concise. Whenever possible, break complex sentences into multiple sentences and eliminate unnecessary words.",
     metrics=["precision", "recall"],
     response="If you have any questions about my rate, please let me know.",
 )
-print(evaluate.evaluations)
+print(evaluate_create_response.evaluations)
 ```
 
 While you can provide an `api_key` keyword argument,
@@ -66,12 +66,12 @@ client = AsyncAtla(
 
 
 async def main() -> None:
-    evaluate = await client.evaluate.create(
+    evaluate_create_response = await client.evaluate.create(
         input="The sentence you are given might be too wordy, complicated, or unclear. Rewrite the sentence and make your writing clearer by keeping it concise. Whenever possible, break complex sentences into multiple sentences and eliminate unnecessary words.",
         metrics=["precision", "recall"],
         response="If you have any questions about my rate, please let me know.",
     )
-    print(evaluate.evaluations)
+    print(evaluate_create_response.evaluations)
 
 
 asyncio.run(main())
