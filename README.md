@@ -35,12 +35,12 @@ client = Atla(
     environment="development",
 )
 
-evaluate_create_response = client.evaluate.create(
+score = client.evaluate.create(
     input="The sentence you are given might be too wordy, complicated, or unclear. Rewrite the sentence and make your writing clearer by keeping it concise. Whenever possible, break complex sentences into multiple sentences and eliminate unnecessary words.",
     metrics=["precision", "recall"],
     response="If you have any questions about my rate, please let me know.",
 )
-print(evaluate_create_response.evaluations)
+print(score.evaluations.recall.score)
 ```
 
 While you can provide an `api_key` keyword argument,
@@ -66,12 +66,12 @@ client = AsyncAtla(
 
 
 async def main() -> None:
-    evaluate_create_response = await client.evaluate.create(
+    score = await client.evaluate.create(
         input="The sentence you are given might be too wordy, complicated, or unclear. Rewrite the sentence and make your writing clearer by keeping it concise. Whenever possible, break complex sentences into multiple sentences and eliminate unnecessary words.",
         metrics=["precision", "recall"],
         response="If you have any questions about my rate, please let me know.",
     )
-    print(evaluate_create_response.evaluations)
+    print(score.evaluations.recall.score)
 
 
 asyncio.run(main())
@@ -229,7 +229,7 @@ response = client.evaluate.with_raw_response.create(
 print(response.headers.get('X-My-Header'))
 
 evaluate = response.parse()  # get the object that `evaluate.create()` would have returned
-print(evaluate.evaluations)
+print(evaluate.evaluations_recall_score)
 ```
 
 These methods return an [`APIResponse`](https://github.com/atla-ai/atla-sdk-python/tree/main/src/atla/_response.py) object.

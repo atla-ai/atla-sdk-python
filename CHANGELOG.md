@@ -1,5 +1,26 @@
 # Changelog
 
+## 0.1.0-alpha.6 (2024-05-28)
+
+Full Changelog: [v0.1.0-alpha.5...v0.1.0-alpha.6](https://github.com/atla-ai/atla-sdk-python/compare/v0.1.0-alpha.5...v0.1.0-alpha.6)
+
+### Features
+
+* **api:** update via SDK Studio ([#28](https://github.com/atla-ai/atla-sdk-python/issues/28)) ([820512c](https://github.com/atla-ai/atla-sdk-python/commit/820512cfd3da00bb2dc8e8c88810b4e93c01aeb8))
+* **api:** update via SDK Studio ([#29](https://github.com/atla-ai/atla-sdk-python/issues/29)) ([6ccb1e9](https://github.com/atla-ai/atla-sdk-python/commit/6ccb1e9ceea8320ee39959c30bbcb14ee6e7a514))
+* **api:** update via SDK Studio ([#31](https://github.com/atla-ai/atla-sdk-python/issues/31)) ([9121c0a](https://github.com/atla-ai/atla-sdk-python/commit/9121c0aead8165a3a1e5fbabeb11b94111d359cb))
+* **api:** update via SDK Studio ([#32](https://github.com/atla-ai/atla-sdk-python/issues/32)) ([1375a6a](https://github.com/atla-ai/atla-sdk-python/commit/1375a6ab13219e5fa13042bde50f23726c8afb0f))
+* **api:** update via SDK Studio ([#33](https://github.com/atla-ai/atla-sdk-python/issues/33)) ([c6787f5](https://github.com/atla-ai/atla-sdk-python/commit/c6787f52efe37a28da5ba84710cba9c3d5e07a66))
+* **api:** update via SDK Studio ([#34](https://github.com/atla-ai/atla-sdk-python/issues/34)) ([f8a762f](https://github.com/atla-ai/atla-sdk-python/commit/f8a762fba5ca9eeee0b63bf9765e2d3ad4788b31))
+* **api:** update via SDK Studio ([#35](https://github.com/atla-ai/atla-sdk-python/issues/35)) ([33ef5b2](https://github.com/atla-ai/atla-sdk-python/commit/33ef5b225e91643ecb32b3104b55d795c6be5c78))
+* **api:** update via SDK Studio ([#36](https://github.com/atla-ai/atla-sdk-python/issues/36)) ([6b1b9c7](https://github.com/atla-ai/atla-sdk-python/commit/6b1b9c79476a16bfd752a59ab646685e89ac4bb8))
+* **api:** update via SDK Studio ([#37](https://github.com/atla-ai/atla-sdk-python/issues/37)) ([d17cf40](https://github.com/atla-ai/atla-sdk-python/commit/d17cf40fe3d4ed60b3bc3022d1cc19bc916c94f8))
+* **api:** update via SDK Studio ([#38](https://github.com/atla-ai/atla-sdk-python/issues/38)) ([71d1fbb](https://github.com/atla-ai/atla-sdk-python/commit/71d1fbbb4c6767ac464842d1babb7337af0f5f0b))
+* **api:** update via SDK Studio ([#39](https://github.com/atla-ai/atla-sdk-python/issues/39)) ([b12bc41](https://github.com/atla-ai/atla-sdk-python/commit/b12bc4178a3928a6c4f6843d292150861fd21d7c))
+* **api:** update via SDK Studio ([#40](https://github.com/atla-ai/atla-sdk-python/issues/40)) ([4f9e873](https://github.com/atla-ai/atla-sdk-python/commit/4f9e873745b98956ca45c67bb7c63c9763a355bc))
+* **api:** update via SDK Studio ([#41](https://github.com/atla-ai/atla-sdk-python/issues/41)) ([8e5b758](https://github.com/atla-ai/atla-sdk-python/commit/8e5b758f6328ec013fb2592cffd637837ba1be19))
+* **api:** update via SDK Studio ([#42](https://github.com/atla-ai/atla-sdk-python/issues/42)) ([83fd6b6](https://github.com/atla-ai/atla-sdk-python/commit/83fd6b6c09d26fdaa201be59fa6ac0704a10d4a6))
+
 ## 0.1.0-alpha.5 (2024-05-24)
 
 Full Changelog: [v0.1.0-alpha.4...v0.1.0-alpha.5](https://github.com/atla-ai/atla-sdk-python/compare/v0.1.0-alpha.4...v0.1.0-alpha.5)
