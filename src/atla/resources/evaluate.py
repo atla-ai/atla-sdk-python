@@ -23,7 +23,7 @@ from .._response import (
 from .._base_client import (
     make_request_options,
 )
-from ..types.evaluate_create_response import EvaluateCreateResponse
+from ..types.evaluate import Evaluate
 
 __all__ = ["EvaluateResource", "AsyncEvaluateResource"]
 
@@ -52,7 +52,7 @@ class EvaluateResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> EvaluateCreateResponse:
+    ) -> Evaluate:
         """
         Creates a model evaluation for a given LLM input and response.
 
@@ -81,7 +81,7 @@ class EvaluateResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=EvaluateCreateResponse,
+            cast_to=Evaluate,
         )
 
 
@@ -109,7 +109,7 @@ class AsyncEvaluateResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> EvaluateCreateResponse:
+    ) -> Evaluate:
         """
         Creates a model evaluation for a given LLM input and response.
 
@@ -138,7 +138,7 @@ class AsyncEvaluateResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=EvaluateCreateResponse,
+            cast_to=Evaluate,
         )
 
 
