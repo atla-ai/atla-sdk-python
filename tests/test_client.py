@@ -707,9 +707,11 @@ class TestAtla:
                 body=cast(
                     object,
                     dict(
-                        input="The sentence you are given might be too wordy, complicated, or unclear. Rewrite the sentence and make your writing clearer by keeping it concise. Whenever possible, break complex sentences into multiple sentences and eliminate unnecessary words.",
-                        metrics=["precision", "recall"],
-                        response="If you have any questions about my rate, please let me know.",
+                        eval={
+                            "metrics": ["string", "string", "string"],
+                            "input": "string",
+                            "response": "string",
+                        }
                     ),
                 ),
                 cast_to=httpx.Response,
@@ -729,9 +731,11 @@ class TestAtla:
                 body=cast(
                     object,
                     dict(
-                        input="The sentence you are given might be too wordy, complicated, or unclear. Rewrite the sentence and make your writing clearer by keeping it concise. Whenever possible, break complex sentences into multiple sentences and eliminate unnecessary words.",
-                        metrics=["precision", "recall"],
-                        response="If you have any questions about my rate, please let me know.",
+                        eval={
+                            "metrics": ["string", "string", "string"],
+                            "input": "string",
+                            "response": "string",
+                        }
                     ),
                 ),
                 cast_to=httpx.Response,
@@ -1418,9 +1422,11 @@ class TestAsyncAtla:
                 body=cast(
                     object,
                     dict(
-                        input="The sentence you are given might be too wordy, complicated, or unclear. Rewrite the sentence and make your writing clearer by keeping it concise. Whenever possible, break complex sentences into multiple sentences and eliminate unnecessary words.",
-                        metrics=["precision", "recall"],
-                        response="If you have any questions about my rate, please let me know.",
+                        eval={
+                            "metrics": ["string", "string", "string"],
+                            "input": "string",
+                            "response": "string",
+                        }
                     ),
                 ),
                 cast_to=httpx.Response,
@@ -1440,9 +1446,11 @@ class TestAsyncAtla:
                 body=cast(
                     object,
                     dict(
-                        input="The sentence you are given might be too wordy, complicated, or unclear. Rewrite the sentence and make your writing clearer by keeping it concise. Whenever possible, break complex sentences into multiple sentences and eliminate unnecessary words.",
-                        metrics=["precision", "recall"],
-                        response="If you have any questions about my rate, please let me know.",
+                        eval={
+                            "metrics": ["string", "string", "string"],
+                            "input": "string",
+                            "response": "string",
+                        }
                     ),
                 ),
                 cast_to=httpx.Response,

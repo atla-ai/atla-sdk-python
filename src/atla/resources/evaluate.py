@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Iterable, Optional
-
 import httpx
 
 from ..types import evaluate_create_params
@@ -40,12 +38,7 @@ class EvaluateResource(SyncAPIResource):
     def create(
         self,
         *,
-        input: Union[str, Iterable[Dict[str, str]]],
-        metrics: List[str],
-        response: str,
-        context: Optional[str] | NotGiven = NOT_GIVEN,
-        model: str | NotGiven = NOT_GIVEN,
-        reference: Optional[str] | NotGiven = NOT_GIVEN,
+        eval: evaluate_create_params.Eval,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -67,17 +60,7 @@ class EvaluateResource(SyncAPIResource):
         """
         return self._post(
             "/v1/evaluate",
-            body=maybe_transform(
-                {
-                    "input": input,
-                    "metrics": metrics,
-                    "response": response,
-                    "context": context,
-                    "model": model,
-                    "reference": reference,
-                },
-                evaluate_create_params.EvaluateCreateParams,
-            ),
+            body=maybe_transform(eval, evaluate_create_params.EvaluateCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -97,12 +80,7 @@ class AsyncEvaluateResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        input: Union[str, Iterable[Dict[str, str]]],
-        metrics: List[str],
-        response: str,
-        context: Optional[str] | NotGiven = NOT_GIVEN,
-        model: str | NotGiven = NOT_GIVEN,
-        reference: Optional[str] | NotGiven = NOT_GIVEN,
+        eval: evaluate_create_params.Eval,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -124,17 +102,7 @@ class AsyncEvaluateResource(AsyncAPIResource):
         """
         return await self._post(
             "/v1/evaluate",
-            body=await async_maybe_transform(
-                {
-                    "input": input,
-                    "metrics": metrics,
-                    "response": response,
-                    "context": context,
-                    "model": model,
-                    "reference": reference,
-                },
-                evaluate_create_params.EvaluateCreateParams,
-            ),
+            body=await async_maybe_transform(eval, evaluate_create_params.EvaluateCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
