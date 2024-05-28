@@ -4,7 +4,7 @@ from typing import Dict, Optional
 
 from .._models import BaseModel
 
-__all__ = ["Evaluate", "Evaluations", "Usage"]
+__all__ = ["Evaluation", "Evaluations", "Usage"]
 
 
 class Evaluations(BaseModel):
@@ -21,7 +21,7 @@ class Usage(BaseModel):
     total_tokens: int
 
 
-class Evaluate(BaseModel):
+class Evaluation(BaseModel):
     evaluations: Dict[str, Evaluations]
 
     model: str
