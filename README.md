@@ -14,7 +14,7 @@ The REST API documentation can be found [on docs.atla-ai.com](https://docs.atla-
 
 ```sh
 # install from PyPI
-pip install --pre atla
+pip install atla
 ```
 
 ## Usage
