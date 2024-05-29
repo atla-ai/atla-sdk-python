@@ -31,8 +31,6 @@ from atla import Atla
 client = Atla(
     # This is the default and can be omitted
     api_key=os.environ.get("ATLA_API_KEY"),
-    # defaults to "production".
-    environment="development",
 )
 
 eval = client.evaluate.create(
@@ -61,8 +59,6 @@ from atla import AsyncAtla
 client = AsyncAtla(
     # This is the default and can be omitted
     api_key=os.environ.get("ATLA_API_KEY"),
-    # defaults to "production".
-    environment="development",
 )
 
 
