@@ -35,13 +35,13 @@ client = Atla(
     environment="development",
 )
 
-score = client.evaluate.create(
+eval = client.evaluate.create(
     input="Is it legal to monitor employee emails under European privacy laws?",
     metrics=["precision", "recall"],
     response="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there's a legitimate purpose.",
     context="European privacy laws, including GDPR, allow for the monitoring of employee emails under strict conditions. The employer must demonstrate that the monitoring is necessary for a legitimate purpose, such as protecting company assets or compliance with legal obligations. Employees must be informed about the monitoring in advance, and the privacy impact should be assessed to minimize intrusion.",
 )
-print(score.evaluations_recall)
+print(eval.evaluations)
 ```
 
 While you can provide an `api_key` keyword argument,
@@ -67,13 +67,13 @@ client = AsyncAtla(
 
 
 async def main() -> None:
-    score = await client.evaluate.create(
+    eval = await client.evaluate.create(
         input="Is it legal to monitor employee emails under European privacy laws?",
         metrics=["precision", "recall"],
         response="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there's a legitimate purpose.",
         context="European privacy laws, including GDPR, allow for the monitoring of employee emails under strict conditions. The employer must demonstrate that the monitoring is necessary for a legitimate purpose, such as protecting company assets or compliance with legal obligations. Employees must be informed about the monitoring in advance, and the privacy impact should be assessed to minimize intrusion.",
     )
-    print(score.evaluations_recall)
+    print(eval.evaluations)
 
 
 asyncio.run(main())
