@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.1 (2024-05-29)
+
+Full Changelog: [v0.1.0...v0.1.1](https://github.com/atla-ai/atla-sdk-python/compare/v0.1.0...v0.1.1)
+
+### Chores
+
+* **internal:** version bump ([#58](https://github.com/atla-ai/atla-sdk-python/issues/58)) ([1c17782](https://github.com/atla-ai/atla-sdk-python/commit/1c1778288406160d685f4955f96ca6558e76f777))
+
 ## 0.1.0 (2024-05-29)
 
 Full Changelog: [v0.1.0-alpha.7...v0.1.0](https://github.com/atla-ai/atla-sdk-python/compare/v0.1.0-alpha.7...v0.1.0)
