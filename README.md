@@ -8,17 +8,14 @@ and offers both synchronous and asynchronous clients powered by [httpx](https://
 
 ## Documentation
 
-The REST API documentation can be found [on docs.atla.com](https://docs.atla.com). The full API of this library can be found in [api.md](api.md).
+The REST API documentation can be found [on docs.atla-ai.com](https://docs.atla-ai.com). The full API of this library can be found in [api.md](api.md).
 
 ## Installation
 
 ```sh
-# install from the production repo
-pip install git+ssh://git@github.com/atla-ai/atla-sdk-python.git
+# install from PyPI
+pip install --pre atla
 ```
-
-> [!NOTE]
-> Once this package is [published to PyPI](https://app.stainlessapi.com/docs/guides/publish), this will become: `pip install --pre atla`
 
 ## Usage
 
@@ -31,8 +28,6 @@ from atla import Atla
 client = Atla(
     # This is the default and can be omitted
     api_key=os.environ.get("ATLA_API_KEY"),
-    # defaults to "production".
-    environment="development",
 )
 
 eval = client.evaluate.create(
@@ -61,8 +56,6 @@ from atla import AsyncAtla
 client = AsyncAtla(
     # This is the default and can be omitted
     api_key=os.environ.get("ATLA_API_KEY"),
-    # defaults to "production".
-    environment="development",
 )
 
 
