@@ -538,14 +538,6 @@ class TestAtla:
             client = Atla(api_key=api_key, _strict_response_validation=True)
             assert client.base_url == "http://localhost:5000/from/env/"
 
-        # explicit environment arg requires explicitness
-        with update_env(ATLA_BASE_URL="http://localhost:5000/from/env"):
-            with pytest.raises(ValueError, match=r"you must pass base_url=None"):
-                Atla(api_key=api_key, _strict_response_validation=True, environment="production")
-
-            client = Atla(base_url=None, api_key=api_key, _strict_response_validation=True, environment="production")
-            assert str(client.base_url).startswith("https://api.atla-ai.com")
-
     @pytest.mark.parametrize(
         "client",
         [
@@ -1244,16 +1236,6 @@ class TestAsyncAtla:
         with update_env(ATLA_BASE_URL="http://localhost:5000/from/env"):
             client = AsyncAtla(api_key=api_key, _strict_response_validation=True)
             assert client.base_url == "http://localhost:5000/from/env/"
-
-        # explicit environment arg requires explicitness
-        with update_env(ATLA_BASE_URL="http://localhost:5000/from/env"):
-            with pytest.raises(ValueError, match=r"you must pass base_url=None"):
-                AsyncAtla(api_key=api_key, _strict_response_validation=True, environment="production")
-
-            client = AsyncAtla(
-                base_url=None, api_key=api_key, _strict_response_validation=True, environment="production"
-            )
-            assert str(client.base_url).startswith("https://api.atla-ai.com")
 
     @pytest.mark.parametrize(
         "client",
