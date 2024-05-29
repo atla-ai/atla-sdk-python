@@ -41,7 +41,7 @@ score = client.evaluate.create(
     response="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there's a legitimate purpose.",
     context="European privacy laws, including GDPR, allow for the monitoring of employee emails under strict conditions. The employer must demonstrate that the monitoring is necessary for a legitimate purpose, such as protecting company assets or compliance with legal obligations. Employees must be informed about the monitoring in advance, and the privacy impact should be assessed to minimize intrusion.",
 )
-print(score.evaluations.recall.score)
+print(score.evaluations_recall)
 ```
 
 While you can provide an `api_key` keyword argument,
@@ -73,7 +73,7 @@ async def main() -> None:
         response="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there's a legitimate purpose.",
         context="European privacy laws, including GDPR, allow for the monitoring of employee emails under strict conditions. The employer must demonstrate that the monitoring is necessary for a legitimate purpose, such as protecting company assets or compliance with legal obligations. Employees must be informed about the monitoring in advance, and the privacy impact should be assessed to minimize intrusion.",
     )
-    print(score.evaluations.recall.score)
+    print(score.evaluations_recall)
 
 
 asyncio.run(main())
@@ -235,7 +235,7 @@ response = client.evaluate.with_raw_response.create(
 print(response.headers.get('X-My-Header'))
 
 evaluate = response.parse()  # get the object that `evaluate.create()` would have returned
-print(evaluate.evaluations_recall_score)
+print(evaluate.evaluations)
 ```
 
 These methods return an [`APIResponse`](https://github.com/atla-ai/atla-sdk-python/tree/main/src/atla/_response.py) object.
