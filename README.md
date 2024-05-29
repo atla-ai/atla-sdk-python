@@ -36,9 +36,10 @@ client = Atla(
 )
 
 score = client.evaluate.create(
-    input="The sentence you are given might be too wordy, complicated, or unclear. Rewrite the sentence and make your writing clearer by keeping it concise. Whenever possible, break complex sentences into multiple sentences and eliminate unnecessary words.",
+    input="Is it legal to monitor employee emails under European privacy laws?",
     metrics=["precision", "recall"],
-    response="If you have any questions about my rate, please let me know.",
+    response="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there's a legitimate purpose.",
+    context="European privacy laws, including GDPR, allow for the monitoring of employee emails under strict conditions. The employer must demonstrate that the monitoring is necessary for a legitimate purpose, such as protecting company assets or compliance with legal obligations. Employees must be informed about the monitoring in advance, and the privacy impact should be assessed to minimize intrusion.",
 )
 print(score.evaluations.recall.score)
 ```
@@ -67,9 +68,10 @@ client = AsyncAtla(
 
 async def main() -> None:
     score = await client.evaluate.create(
-        input="The sentence you are given might be too wordy, complicated, or unclear. Rewrite the sentence and make your writing clearer by keeping it concise. Whenever possible, break complex sentences into multiple sentences and eliminate unnecessary words.",
+        input="Is it legal to monitor employee emails under European privacy laws?",
         metrics=["precision", "recall"],
-        response="If you have any questions about my rate, please let me know.",
+        response="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there's a legitimate purpose.",
+        context="European privacy laws, including GDPR, allow for the monitoring of employee emails under strict conditions. The employer must demonstrate that the monitoring is necessary for a legitimate purpose, such as protecting company assets or compliance with legal obligations. Employees must be informed about the monitoring in advance, and the privacy impact should be assessed to minimize intrusion.",
     )
     print(score.evaluations.recall.score)
 
@@ -105,9 +107,10 @@ client = Atla()
 
 try:
     client.evaluate.create(
-        input="The sentence you are given might be too wordy, complicated, or unclear. Rewrite the sentence and make your writing clearer by keeping it concise. Whenever possible, break complex sentences into multiple sentences and eliminate unnecessary words.",
+        input="Is it legal to monitor employee emails under European privacy laws?",
         metrics=["precision", "recall"],
-        response="If you have any questions about my rate, please let me know.",
+        response="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there's a legitimate purpose.",
+        context="European privacy laws, including GDPR, allow for the monitoring of employee emails under strict conditions. The employer must demonstrate that the monitoring is necessary for a legitimate purpose, such as protecting company assets or compliance with legal obligations. Employees must be informed about the monitoring in advance, and the privacy impact should be assessed to minimize intrusion.",
     )
 except atla.APIConnectionError as e:
     print("The server could not be reached")
@@ -152,9 +155,10 @@ client = Atla(
 
 # Or, configure per-request:
 client.with_options(max_retries=5).evaluate.create(
-    input="The sentence you are given might be too wordy, complicated, or unclear. Rewrite the sentence and make your writing clearer by keeping it concise. Whenever possible, break complex sentences into multiple sentences and eliminate unnecessary words.",
+    input="Is it legal to monitor employee emails under European privacy laws?",
     metrics=["precision", "recall"],
-    response="If you have any questions about my rate, please let me know.",
+    response="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there's a legitimate purpose.",
+    context="European privacy laws, including GDPR, allow for the monitoring of employee emails under strict conditions. The employer must demonstrate that the monitoring is necessary for a legitimate purpose, such as protecting company assets or compliance with legal obligations. Employees must be informed about the monitoring in advance, and the privacy impact should be assessed to minimize intrusion.",
 )
 ```
 
@@ -179,9 +183,10 @@ client = Atla(
 
 # Override per-request:
 client.with_options(timeout=5.0).evaluate.create(
-    input="The sentence you are given might be too wordy, complicated, or unclear. Rewrite the sentence and make your writing clearer by keeping it concise. Whenever possible, break complex sentences into multiple sentences and eliminate unnecessary words.",
+    input="Is it legal to monitor employee emails under European privacy laws?",
     metrics=["precision", "recall"],
-    response="If you have any questions about my rate, please let me know.",
+    response="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there's a legitimate purpose.",
+    context="European privacy laws, including GDPR, allow for the monitoring of employee emails under strict conditions. The employer must demonstrate that the monitoring is necessary for a legitimate purpose, such as protecting company assets or compliance with legal obligations. Employees must be informed about the monitoring in advance, and the privacy impact should be assessed to minimize intrusion.",
 )
 ```
 

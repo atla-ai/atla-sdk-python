@@ -1,13 +1,5 @@
 # Changelog
 
-## 0.1.0-alpha.7 (2024-05-28)
-
-Full Changelog: [v0.1.0-alpha.6...v0.1.0-alpha.7](https://github.com/atla-ai/atla-sdk-python/compare/v0.1.0-alpha.6...v0.1.0-alpha.7)
-
-### Features
-
-* Cleanup README ([c82f79a](https://github.com/atla-ai/atla-sdk-python/commit/c82f79ac4167eae96b98593390ce81692082e5cf))
-
 ## 0.1.0-alpha.6 (2024-05-28)
 
 Full Changelog: [v0.1.0-alpha.5...v0.1.0-alpha.6](https://github.com/atla-ai/atla-sdk-python/compare/v0.1.0-alpha.5...v0.1.0-alpha.6)
