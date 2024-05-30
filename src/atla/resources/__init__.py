@@ -1,19 +1,19 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .evaluate import (
-    EvaluateResource,
-    AsyncEvaluateResource,
-    EvaluateResourceWithRawResponse,
-    AsyncEvaluateResourceWithRawResponse,
-    EvaluateResourceWithStreamingResponse,
-    AsyncEvaluateResourceWithStreamingResponse,
+from .evaluation import (
+    EvaluationResource,
+    AsyncEvaluationResource,
+    EvaluationResourceWithRawResponse,
+    AsyncEvaluationResourceWithRawResponse,
+    EvaluationResourceWithStreamingResponse,
+    AsyncEvaluationResourceWithStreamingResponse,
 )
 
 __all__ = [
-    "EvaluateResource",
-    "AsyncEvaluateResource",
-    "EvaluateResourceWithRawResponse",
-    "AsyncEvaluateResourceWithRawResponse",
-    "EvaluateResourceWithStreamingResponse",
-    "AsyncEvaluateResourceWithStreamingResponse",
+    "EvaluationResource",
+    "AsyncEvaluationResource",
+    "EvaluationResourceWithRawResponse",
+    "AsyncEvaluationResourceWithRawResponse",
+    "EvaluationResourceWithStreamingResponse",
+    "AsyncEvaluationResourceWithStreamingResponse",
 ]

@@ -46,7 +46,7 @@ __all__ = [
 
 
 class Atla(SyncAPIClient):
-    evaluate: resources.EvaluateResource
+    evaluation: resources.EvaluationResource
     with_raw_response: AtlaWithRawResponse
     with_streaming_response: AtlaWithStreamedResponse
 
@@ -104,7 +104,7 @@ class Atla(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.evaluate = resources.EvaluateResource(self)
+        self.evaluation = resources.EvaluationResource(self)
         self.with_raw_response = AtlaWithRawResponse(self)
         self.with_streaming_response = AtlaWithStreamedResponse(self)
 
@@ -214,7 +214,7 @@ class Atla(SyncAPIClient):
 
 
 class AsyncAtla(AsyncAPIClient):
-    evaluate: resources.AsyncEvaluateResource
+    evaluation: resources.AsyncEvaluationResource
     with_raw_response: AsyncAtlaWithRawResponse
     with_streaming_response: AsyncAtlaWithStreamedResponse
 
@@ -272,7 +272,7 @@ class AsyncAtla(AsyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.evaluate = resources.AsyncEvaluateResource(self)
+        self.evaluation = resources.AsyncEvaluationResource(self)
         self.with_raw_response = AsyncAtlaWithRawResponse(self)
         self.with_streaming_response = AsyncAtlaWithStreamedResponse(self)
 
@@ -383,22 +383,22 @@ class AsyncAtla(AsyncAPIClient):
 
 class AtlaWithRawResponse:
     def __init__(self, client: Atla) -> None:
-        self.evaluate = resources.EvaluateResourceWithRawResponse(client.evaluate)
+        self.evaluation = resources.EvaluationResourceWithRawResponse(client.evaluation)
 
 
 class AsyncAtlaWithRawResponse:
     def __init__(self, client: AsyncAtla) -> None:
-        self.evaluate = resources.AsyncEvaluateResourceWithRawResponse(client.evaluate)
+        self.evaluation = resources.AsyncEvaluationResourceWithRawResponse(client.evaluation)
 
 
 class AtlaWithStreamedResponse:
     def __init__(self, client: Atla) -> None:
-        self.evaluate = resources.EvaluateResourceWithStreamingResponse(client.evaluate)
+        self.evaluation = resources.EvaluationResourceWithStreamingResponse(client.evaluation)
 
 
 class AsyncAtlaWithStreamedResponse:
     def __init__(self, client: AsyncAtla) -> None:
-        self.evaluate = resources.AsyncEvaluateResourceWithStreamingResponse(client.evaluate)
+        self.evaluation = resources.AsyncEvaluationResourceWithStreamingResponse(client.evaluation)
 
 
 Client = Atla
