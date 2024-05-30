@@ -8,27 +8,27 @@ from typing import Any, cast
 import pytest
 
 from atla import Atla, AsyncAtla
-from atla.types import Evaluation
+from atla.types import Evaluate
 from tests.utils import assert_matches_type
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
-class TestEvaluation:
+class TestEvaluate:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
     def test_method_create(self, client: Atla) -> None:
-        evaluation = client.evaluation.create(
+        evaluate = client.evaluate.create(
             input="string",
             metrics=["string", "string", "string"],
             response="string",
         )
-        assert_matches_type(Evaluation, evaluation, path=["response"])
+        assert_matches_type(Evaluate, evaluate, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Atla) -> None:
-        evaluation = client.evaluation.create(
+        evaluate = client.evaluate.create(
             input="string",
             metrics=["string", "string", "string"],
             response="string",
@@ -36,11 +36,11 @@ class TestEvaluation:
             model="string",
             reference="string",
         )
-        assert_matches_type(Evaluation, evaluation, path=["response"])
+        assert_matches_type(Evaluate, evaluate, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Atla) -> None:
-        response = client.evaluation.with_raw_response.create(
+        response = client.evaluate.with_raw_response.create(
             input="string",
             metrics=["string", "string", "string"],
             response="string",
@@ -48,12 +48,12 @@ class TestEvaluation:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        evaluation = response.parse()
-        assert_matches_type(Evaluation, evaluation, path=["response"])
+        evaluate = response.parse()
+        assert_matches_type(Evaluate, evaluate, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Atla) -> None:
-        with client.evaluation.with_streaming_response.create(
+        with client.evaluate.with_streaming_response.create(
             input="string",
             metrics=["string", "string", "string"],
             response="string",
@@ -61,27 +61,27 @@ class TestEvaluation:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            evaluation = response.parse()
-            assert_matches_type(Evaluation, evaluation, path=["response"])
+            evaluate = response.parse()
+            assert_matches_type(Evaluate, evaluate, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
 
-class TestAsyncEvaluation:
+class TestAsyncEvaluate:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
     async def test_method_create(self, async_client: AsyncAtla) -> None:
-        evaluation = await async_client.evaluation.create(
+        evaluate = await async_client.evaluate.create(
             input="string",
             metrics=["string", "string", "string"],
             response="string",
         )
-        assert_matches_type(Evaluation, evaluation, path=["response"])
+        assert_matches_type(Evaluate, evaluate, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncAtla) -> None:
-        evaluation = await async_client.evaluation.create(
+        evaluate = await async_client.evaluate.create(
             input="string",
             metrics=["string", "string", "string"],
             response="string",
@@ -89,11 +89,11 @@ class TestAsyncEvaluation:
             model="string",
             reference="string",
         )
-        assert_matches_type(Evaluation, evaluation, path=["response"])
+        assert_matches_type(Evaluate, evaluate, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncAtla) -> None:
-        response = await async_client.evaluation.with_raw_response.create(
+        response = await async_client.evaluate.with_raw_response.create(
             input="string",
             metrics=["string", "string", "string"],
             response="string",
@@ -101,12 +101,12 @@ class TestAsyncEvaluation:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        evaluation = await response.parse()
-        assert_matches_type(Evaluation, evaluation, path=["response"])
+        evaluate = await response.parse()
+        assert_matches_type(Evaluate, evaluate, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncAtla) -> None:
-        async with async_client.evaluation.with_streaming_response.create(
+        async with async_client.evaluate.with_streaming_response.create(
             input="string",
             metrics=["string", "string", "string"],
             response="string",
@@ -114,7 +114,7 @@ class TestAsyncEvaluation:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            evaluation = await response.parse()
-            assert_matches_type(Evaluation, evaluation, path=["response"])
+            evaluate = await response.parse()
+            assert_matches_type(Evaluate, evaluate, path=["response"])
 
         assert cast(Any, response.is_closed) is True
