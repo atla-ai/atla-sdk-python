@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import Dict, List, Union, Iterable, Optional
 from typing_extensions import Required, TypedDict
 
-__all__ = ["EvaluateCreateParams"]
+__all__ = ["EvaluationCreateParams"]
 
 
-class EvaluateCreateParams(TypedDict, total=False):
+class EvaluationCreateParams(TypedDict, total=False):
     input: Required[Union[str, Iterable[Dict[str, str]]]]
     """Input messages to evaluate the assistant's response for.
 
