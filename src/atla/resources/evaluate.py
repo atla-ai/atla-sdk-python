@@ -6,7 +6,7 @@ from typing import Dict, List, Union, Iterable, Optional
 
 import httpx
 
-from ..types import evaluation_create_params
+from ..types import evaluate_create_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
     maybe_transform,
@@ -23,19 +23,19 @@ from .._response import (
 from .._base_client import (
     make_request_options,
 )
-from ..types.evaluation import Evaluation
+from ..types.evaluate import Evaluate
 
-__all__ = ["EvaluationResource", "AsyncEvaluationResource"]
+__all__ = ["EvaluateResource", "AsyncEvaluateResource"]
 
 
-class EvaluationResource(SyncAPIResource):
+class EvaluateResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> EvaluationResourceWithRawResponse:
-        return EvaluationResourceWithRawResponse(self)
+    def with_raw_response(self) -> EvaluateResourceWithRawResponse:
+        return EvaluateResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> EvaluationResourceWithStreamingResponse:
-        return EvaluationResourceWithStreamingResponse(self)
+    def with_streaming_response(self) -> EvaluateResourceWithStreamingResponse:
+        return EvaluateResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -52,7 +52,7 @@ class EvaluationResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Evaluation:
+    ) -> Evaluate:
         """
         Create Evaluation
 
@@ -150,23 +150,23 @@ class EvaluationResource(SyncAPIResource):
                     "model": model,
                     "reference": reference,
                 },
-                evaluation_create_params.EvaluationCreateParams,
+                evaluate_create_params.EvaluateCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Evaluation,
+            cast_to=Evaluate,
         )
 
 
-class AsyncEvaluationResource(AsyncAPIResource):
+class AsyncEvaluateResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncEvaluationResourceWithRawResponse:
-        return AsyncEvaluationResourceWithRawResponse(self)
+    def with_raw_response(self) -> AsyncEvaluateResourceWithRawResponse:
+        return AsyncEvaluateResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncEvaluationResourceWithStreamingResponse:
-        return AsyncEvaluationResourceWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncEvaluateResourceWithStreamingResponse:
+        return AsyncEvaluateResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -183,7 +183,7 @@ class AsyncEvaluationResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Evaluation:
+    ) -> Evaluate:
         """
         Create Evaluation
 
@@ -281,46 +281,46 @@ class AsyncEvaluationResource(AsyncAPIResource):
                     "model": model,
                     "reference": reference,
                 },
-                evaluation_create_params.EvaluationCreateParams,
+                evaluate_create_params.EvaluateCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Evaluation,
+            cast_to=Evaluate,
         )
 
 
-class EvaluationResourceWithRawResponse:
-    def __init__(self, evaluation: EvaluationResource) -> None:
-        self._evaluation = evaluation
+class EvaluateResourceWithRawResponse:
+    def __init__(self, evaluate: EvaluateResource) -> None:
+        self._evaluate = evaluate
 
         self.create = to_raw_response_wrapper(
-            evaluation.create,
+            evaluate.create,
         )
 
 
-class AsyncEvaluationResourceWithRawResponse:
-    def __init__(self, evaluation: AsyncEvaluationResource) -> None:
-        self._evaluation = evaluation
+class AsyncEvaluateResourceWithRawResponse:
+    def __init__(self, evaluate: AsyncEvaluateResource) -> None:
+        self._evaluate = evaluate
 
         self.create = async_to_raw_response_wrapper(
-            evaluation.create,
+            evaluate.create,
         )
 
 
-class EvaluationResourceWithStreamingResponse:
-    def __init__(self, evaluation: EvaluationResource) -> None:
-        self._evaluation = evaluation
+class EvaluateResourceWithStreamingResponse:
+    def __init__(self, evaluate: EvaluateResource) -> None:
+        self._evaluate = evaluate
 
         self.create = to_streamed_response_wrapper(
-            evaluation.create,
+            evaluate.create,
         )
 
 
-class AsyncEvaluationResourceWithStreamingResponse:
-    def __init__(self, evaluation: AsyncEvaluationResource) -> None:
-        self._evaluation = evaluation
+class AsyncEvaluateResourceWithStreamingResponse:
+    def __init__(self, evaluate: AsyncEvaluateResource) -> None:
+        self._evaluate = evaluate
 
         self.create = async_to_streamed_response_wrapper(
-            evaluation.create,
+            evaluate.create,
         )
