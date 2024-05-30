@@ -691,11 +691,11 @@ class TestAtla:
     @mock.patch("atla._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
-        respx_mock.post("/v1/evaluate").mock(side_effect=httpx.TimeoutException("Test timeout error"))
+        respx_mock.post("/v1/eval").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
             self.client.post(
-                "/v1/evaluate",
+                "/v1/eval",
                 body=cast(
                     object,
                     dict(
@@ -714,11 +714,11 @@ class TestAtla:
     @mock.patch("atla._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
-        respx_mock.post("/v1/evaluate").mock(return_value=httpx.Response(500))
+        respx_mock.post("/v1/eval").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
             self.client.post(
-                "/v1/evaluate",
+                "/v1/eval",
                 body=cast(
                     object,
                     dict(
@@ -1394,11 +1394,11 @@ class TestAsyncAtla:
     @mock.patch("atla._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
-        respx_mock.post("/v1/evaluate").mock(side_effect=httpx.TimeoutException("Test timeout error"))
+        respx_mock.post("/v1/eval").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
             await self.client.post(
-                "/v1/evaluate",
+                "/v1/eval",
                 body=cast(
                     object,
                     dict(
@@ -1417,11 +1417,11 @@ class TestAsyncAtla:
     @mock.patch("atla._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
-        respx_mock.post("/v1/evaluate").mock(return_value=httpx.Response(500))
+        respx_mock.post("/v1/eval").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
             await self.client.post(
-                "/v1/evaluate",
+                "/v1/eval",
                 body=cast(
                     object,
                     dict(
