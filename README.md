@@ -30,13 +30,12 @@ client = Atla(
     api_key=os.environ.get("ATLA_API_KEY"),
 )
 
-eval = client.evaluate.create(
-    input="Is it legal to monitor employee emails under European privacy laws?",
-    metrics=["precision", "recall"],
-    response="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there's a legitimate purpose.",
-    context="European privacy laws, including GDPR, allow for the monitoring of employee emails under strict conditions. The employer must demonstrate that the monitoring is necessary for a legitimate purpose, such as protecting company assets or compliance with legal obligations. Employees must be informed about the monitoring in advance, and the privacy impact should be assessed to minimize intrusion.",
+evaluation = client.evaluation.create(
+    input="string",
+    metrics=["string", "string", "string"],
+    response="string",
 )
-print(eval.evaluations)
+print(evaluation.id)
 ```
 
 While you can provide an `api_key` keyword argument,
@@ -60,13 +59,12 @@ client = AsyncAtla(
 
 
 async def main() -> None:
-    eval = await client.evaluate.create(
-        input="Is it legal to monitor employee emails under European privacy laws?",
-        metrics=["precision", "recall"],
-        response="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there's a legitimate purpose.",
-        context="European privacy laws, including GDPR, allow for the monitoring of employee emails under strict conditions. The employer must demonstrate that the monitoring is necessary for a legitimate purpose, such as protecting company assets or compliance with legal obligations. Employees must be informed about the monitoring in advance, and the privacy impact should be assessed to minimize intrusion.",
+    evaluation = await client.evaluation.create(
+        input="string",
+        metrics=["string", "string", "string"],
+        response="string",
     )
-    print(eval.evaluations)
+    print(evaluation.id)
 
 
 asyncio.run(main())
@@ -99,11 +97,10 @@ from atla import Atla
 client = Atla()
 
 try:
-    client.evaluate.create(
-        input="Is it legal to monitor employee emails under European privacy laws?",
-        metrics=["precision", "recall"],
-        response="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there's a legitimate purpose.",
-        context="European privacy laws, including GDPR, allow for the monitoring of employee emails under strict conditions. The employer must demonstrate that the monitoring is necessary for a legitimate purpose, such as protecting company assets or compliance with legal obligations. Employees must be informed about the monitoring in advance, and the privacy impact should be assessed to minimize intrusion.",
+    client.evaluation.create(
+        input="string",
+        metrics=["string", "string", "string"],
+        response="string",
     )
 except atla.APIConnectionError as e:
     print("The server could not be reached")
@@ -147,11 +144,10 @@ client = Atla(
 )
 
 # Or, configure per-request:
-client.with_options(max_retries=5).evaluate.create(
-    input="Is it legal to monitor employee emails under European privacy laws?",
-    metrics=["precision", "recall"],
-    response="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there's a legitimate purpose.",
-    context="European privacy laws, including GDPR, allow for the monitoring of employee emails under strict conditions. The employer must demonstrate that the monitoring is necessary for a legitimate purpose, such as protecting company assets or compliance with legal obligations. Employees must be informed about the monitoring in advance, and the privacy impact should be assessed to minimize intrusion.",
+client.with_options(max_retries=5).evaluation.create(
+    input="string",
+    metrics=["string", "string", "string"],
+    response="string",
 )
 ```
 
@@ -175,11 +171,10 @@ client = Atla(
 )
 
 # Override per-request:
-client.with_options(timeout=5.0).evaluate.create(
-    input="Is it legal to monitor employee emails under European privacy laws?",
-    metrics=["precision", "recall"],
-    response="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there's a legitimate purpose.",
-    context="European privacy laws, including GDPR, allow for the monitoring of employee emails under strict conditions. The employer must demonstrate that the monitoring is necessary for a legitimate purpose, such as protecting company assets or compliance with legal obligations. Employees must be informed about the monitoring in advance, and the privacy impact should be assessed to minimize intrusion.",
+client.with_options(timeout=5.0).evaluation.create(
+    input="string",
+    metrics=["string", "string", "string"],
+    response="string",
 )
 ```
 
@@ -219,16 +214,15 @@ The "raw" Response object can be accessed by prefixing `.with_raw_response.` to 
 from atla import Atla
 
 client = Atla()
-response = client.evaluate.with_raw_response.create(
-    input="Is it legal to monitor employee emails under European privacy laws?",
-    metrics=["precision", "recall"],
-    response="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there's a legitimate purpose.",
-    context="European privacy laws, including GDPR, allow for the monitoring of employee emails under strict conditions. The employer must demonstrate that the monitoring is necessary for a legitimate purpose, such as protecting company assets or compliance with legal obligations. Employees must be informed about the monitoring in advance, and the privacy impact should be assessed to minimize intrusion.",
+response = client.evaluation.with_raw_response.create(
+    input="string",
+    metrics=["string", "string", "string"],
+    response="string",
 )
 print(response.headers.get('X-My-Header'))
 
-evaluate = response.parse()  # get the object that `evaluate.create()` would have returned
-print(evaluate.evaluations)
+evaluation = response.parse()  # get the object that `evaluation.create()` would have returned
+print(evaluation.id)
 ```
 
 These methods return an [`APIResponse`](https://github.com/atla-ai/atla-sdk-python/tree/main/src/atla/_response.py) object.
@@ -242,11 +236,10 @@ The above interface eagerly reads the full response body when you make the reque
 To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
 
 ```python
-with client.evaluate.with_streaming_response.create(
-    input="Is it legal to monitor employee emails under European privacy laws?",
-    metrics=["precision", "recall"],
-    response="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there's a legitimate purpose.",
-    context="European privacy laws, including GDPR, allow for the monitoring of employee emails under strict conditions. The employer must demonstrate that the monitoring is necessary for a legitimate purpose, such as protecting company assets or compliance with legal obligations. Employees must be informed about the monitoring in advance, and the privacy impact should be assessed to minimize intrusion.",
+with client.evaluation.with_streaming_response.create(
+    input="string",
+    metrics=["string", "string", "string"],
+    response="string",
 ) as response:
     print(response.headers.get("X-My-Header"))
 
