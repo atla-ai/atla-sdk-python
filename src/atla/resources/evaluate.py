@@ -23,6 +23,7 @@ from .._response import (
 from .._base_client import (
     make_request_options,
 )
+
 from ..types.evaluate import Evaluate
 
 __all__ = ["EvaluateResource", "AsyncEvaluateResource"]
@@ -261,7 +262,6 @@ class AsyncEvaluateResource(AsyncAPIResource):
               assess the response's correctness and relevance. By providing a reference, you
               enable Atla to perform a detailed evaluation of the AI's performance in terms of
               accuracy and factual consistency.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
