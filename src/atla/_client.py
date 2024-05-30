@@ -91,7 +91,7 @@ class Atla(SyncAPIClient):
         if base_url is None:
             base_url = os.environ.get("ATLA_BASE_URL")
         if base_url is None:
-            base_url = f"https://api.atla-ai.com"
+            base_url = f"https://api-dev.atla-ai.com"
 
         super().__init__(
             version=__version__,
@@ -259,7 +259,7 @@ class AsyncAtla(AsyncAPIClient):
         if base_url is None:
             base_url = os.environ.get("ATLA_BASE_URL")
         if base_url is None:
-            base_url = f"https://api.atla-ai.com"
+            base_url = f"https://api-dev.atla-ai.com"
 
         super().__init__(
             version=__version__,
