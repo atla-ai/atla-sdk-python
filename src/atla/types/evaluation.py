@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Optional
+from typing import Dict, List, Union, Optional
 
 from .._models import BaseModel
 
@@ -8,7 +8,7 @@ __all__ = ["Evaluation", "Evaluations", "Usage"]
 
 
 class Evaluations(BaseModel):
-    critique: object
+    critique: Union[str, float, List[int], List[str], object]
 
     score: int
 

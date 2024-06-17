@@ -36,7 +36,6 @@ eval = client.evaluation.create(
     response="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there's a legitimate purpose.",
     context="European privacy laws, including GDPR, allow for the monitoring of employee emails under strict conditions. The employer must demonstrate that the monitoring is necessary for a legitimate purpose, such as protecting company assets or compliance with legal obligations. Employees must be informed about the monitoring in advance, and the privacy impact should be assessed to minimize intrusion.",
 )
-
 print(f"Precision score {eval.evaluations['precision'].score} / 5")
 ```
 
