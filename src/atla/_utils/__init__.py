@@ -6,6 +6,7 @@ from ._utils import (
     is_list as is_list,
     is_given as is_given,
     is_tuple as is_tuple,
+    json_safe as json_safe,
     lru_cache as lru_cache,
     is_mapping as is_mapping,
     is_tuple_t as is_tuple_t,
@@ -48,4 +49,8 @@ from ._transform import (
     async_transform as async_transform,
     maybe_transform as maybe_transform,
     async_maybe_transform as async_maybe_transform,
+)
+from ._reflection import (
+    function_has_argument as function_has_argument,
+    assert_signatures_in_sync as assert_signatures_in_sync,
 )
