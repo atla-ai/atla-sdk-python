@@ -22,7 +22,7 @@ class TestEvaluation:
         evaluation = client.evaluation.create(
             input="string",
             metrics=["string", "string", "string"],
-            response="string",
+            response="response",
         )
         assert_matches_type(Evaluation, evaluation, path=["response"])
 
@@ -31,10 +31,10 @@ class TestEvaluation:
         evaluation = client.evaluation.create(
             input="string",
             metrics=["string", "string", "string"],
-            response="string",
-            context="string",
-            model="string",
-            reference="string",
+            response="response",
+            context="context",
+            model="model",
+            reference="reference",
         )
         assert_matches_type(Evaluation, evaluation, path=["response"])
 
@@ -43,7 +43,7 @@ class TestEvaluation:
         response = client.evaluation.with_raw_response.create(
             input="string",
             metrics=["string", "string", "string"],
-            response="string",
+            response="response",
         )
 
         assert response.is_closed is True
@@ -56,7 +56,7 @@ class TestEvaluation:
         with client.evaluation.with_streaming_response.create(
             input="string",
             metrics=["string", "string", "string"],
-            response="string",
+            response="response",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -75,7 +75,7 @@ class TestAsyncEvaluation:
         evaluation = await async_client.evaluation.create(
             input="string",
             metrics=["string", "string", "string"],
-            response="string",
+            response="response",
         )
         assert_matches_type(Evaluation, evaluation, path=["response"])
 
@@ -84,10 +84,10 @@ class TestAsyncEvaluation:
         evaluation = await async_client.evaluation.create(
             input="string",
             metrics=["string", "string", "string"],
-            response="string",
-            context="string",
-            model="string",
-            reference="string",
+            response="response",
+            context="context",
+            model="model",
+            reference="reference",
         )
         assert_matches_type(Evaluation, evaluation, path=["response"])
 
@@ -96,7 +96,7 @@ class TestAsyncEvaluation:
         response = await async_client.evaluation.with_raw_response.create(
             input="string",
             metrics=["string", "string", "string"],
-            response="string",
+            response="response",
         )
 
         assert response.is_closed is True
@@ -109,7 +109,7 @@ class TestAsyncEvaluation:
         async with async_client.evaluation.with_streaming_response.create(
             input="string",
             metrics=["string", "string", "string"],
-            response="string",
+            response="response",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
