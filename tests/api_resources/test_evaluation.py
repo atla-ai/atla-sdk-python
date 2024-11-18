@@ -21,7 +21,7 @@ class TestEvaluation:
     def test_method_create(self, client: Atla) -> None:
         evaluation = client.evaluation.create(
             input="string",
-            metrics=["string", "string", "string"],
+            metrics=["string"],
             response="response",
         )
         assert_matches_type(Evaluation, evaluation, path=["response"])
@@ -30,7 +30,7 @@ class TestEvaluation:
     def test_method_create_with_all_params(self, client: Atla) -> None:
         evaluation = client.evaluation.create(
             input="string",
-            metrics=["string", "string", "string"],
+            metrics=["string"],
             response="response",
             context="context",
             model="model",
@@ -42,7 +42,7 @@ class TestEvaluation:
     def test_raw_response_create(self, client: Atla) -> None:
         response = client.evaluation.with_raw_response.create(
             input="string",
-            metrics=["string", "string", "string"],
+            metrics=["string"],
             response="response",
         )
 
@@ -55,7 +55,7 @@ class TestEvaluation:
     def test_streaming_response_create(self, client: Atla) -> None:
         with client.evaluation.with_streaming_response.create(
             input="string",
-            metrics=["string", "string", "string"],
+            metrics=["string"],
             response="response",
         ) as response:
             assert not response.is_closed
@@ -74,7 +74,7 @@ class TestAsyncEvaluation:
     async def test_method_create(self, async_client: AsyncAtla) -> None:
         evaluation = await async_client.evaluation.create(
             input="string",
-            metrics=["string", "string", "string"],
+            metrics=["string"],
             response="response",
         )
         assert_matches_type(Evaluation, evaluation, path=["response"])
@@ -83,7 +83,7 @@ class TestAsyncEvaluation:
     async def test_method_create_with_all_params(self, async_client: AsyncAtla) -> None:
         evaluation = await async_client.evaluation.create(
             input="string",
-            metrics=["string", "string", "string"],
+            metrics=["string"],
             response="response",
             context="context",
             model="model",
@@ -95,7 +95,7 @@ class TestAsyncEvaluation:
     async def test_raw_response_create(self, async_client: AsyncAtla) -> None:
         response = await async_client.evaluation.with_raw_response.create(
             input="string",
-            metrics=["string", "string", "string"],
+            metrics=["string"],
             response="response",
         )
 
@@ -108,7 +108,7 @@ class TestAsyncEvaluation:
     async def test_streaming_response_create(self, async_client: AsyncAtla) -> None:
         async with async_client.evaluation.with_streaming_response.create(
             input="string",
-            metrics=["string", "string", "string"],
+            metrics=["string"],
             response="response",
         ) as response:
             assert not response.is_closed
