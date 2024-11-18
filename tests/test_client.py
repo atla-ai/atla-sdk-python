@@ -764,9 +764,7 @@ class TestAtla:
 
         respx_mock.post("/v1/eval").mock(side_effect=retry_handler)
 
-        response = client.evaluation.with_raw_response.create(
-            input="string", metrics=["string", "string", "string"], response="response"
-        )
+        response = client.evaluation.with_raw_response.create(input="string", metrics=["string"], response="response")
 
         assert response.retries_taken == failures_before_success
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
@@ -789,10 +787,7 @@ class TestAtla:
         respx_mock.post("/v1/eval").mock(side_effect=retry_handler)
 
         response = client.evaluation.with_raw_response.create(
-            input="string",
-            metrics=["string", "string", "string"],
-            response="response",
-            extra_headers={"x-stainless-retry-count": Omit()},
+            input="string", metrics=["string"], response="response", extra_headers={"x-stainless-retry-count": Omit()}
         )
 
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
@@ -817,10 +812,7 @@ class TestAtla:
         respx_mock.post("/v1/eval").mock(side_effect=retry_handler)
 
         response = client.evaluation.with_raw_response.create(
-            input="string",
-            metrics=["string", "string", "string"],
-            response="response",
-            extra_headers={"x-stainless-retry-count": "42"},
+            input="string", metrics=["string"], response="response", extra_headers={"x-stainless-retry-count": "42"}
         )
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
@@ -1558,7 +1550,7 @@ class TestAsyncAtla:
         respx_mock.post("/v1/eval").mock(side_effect=retry_handler)
 
         response = await client.evaluation.with_raw_response.create(
-            input="string", metrics=["string", "string", "string"], response="response"
+            input="string", metrics=["string"], response="response"
         )
 
         assert response.retries_taken == failures_before_success
@@ -1585,10 +1577,7 @@ class TestAsyncAtla:
         respx_mock.post("/v1/eval").mock(side_effect=retry_handler)
 
         response = await client.evaluation.with_raw_response.create(
-            input="string",
-            metrics=["string", "string", "string"],
-            response="response",
-            extra_headers={"x-stainless-retry-count": Omit()},
+            input="string", metrics=["string"], response="response", extra_headers={"x-stainless-retry-count": Omit()}
         )
 
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
@@ -1614,10 +1603,7 @@ class TestAsyncAtla:
         respx_mock.post("/v1/eval").mock(side_effect=retry_handler)
 
         response = await client.evaluation.with_raw_response.create(
-            input="string",
-            metrics=["string", "string", "string"],
-            response="response",
-            extra_headers={"x-stainless-retry-count": "42"},
+            input="string", metrics=["string"], response="response", extra_headers={"x-stainless-retry-count": "42"}
         )
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
