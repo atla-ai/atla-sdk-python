@@ -7,7 +7,7 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = ["EvaluationCreateResponse", "Result", "ResultEvaluation"]
+__all__ = ["Evaluation", "Result", "ResultEvaluation"]
 
 
 class ResultEvaluation(BaseModel):
@@ -26,7 +26,7 @@ class Result(BaseModel):
     """The ID of the Atla evaluator model used."""
 
 
-class EvaluationCreateResponse(BaseModel):
+class Evaluation(BaseModel):
     request_id: str
     """The ID of the request the response is for."""
 
