@@ -707,10 +707,16 @@ class TestAtla:
                 body=cast(
                     object,
                     dict(
-                        input="Is it legal to monitor employee emails under European privacy laws?",
-                        metrics=["precision", "recall"],
-                        response="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there's a legitimate purpose.",
-                        context="European privacy laws, including GDPR, allow for the monitoring of employee emails under strict conditions. The employer must demonstrate that the monitoring is necessary for a legitimate purpose, such as protecting company assets or compliance with legal obligations. Employees must be informed about the monitoring in advance, and the privacy impact should be assessed to minimize intrusion.",
+                        config={
+                            "criteria": {
+                                "evaluation_criteria": "Assign a score of 5 if the answer is factually correct and well-formatted, otherwise assign a score of 0."
+                            }
+                        },
+                        inputs={
+                            "model_input": "What is the capital of France?",
+                            "model_output": "Paris",
+                        },
+                        model_id="atla-selene-mini",
                     ),
                 ),
                 cast_to=httpx.Response,
@@ -730,10 +736,16 @@ class TestAtla:
                 body=cast(
                     object,
                     dict(
-                        input="Is it legal to monitor employee emails under European privacy laws?",
-                        metrics=["precision", "recall"],
-                        response="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there's a legitimate purpose.",
-                        context="European privacy laws, including GDPR, allow for the monitoring of employee emails under strict conditions. The employer must demonstrate that the monitoring is necessary for a legitimate purpose, such as protecting company assets or compliance with legal obligations. Employees must be informed about the monitoring in advance, and the privacy impact should be assessed to minimize intrusion.",
+                        config={
+                            "criteria": {
+                                "evaluation_criteria": "Assign a score of 5 if the answer is factually correct and well-formatted, otherwise assign a score of 0."
+                            }
+                        },
+                        inputs={
+                            "model_input": "What is the capital of France?",
+                            "model_output": "Paris",
+                        },
+                        model_id="atla-selene-mini",
                     ),
                 ),
                 cast_to=httpx.Response,
@@ -768,7 +780,18 @@ class TestAtla:
 
         respx_mock.post("/v1/eval").mock(side_effect=retry_handler)
 
-        response = client.evaluation.with_raw_response.create(input="string", metrics=["string"], response="response")
+        response = client.evaluation.with_raw_response.create(
+            config={
+                "criteria": {
+                    "evaluation_criteria": "Assign a score of 5 if the answer is factually correct and well-formatted, otherwise assign a score of 0."
+                }
+            },
+            inputs={
+                "model_input": "What is the capital of France?",
+                "model_output": "Paris",
+            },
+            model_id="atla-selene-mini",
+        )
 
         assert response.retries_taken == failures_before_success
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
@@ -791,7 +814,17 @@ class TestAtla:
         respx_mock.post("/v1/eval").mock(side_effect=retry_handler)
 
         response = client.evaluation.with_raw_response.create(
-            input="string", metrics=["string"], response="response", extra_headers={"x-stainless-retry-count": Omit()}
+            config={
+                "criteria": {
+                    "evaluation_criteria": "Assign a score of 5 if the answer is factually correct and well-formatted, otherwise assign a score of 0."
+                }
+            },
+            inputs={
+                "model_input": "What is the capital of France?",
+                "model_output": "Paris",
+            },
+            model_id="atla-selene-mini",
+            extra_headers={"x-stainless-retry-count": Omit()},
         )
 
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
@@ -816,7 +849,17 @@ class TestAtla:
         respx_mock.post("/v1/eval").mock(side_effect=retry_handler)
 
         response = client.evaluation.with_raw_response.create(
-            input="string", metrics=["string"], response="response", extra_headers={"x-stainless-retry-count": "42"}
+            config={
+                "criteria": {
+                    "evaluation_criteria": "Assign a score of 5 if the answer is factually correct and well-formatted, otherwise assign a score of 0."
+                }
+            },
+            inputs={
+                "model_input": "What is the capital of France?",
+                "model_output": "Paris",
+            },
+            model_id="atla-selene-mini",
+            extra_headers={"x-stainless-retry-count": "42"},
         )
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
@@ -1491,10 +1534,16 @@ class TestAsyncAtla:
                 body=cast(
                     object,
                     dict(
-                        input="Is it legal to monitor employee emails under European privacy laws?",
-                        metrics=["precision", "recall"],
-                        response="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there's a legitimate purpose.",
-                        context="European privacy laws, including GDPR, allow for the monitoring of employee emails under strict conditions. The employer must demonstrate that the monitoring is necessary for a legitimate purpose, such as protecting company assets or compliance with legal obligations. Employees must be informed about the monitoring in advance, and the privacy impact should be assessed to minimize intrusion.",
+                        config={
+                            "criteria": {
+                                "evaluation_criteria": "Assign a score of 5 if the answer is factually correct and well-formatted, otherwise assign a score of 0."
+                            }
+                        },
+                        inputs={
+                            "model_input": "What is the capital of France?",
+                            "model_output": "Paris",
+                        },
+                        model_id="atla-selene-mini",
                     ),
                 ),
                 cast_to=httpx.Response,
@@ -1514,10 +1563,16 @@ class TestAsyncAtla:
                 body=cast(
                     object,
                     dict(
-                        input="Is it legal to monitor employee emails under European privacy laws?",
-                        metrics=["precision", "recall"],
-                        response="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there's a legitimate purpose.",
-                        context="European privacy laws, including GDPR, allow for the monitoring of employee emails under strict conditions. The employer must demonstrate that the monitoring is necessary for a legitimate purpose, such as protecting company assets or compliance with legal obligations. Employees must be informed about the monitoring in advance, and the privacy impact should be assessed to minimize intrusion.",
+                        config={
+                            "criteria": {
+                                "evaluation_criteria": "Assign a score of 5 if the answer is factually correct and well-formatted, otherwise assign a score of 0."
+                            }
+                        },
+                        inputs={
+                            "model_input": "What is the capital of France?",
+                            "model_output": "Paris",
+                        },
+                        model_id="atla-selene-mini",
                     ),
                 ),
                 cast_to=httpx.Response,
@@ -1554,7 +1609,16 @@ class TestAsyncAtla:
         respx_mock.post("/v1/eval").mock(side_effect=retry_handler)
 
         response = await client.evaluation.with_raw_response.create(
-            input="string", metrics=["string"], response="response"
+            config={
+                "criteria": {
+                    "evaluation_criteria": "Assign a score of 5 if the answer is factually correct and well-formatted, otherwise assign a score of 0."
+                }
+            },
+            inputs={
+                "model_input": "What is the capital of France?",
+                "model_output": "Paris",
+            },
+            model_id="atla-selene-mini",
         )
 
         assert response.retries_taken == failures_before_success
@@ -1581,7 +1645,17 @@ class TestAsyncAtla:
         respx_mock.post("/v1/eval").mock(side_effect=retry_handler)
 
         response = await client.evaluation.with_raw_response.create(
-            input="string", metrics=["string"], response="response", extra_headers={"x-stainless-retry-count": Omit()}
+            config={
+                "criteria": {
+                    "evaluation_criteria": "Assign a score of 5 if the answer is factually correct and well-formatted, otherwise assign a score of 0."
+                }
+            },
+            inputs={
+                "model_input": "What is the capital of France?",
+                "model_output": "Paris",
+            },
+            model_id="atla-selene-mini",
+            extra_headers={"x-stainless-retry-count": Omit()},
         )
 
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
@@ -1607,7 +1681,17 @@ class TestAsyncAtla:
         respx_mock.post("/v1/eval").mock(side_effect=retry_handler)
 
         response = await client.evaluation.with_raw_response.create(
-            input="string", metrics=["string"], response="response", extra_headers={"x-stainless-retry-count": "42"}
+            config={
+                "criteria": {
+                    "evaluation_criteria": "Assign a score of 5 if the answer is factually correct and well-formatted, otherwise assign a score of 0."
+                }
+            },
+            inputs={
+                "model_input": "What is the capital of France?",
+                "model_output": "Paris",
+            },
+            model_id="atla-selene-mini",
+            extra_headers={"x-stainless-retry-count": "42"},
         )
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"

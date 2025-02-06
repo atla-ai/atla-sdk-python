@@ -30,10 +30,16 @@ client = Atla(
 )
 
 eval = client.evaluation.create(
-    input="Is it legal to monitor employee emails under European privacy laws?",
-    metrics=["precision", "recall"],
-    response="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there's a legitimate purpose.",
-    context="European privacy laws, including GDPR, allow for the monitoring of employee emails under strict conditions. The employer must demonstrate that the monitoring is necessary for a legitimate purpose, such as protecting company assets or compliance with legal obligations. Employees must be informed about the monitoring in advance, and the privacy impact should be assessed to minimize intrusion.",
+    config={
+        "criteria": {
+            "evaluation_criteria": "Assign a score of 5 if the answer is factually correct and well-formatted, otherwise assign a score of 0."
+        }
+    },
+    inputs={
+        "model_input": "What is the capital of France?",
+        "model_output": "Paris",
+    },
+    model_id="atla-selene-mini",
 )
 print(eval.evaluations)
 ```
@@ -59,10 +65,16 @@ client = AsyncAtla(
 
 async def main() -> None:
     eval = await client.evaluation.create(
-        input="Is it legal to monitor employee emails under European privacy laws?",
-        metrics=["precision", "recall"],
-        response="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there's a legitimate purpose.",
-        context="European privacy laws, including GDPR, allow for the monitoring of employee emails under strict conditions. The employer must demonstrate that the monitoring is necessary for a legitimate purpose, such as protecting company assets or compliance with legal obligations. Employees must be informed about the monitoring in advance, and the privacy impact should be assessed to minimize intrusion.",
+        config={
+            "criteria": {
+                "evaluation_criteria": "Assign a score of 5 if the answer is factually correct and well-formatted, otherwise assign a score of 0."
+            }
+        },
+        inputs={
+            "model_input": "What is the capital of France?",
+            "model_output": "Paris",
+        },
+        model_id="atla-selene-mini",
     )
     print(eval.evaluations)
 
@@ -98,10 +110,16 @@ client = Atla()
 
 try:
     client.evaluation.create(
-        input="Is it legal to monitor employee emails under European privacy laws?",
-        metrics=["precision", "recall"],
-        response="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there's a legitimate purpose.",
-        context="European privacy laws, including GDPR, allow for the monitoring of employee emails under strict conditions. The employer must demonstrate that the monitoring is necessary for a legitimate purpose, such as protecting company assets or compliance with legal obligations. Employees must be informed about the monitoring in advance, and the privacy impact should be assessed to minimize intrusion.",
+        config={
+            "criteria": {
+                "evaluation_criteria": "Assign a score of 5 if the answer is factually correct and well-formatted, otherwise assign a score of 0."
+            }
+        },
+        inputs={
+            "model_input": "What is the capital of France?",
+            "model_output": "Paris",
+        },
+        model_id="atla-selene-mini",
     )
 except atla.APIConnectionError as e:
     print("The server could not be reached")
@@ -146,10 +164,16 @@ client = Atla(
 
 # Or, configure per-request:
 client.with_options(max_retries=5).evaluation.create(
-    input="Is it legal to monitor employee emails under European privacy laws?",
-    metrics=["precision", "recall"],
-    response="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there's a legitimate purpose.",
-    context="European privacy laws, including GDPR, allow for the monitoring of employee emails under strict conditions. The employer must demonstrate that the monitoring is necessary for a legitimate purpose, such as protecting company assets or compliance with legal obligations. Employees must be informed about the monitoring in advance, and the privacy impact should be assessed to minimize intrusion.",
+    config={
+        "criteria": {
+            "evaluation_criteria": "Assign a score of 5 if the answer is factually correct and well-formatted, otherwise assign a score of 0."
+        }
+    },
+    inputs={
+        "model_input": "What is the capital of France?",
+        "model_output": "Paris",
+    },
+    model_id="atla-selene-mini",
 )
 ```
 
@@ -174,10 +198,16 @@ client = Atla(
 
 # Override per-request:
 client.with_options(timeout=5.0).evaluation.create(
-    input="Is it legal to monitor employee emails under European privacy laws?",
-    metrics=["precision", "recall"],
-    response="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there's a legitimate purpose.",
-    context="European privacy laws, including GDPR, allow for the monitoring of employee emails under strict conditions. The employer must demonstrate that the monitoring is necessary for a legitimate purpose, such as protecting company assets or compliance with legal obligations. Employees must be informed about the monitoring in advance, and the privacy impact should be assessed to minimize intrusion.",
+    config={
+        "criteria": {
+            "evaluation_criteria": "Assign a score of 5 if the answer is factually correct and well-formatted, otherwise assign a score of 0."
+        }
+    },
+    inputs={
+        "model_input": "What is the capital of France?",
+        "model_output": "Paris",
+    },
+    model_id="atla-selene-mini",
 )
 ```
 
@@ -220,10 +250,16 @@ from atla import Atla
 
 client = Atla()
 response = client.evaluation.with_raw_response.create(
-    input="Is it legal to monitor employee emails under European privacy laws?",
-    metrics=["precision", "recall"],
-    response="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there's a legitimate purpose.",
-    context="European privacy laws, including GDPR, allow for the monitoring of employee emails under strict conditions. The employer must demonstrate that the monitoring is necessary for a legitimate purpose, such as protecting company assets or compliance with legal obligations. Employees must be informed about the monitoring in advance, and the privacy impact should be assessed to minimize intrusion.",
+    config={
+        "criteria": {
+            "evaluation_criteria": "Assign a score of 5 if the answer is factually correct and well-formatted, otherwise assign a score of 0."
+        }
+    },
+    inputs={
+        "model_input": "What is the capital of France?",
+        "model_output": "Paris",
+    },
+    model_id="atla-selene-mini",
 )
 print(response.headers.get('X-My-Header'))
 
@@ -243,10 +279,16 @@ To stream the response body, use `.with_streaming_response` instead, which requi
 
 ```python
 with client.evaluation.with_streaming_response.create(
-    input="Is it legal to monitor employee emails under European privacy laws?",
-    metrics=["precision", "recall"],
-    response="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there's a legitimate purpose.",
-    context="European privacy laws, including GDPR, allow for the monitoring of employee emails under strict conditions. The employer must demonstrate that the monitoring is necessary for a legitimate purpose, such as protecting company assets or compliance with legal obligations. Employees must be informed about the monitoring in advance, and the privacy impact should be assessed to minimize intrusion.",
+    config={
+        "criteria": {
+            "evaluation_criteria": "Assign a score of 5 if the answer is factually correct and well-formatted, otherwise assign a score of 0."
+        }
+    },
+    inputs={
+        "model_input": "What is the capital of France?",
+        "model_output": "Paris",
+    },
+    model_id="atla-selene-mini",
 ) as response:
     print(response.headers.get("X-My-Header"))
 
