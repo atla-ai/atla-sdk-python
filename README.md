@@ -31,10 +31,45 @@ client = Atla(
 )
 
 eval = client.evaluation.create(
-    input="Is it legal to monitor employee emails under European privacy laws?",
-    metrics=["precision", "recall"],
-    response="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there's a legitimate purpose.",
-    context="European privacy laws, including GDPR, allow for the monitoring of employee emails under strict conditions. The employer must demonstrate that the monitoring is necessary for a legitimate purpose, such as protecting company assets or compliance with legal obligations. Employees must be informed about the monitoring in advance, and the privacy impact should be assessed to minimize intrusion.",
+    config={
+        "criteria": {
+            "type": "direct",
+            "evaluation_criteria": "Assign a score of 5 if the answer is factually correct and well-formatted, otherwise assign a score of 1.",
+        },
+        "few_shot_examples": [
+            {
+                "eval_inputs": {
+                    "model_input": "Can employers require employees to use personal devices for work?",
+                    "model_output": "Employers can require employees to use personal devices for work, but legal and privacy considerations must be addressed.",
+                    "model_context": "Employers implementing Bring Your Own Device (BYOD) policies must consider data protection laws and employee privacy rights. Under regulations like GDPR, companies must ensure adequate data security, inform employees of monitoring or data collection practices, and provide alternatives if necessary. Failure to implement safeguards could lead to legal challenges or data breaches.",
+                    "expected_model_output": "Yes, but privacy and security concerns must be addressed. Employers must ensure compliance with data protection laws, inform employees about data handling, and offer alternatives where necessary.",
+                },
+                "evaluation": {
+                    "score": 5,
+                    "critique": "The model output accurately describes the Bring Your Own Device (BYOD) policy that an employer may choose to implement while highlighting the relevant legal and privacy considerations.",
+                },
+            },
+            {
+                "eval_inputs": {
+                    "model_input": "Can an employer read private messages sent from a work computer?",
+                    "model_output": "Yes, employers have full access to messages sent from work computers.",
+                    "model_context": "Employers may have the right to monitor work-related communications on company devices, but access to private messages is highly restricted by privacy laws like GDPR and the European Court of Human Rights rulings. Employers must inform employees about any monitoring, and private communications are typically protected unless there is a strong legal justification. Blanket access to all messages, including private ones, would likely be unlawful.",
+                    "expected_model_output": "Not necessarily. Employers may monitor work communications but generally cannot access private messages without clear justification and prior notice under privacy laws.",
+                },
+                "evaluation": {
+                    "score": 1,
+                    "critique": "The model output is misleading because it overgeneralizes and ignores legal protections.",
+                },
+            },
+        ],
+    },
+    inputs={
+        "model_input": "Is it legal to monitor employee emails under European privacy laws?",
+        "model_output": "Monitoring employee emails is permissible under European privacy laws like GDPR, provided there's a legitimate purpose.",
+        "model_context": "European privacy laws, including GDPR, allow for the monitoring of employee emails under strict conditions. The employer must demonstrate that the monitoring is necessary for a legitimate purpose, such as protecting company assets or compliance with legal obligations. Employees must be informed about the monitoring in advance, and the privacy impact should be assessed to minimize intrusion.",
+        "expected_model_output": "Yes, but only under strict conditions. European privacy laws, including GDPR, require that monitoring be necessary for a legitimate purpose, employees be informed in advance, and privacy impact be minimized.",
+    },
+    model_id="atla-selene-mini",
 )
 print(f"Precision score {eval.evaluations['precision'].score} / 5")
 ```
@@ -61,10 +96,45 @@ client = AsyncAtla(
 
 async def main() -> None:
     eval = await client.evaluation.create(
-        input="Is it legal to monitor employee emails under European privacy laws?",
-        metrics=["precision", "recall"],
-        response="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there's a legitimate purpose.",
-        context="European privacy laws, including GDPR, allow for the monitoring of employee emails under strict conditions. The employer must demonstrate that the monitoring is necessary for a legitimate purpose, such as protecting company assets or compliance with legal obligations. Employees must be informed about the monitoring in advance, and the privacy impact should be assessed to minimize intrusion.",
+        config={
+            "criteria": {
+                "type": "direct",
+                "evaluation_criteria": "Assign a score of 5 if the answer is factually correct and well-formatted, otherwise assign a score of 1.",
+            },
+            "few_shot_examples": [
+                {
+                    "eval_inputs": {
+                        "model_input": "Can employers require employees to use personal devices for work?",
+                        "model_output": "Employers can require employees to use personal devices for work, but legal and privacy considerations must be addressed.",
+                        "model_context": "Employers implementing Bring Your Own Device (BYOD) policies must consider data protection laws and employee privacy rights. Under regulations like GDPR, companies must ensure adequate data security, inform employees of monitoring or data collection practices, and provide alternatives if necessary. Failure to implement safeguards could lead to legal challenges or data breaches.",
+                        "expected_model_output": "Yes, but privacy and security concerns must be addressed. Employers must ensure compliance with data protection laws, inform employees about data handling, and offer alternatives where necessary.",
+                    },
+                    "evaluation": {
+                        "score": 5,
+                        "critique": "The model output accurately describes the Bring Your Own Device (BYOD) policy that an employer may choose to implement while highlighting the relevant legal and privacy considerations.",
+                    },
+                },
+                {
+                    "eval_inputs": {
+                        "model_input": "Can an employer read private messages sent from a work computer?",
+                        "model_output": "Yes, employers have full access to messages sent from work computers.",
+                        "model_context": "Employers may have the right to monitor work-related communications on company devices, but access to private messages is highly restricted by privacy laws like GDPR and the European Court of Human Rights rulings. Employers must inform employees about any monitoring, and private communications are typically protected unless there is a strong legal justification. Blanket access to all messages, including private ones, would likely be unlawful.",
+                        "expected_model_output": "Not necessarily. Employers may monitor work communications but generally cannot access private messages without clear justification and prior notice under privacy laws.",
+                    },
+                    "evaluation": {
+                        "score": 1,
+                        "critique": "The model output is misleading because it overgeneralizes and ignores legal protections.",
+                    },
+                },
+            ],
+        },
+        inputs={
+            "model_input": "Is it legal to monitor employee emails under European privacy laws?",
+            "model_output": "Monitoring employee emails is permissible under European privacy laws like GDPR, provided there's a legitimate purpose.",
+            "model_context": "European privacy laws, including GDPR, allow for the monitoring of employee emails under strict conditions. The employer must demonstrate that the monitoring is necessary for a legitimate purpose, such as protecting company assets or compliance with legal obligations. Employees must be informed about the monitoring in advance, and the privacy impact should be assessed to minimize intrusion.",
+            "expected_model_output": "Yes, but only under strict conditions. European privacy laws, including GDPR, require that monitoring be necessary for a legitimate purpose, employees be informed in advance, and privacy impact be minimized.",
+        },
+        model_id="atla-selene-mini",
     )
     print(f"Precision score {eval.evaluations['precision'].score} / 5")
 
@@ -100,10 +170,45 @@ client = Atla()
 
 try:
     client.evaluation.create(
-        input="Is it legal to monitor employee emails under European privacy laws?",
-        metrics=["precision", "recall"],
-        response="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there's a legitimate purpose.",
-        context="European privacy laws, including GDPR, allow for the monitoring of employee emails under strict conditions. The employer must demonstrate that the monitoring is necessary for a legitimate purpose, such as protecting company assets or compliance with legal obligations. Employees must be informed about the monitoring in advance, and the privacy impact should be assessed to minimize intrusion.",
+        config={
+            "criteria": {
+                "type": "direct",
+                "evaluation_criteria": "Assign a score of 5 if the answer is factually correct and well-formatted, otherwise assign a score of 1.",
+            },
+            "few_shot_examples": [
+                {
+                    "eval_inputs": {
+                        "model_input": "Can employers require employees to use personal devices for work?",
+                        "model_output": "Employers can require employees to use personal devices for work, but legal and privacy considerations must be addressed.",
+                        "model_context": "Employers implementing Bring Your Own Device (BYOD) policies must consider data protection laws and employee privacy rights. Under regulations like GDPR, companies must ensure adequate data security, inform employees of monitoring or data collection practices, and provide alternatives if necessary. Failure to implement safeguards could lead to legal challenges or data breaches.",
+                        "expected_model_output": "Yes, but privacy and security concerns must be addressed. Employers must ensure compliance with data protection laws, inform employees about data handling, and offer alternatives where necessary.",
+                    },
+                    "evaluation": {
+                        "score": 5,
+                        "critique": "The model output accurately describes the Bring Your Own Device (BYOD) policy that an employer may choose to implement while highlighting the relevant legal and privacy considerations.",
+                    },
+                },
+                {
+                    "eval_inputs": {
+                        "model_input": "Can an employer read private messages sent from a work computer?",
+                        "model_output": "Yes, employers have full access to messages sent from work computers.",
+                        "model_context": "Employers may have the right to monitor work-related communications on company devices, but access to private messages is highly restricted by privacy laws like GDPR and the European Court of Human Rights rulings. Employers must inform employees about any monitoring, and private communications are typically protected unless there is a strong legal justification. Blanket access to all messages, including private ones, would likely be unlawful.",
+                        "expected_model_output": "Not necessarily. Employers may monitor work communications but generally cannot access private messages without clear justification and prior notice under privacy laws.",
+                    },
+                    "evaluation": {
+                        "score": 1,
+                        "critique": "The model output is misleading because it overgeneralizes and ignores legal protections.",
+                    },
+                },
+            ],
+        },
+        inputs={
+            "model_input": "Is it legal to monitor employee emails under European privacy laws?",
+            "model_output": "Monitoring employee emails is permissible under European privacy laws like GDPR, provided there's a legitimate purpose.",
+            "model_context": "European privacy laws, including GDPR, allow for the monitoring of employee emails under strict conditions. The employer must demonstrate that the monitoring is necessary for a legitimate purpose, such as protecting company assets or compliance with legal obligations. Employees must be informed about the monitoring in advance, and the privacy impact should be assessed to minimize intrusion.",
+            "expected_model_output": "Yes, but only under strict conditions. European privacy laws, including GDPR, require that monitoring be necessary for a legitimate purpose, employees be informed in advance, and privacy impact be minimized.",
+        },
+        model_id="atla-selene-mini",
     )
 except atla.APIConnectionError as e:
     print("The server could not be reached")
@@ -148,10 +253,45 @@ client = Atla(
 
 # Or, configure per-request:
 client.with_options(max_retries=5).evaluation.create(
-    input="Is it legal to monitor employee emails under European privacy laws?",
-    metrics=["precision", "recall"],
-    response="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there's a legitimate purpose.",
-    context="European privacy laws, including GDPR, allow for the monitoring of employee emails under strict conditions. The employer must demonstrate that the monitoring is necessary for a legitimate purpose, such as protecting company assets or compliance with legal obligations. Employees must be informed about the monitoring in advance, and the privacy impact should be assessed to minimize intrusion.",
+    config={
+        "criteria": {
+            "type": "direct",
+            "evaluation_criteria": "Assign a score of 5 if the answer is factually correct and well-formatted, otherwise assign a score of 1.",
+        },
+        "few_shot_examples": [
+            {
+                "eval_inputs": {
+                    "model_input": "Can employers require employees to use personal devices for work?",
+                    "model_output": "Employers can require employees to use personal devices for work, but legal and privacy considerations must be addressed.",
+                    "model_context": "Employers implementing Bring Your Own Device (BYOD) policies must consider data protection laws and employee privacy rights. Under regulations like GDPR, companies must ensure adequate data security, inform employees of monitoring or data collection practices, and provide alternatives if necessary. Failure to implement safeguards could lead to legal challenges or data breaches.",
+                    "expected_model_output": "Yes, but privacy and security concerns must be addressed. Employers must ensure compliance with data protection laws, inform employees about data handling, and offer alternatives where necessary.",
+                },
+                "evaluation": {
+                    "score": 5,
+                    "critique": "The model output accurately describes the Bring Your Own Device (BYOD) policy that an employer may choose to implement while highlighting the relevant legal and privacy considerations.",
+                },
+            },
+            {
+                "eval_inputs": {
+                    "model_input": "Can an employer read private messages sent from a work computer?",
+                    "model_output": "Yes, employers have full access to messages sent from work computers.",
+                    "model_context": "Employers may have the right to monitor work-related communications on company devices, but access to private messages is highly restricted by privacy laws like GDPR and the European Court of Human Rights rulings. Employers must inform employees about any monitoring, and private communications are typically protected unless there is a strong legal justification. Blanket access to all messages, including private ones, would likely be unlawful.",
+                    "expected_model_output": "Not necessarily. Employers may monitor work communications but generally cannot access private messages without clear justification and prior notice under privacy laws.",
+                },
+                "evaluation": {
+                    "score": 1,
+                    "critique": "The model output is misleading because it overgeneralizes and ignores legal protections.",
+                },
+            },
+        ],
+    },
+    inputs={
+        "model_input": "Is it legal to monitor employee emails under European privacy laws?",
+        "model_output": "Monitoring employee emails is permissible under European privacy laws like GDPR, provided there's a legitimate purpose.",
+        "model_context": "European privacy laws, including GDPR, allow for the monitoring of employee emails under strict conditions. The employer must demonstrate that the monitoring is necessary for a legitimate purpose, such as protecting company assets or compliance with legal obligations. Employees must be informed about the monitoring in advance, and the privacy impact should be assessed to minimize intrusion.",
+        "expected_model_output": "Yes, but only under strict conditions. European privacy laws, including GDPR, require that monitoring be necessary for a legitimate purpose, employees be informed in advance, and privacy impact be minimized.",
+    },
+    model_id="atla-selene-mini",
 )
 ```
 
@@ -176,16 +316,265 @@ client = Atla(
 
 # Override per-request:
 client.with_options(timeout=5.0).evaluation.create(
-    input="Is it legal to monitor employee emails under European privacy laws?",
-    metrics=["precision", "recall"],
-    response="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there's a legitimate purpose.",
-    context="European privacy laws, including GDPR, allow for the monitoring of employee emails under strict conditions. The employer must demonstrate that the monitoring is necessary for a legitimate purpose, such as protecting company assets or compliance with legal obligations. Employees must be informed about the monitoring in advance, and the privacy impact should be assessed to minimize intrusion.",
+    config={
+        "criteria": {
+            "type": "direct",
+            "evaluation_criteria": "Assign a score of 5 if the answer is factually correct and well-formatted, otherwise assign a score of 1.",
+        },
+        "few_shot_examples": [
+            {
+                "eval_inputs": {
+                    "model_input": "Can employers require employees to use personal devices for work?",
+                    "model_output": "Employers can require employees to use personal devices for work, but legal and privacy considerations must be addressed.",
+                    "model_context": "Employers implementing Bring Your Own Device (BYOD) policies must consider data protection laws and employee privacy rights. Under regulations like GDPR, companies must ensure adequate data security, inform employees of monitoring or data collection practices, and provide alternatives if necessary. Failure to implement safeguards could lead to legal challenges or data breaches.",
+                    "expected_model_output": "Yes, but privacy and security concerns must be addressed. Employers must ensure compliance with data protection laws, inform employees about data handling, and offer alternatives where necessary.",
+                },
+                "evaluation": {
+                    "score": 5,
+                    "critique": "The model output accurately describes the Bring Your Own Device (BYOD) policy that an employer may choose to implement while highlighting the relevant legal and privacy considerations.",
+                },
+            },
+            {
+                "eval_inputs": {
+                    "model_input": "Can an employer read private messages sent from a work computer?",
+                    "model_output": "Yes, employers have full access to messages sent from work computers.",
+                    "model_context": "Employers may have the right to monitor work-related communications on company devices, but access to private messages is highly restricted by privacy laws like GDPR and the European Court of Human Rights rulings. Employers must inform employees about any monitoring, and private communications are typically protected unless there is a strong legal justification. Blanket access to all messages, including private ones, would likely be unlawful.",
+                    "expected_model_output": "Not necessarily. Employers may monitor work communications but generally cannot access private messages without clear justification and prior notice under privacy laws.",
+                },
+                "evaluation": {
+                    "score": 1,
+                    "critique": "The model output is misleading because it overgeneralizes and ignores legal protections.",
+                },
+            },
+        ],
+    },
+    inputs={
+        "model_input": "Is it legal to monitor employee emails under European privacy laws?",
+        "model_output": "Monitoring employee emails is permissible under European privacy laws like GDPR, provided there's a legitimate purpose.",
+        "model_context": "European privacy laws, including GDPR, allow for the monitoring of employee emails under strict conditions. The employer must demonstrate that the monitoring is necessary for a legitimate purpose, such as protecting company assets or compliance with legal obligations. Employees must be informed about the monitoring in advance, and the privacy impact should be assessed to minimize intrusion.",
+        "expected_model_output": "Yes, but only under strict conditions. European privacy laws, including GDPR, require that monitoring be necessary for a legitimate purpose, employees be informed in advance, and privacy impact be minimized.",
+    },
+    model_id="atla-selene-mini",
 )
 ```
 
 On timeout, an `APITimeoutError` is thrown.
 
 Note that requests that time out are [retried twice by default](#retries).
+
+## Advanced
+
+### Logging
+
+We use the standard library [`logging`](https://docs.python.org/3/library/logging.html) module.
+
+You can enable logging by setting the environment variable `ATLA_LOG` to `info`.
+
+```shell
+$ export ATLA_LOG=info
+```
+
+Or to `debug` for more verbose logging.
+
+### How to tell whether `None` means `null` or missing
+
+In an API response, a field may be explicitly `null`, or missing entirely; in either case, its value is `None` in this library. You can differentiate the two cases with `.model_fields_set`:
+
+```py
+if response.my_field is None:
+  if 'my_field' not in response.model_fields_set:
+    print('Got json like {}, without a "my_field" key present at all.')
+  else:
+    print('Got json like {"my_field": null}.')
+```
+
+### Accessing raw response data (e.g. headers)
+
+The "raw" Response object can be accessed by prefixing `.with_raw_response.` to any HTTP method call, e.g.,
+
+```py
+from atla import Atla
+
+client = Atla()
+response = client.evaluation.with_raw_response.create(
+    config={
+        "criteria": {
+            "type": "direct",
+            "evaluation_criteria": "Assign a score of 5 if the answer is factually correct and well-formatted, otherwise assign a score of 1.",
+        },
+        "few_shot_examples": [{
+            "eval_inputs": {
+                "model_input": "Can employers require employees to use personal devices for work?",
+                "model_output": "Employers can require employees to use personal devices for work, but legal and privacy considerations must be addressed.",
+                "model_context": "Employers implementing Bring Your Own Device (BYOD) policies must consider data protection laws and employee privacy rights. Under regulations like GDPR, companies must ensure adequate data security, inform employees of monitoring or data collection practices, and provide alternatives if necessary. Failure to implement safeguards could lead to legal challenges or data breaches.",
+                "expected_model_output": "Yes, but privacy and security concerns must be addressed. Employers must ensure compliance with data protection laws, inform employees about data handling, and offer alternatives where necessary.",
+            },
+            "evaluation": {
+                "score": 5,
+                "critique": "The model output accurately describes the Bring Your Own Device (BYOD) policy that an employer may choose to implement while highlighting the relevant legal and privacy considerations.",
+            },
+        }, {
+            "eval_inputs": {
+                "model_input": "Can an employer read private messages sent from a work computer?",
+                "model_output": "Yes, employers have full access to messages sent from work computers.",
+                "model_context": "Employers may have the right to monitor work-related communications on company devices, but access to private messages is highly restricted by privacy laws like GDPR and the European Court of Human Rights rulings. Employers must inform employees about any monitoring, and private communications are typically protected unless there is a strong legal justification. Blanket access to all messages, including private ones, would likely be unlawful.",
+                "expected_model_output": "Not necessarily. Employers may monitor work communications but generally cannot access private messages without clear justification and prior notice under privacy laws.",
+            },
+            "evaluation": {
+                "score": 1,
+                "critique": "The model output is misleading because it overgeneralizes and ignores legal protections.",
+            },
+        }],
+    },
+    inputs={
+        "model_input": "Is it legal to monitor employee emails under European privacy laws?",
+        "model_output": "Monitoring employee emails is permissible under European privacy laws like GDPR, provided there's a legitimate purpose.",
+        "model_context": "European privacy laws, including GDPR, allow for the monitoring of employee emails under strict conditions. The employer must demonstrate that the monitoring is necessary for a legitimate purpose, such as protecting company assets or compliance with legal obligations. Employees must be informed about the monitoring in advance, and the privacy impact should be assessed to minimize intrusion.",
+        "expected_model_output": "Yes, but only under strict conditions. European privacy laws, including GDPR, require that monitoring be necessary for a legitimate purpose, employees be informed in advance, and privacy impact be minimized.",
+    },
+    model_id="atla-selene-mini",
+)
+print(response.headers.get('X-My-Header'))
+
+evaluation = response.parse()  # get the object that `evaluation.create()` would have returned
+print(evaluation.evaluations)
+```
+
+These methods return an [`APIResponse`](https://github.com/atla-ai/atla-sdk-python/tree/main/src/atla/_response.py) object.
+
+The async client returns an [`AsyncAPIResponse`](https://github.com/atla-ai/atla-sdk-python/tree/main/src/atla/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
+
+#### `.with_streaming_response`
+
+The above interface eagerly reads the full response body when you make the request, which may not always be what you want.
+
+To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
+
+```python
+with client.evaluation.with_streaming_response.create(
+    config={
+        "criteria": {
+            "type": "direct",
+            "evaluation_criteria": "Assign a score of 5 if the answer is factually correct and well-formatted, otherwise assign a score of 1.",
+        },
+        "few_shot_examples": [
+            {
+                "eval_inputs": {
+                    "model_input": "Can employers require employees to use personal devices for work?",
+                    "model_output": "Employers can require employees to use personal devices for work, but legal and privacy considerations must be addressed.",
+                    "model_context": "Employers implementing Bring Your Own Device (BYOD) policies must consider data protection laws and employee privacy rights. Under regulations like GDPR, companies must ensure adequate data security, inform employees of monitoring or data collection practices, and provide alternatives if necessary. Failure to implement safeguards could lead to legal challenges or data breaches.",
+                    "expected_model_output": "Yes, but privacy and security concerns must be addressed. Employers must ensure compliance with data protection laws, inform employees about data handling, and offer alternatives where necessary.",
+                },
+                "evaluation": {
+                    "score": 5,
+                    "critique": "The model output accurately describes the Bring Your Own Device (BYOD) policy that an employer may choose to implement while highlighting the relevant legal and privacy considerations.",
+                },
+            },
+            {
+                "eval_inputs": {
+                    "model_input": "Can an employer read private messages sent from a work computer?",
+                    "model_output": "Yes, employers have full access to messages sent from work computers.",
+                    "model_context": "Employers may have the right to monitor work-related communications on company devices, but access to private messages is highly restricted by privacy laws like GDPR and the European Court of Human Rights rulings. Employers must inform employees about any monitoring, and private communications are typically protected unless there is a strong legal justification. Blanket access to all messages, including private ones, would likely be unlawful.",
+                    "expected_model_output": "Not necessarily. Employers may monitor work communications but generally cannot access private messages without clear justification and prior notice under privacy laws.",
+                },
+                "evaluation": {
+                    "score": 1,
+                    "critique": "The model output is misleading because it overgeneralizes and ignores legal protections.",
+                },
+            },
+        ],
+    },
+    inputs={
+        "model_input": "Is it legal to monitor employee emails under European privacy laws?",
+        "model_output": "Monitoring employee emails is permissible under European privacy laws like GDPR, provided there's a legitimate purpose.",
+        "model_context": "European privacy laws, including GDPR, allow for the monitoring of employee emails under strict conditions. The employer must demonstrate that the monitoring is necessary for a legitimate purpose, such as protecting company assets or compliance with legal obligations. Employees must be informed about the monitoring in advance, and the privacy impact should be assessed to minimize intrusion.",
+        "expected_model_output": "Yes, but only under strict conditions. European privacy laws, including GDPR, require that monitoring be necessary for a legitimate purpose, employees be informed in advance, and privacy impact be minimized.",
+    },
+    model_id="atla-selene-mini",
+) as response:
+    print(response.headers.get("X-My-Header"))
+
+    for line in response.iter_lines():
+        print(line)
+```
+
+The context manager is required so that the response will reliably be closed.
+
+### Making custom/undocumented requests
+
+This library is typed for convenient access to the documented API.
+
+If you need to access undocumented endpoints, params, or response properties, the library can still be used.
+
+#### Undocumented endpoints
+
+To make requests to undocumented endpoints, you can make requests using `client.get`, `client.post`, and other
+http verbs. Options on the client will be respected (such as retries) when making this request.
+
+```py
+import httpx
+
+response = client.post(
+    "/foo",
+    cast_to=httpx.Response,
+    body={"my_param": True},
+)
+
+print(response.headers.get("x-foo"))
+```
+
+#### Undocumented request params
+
+If you want to explicitly send an extra param, you can do so with the `extra_query`, `extra_body`, and `extra_headers` request
+options.
+
+#### Undocumented response properties
+
+To access undocumented response properties, you can access the extra fields like `response.unknown_prop`. You
+can also get all the extra fields on the Pydantic model as a dict with
+[`response.model_extra`](https://docs.pydantic.dev/latest/api/base_model/#pydantic.BaseModel.model_extra).
+
+### Configuring the HTTP client
+
+You can directly override the [httpx client](https://www.python-httpx.org/api/#client) to customize it for your use case, including:
+
+- Support for [proxies](https://www.python-httpx.org/advanced/proxies/)
+- Custom [transports](https://www.python-httpx.org/advanced/transports/)
+- Additional [advanced](https://www.python-httpx.org/advanced/clients/) functionality
+
+```python
+import httpx
+from atla import Atla, DefaultHttpxClient
+
+client = Atla(
+    # Or use the `ATLA_BASE_URL` env var
+    base_url="http://my.test.server.example.com:8083",
+    http_client=DefaultHttpxClient(
+        proxy="http://my.test.proxy.example.com",
+        transport=httpx.HTTPTransport(local_address="0.0.0.0"),
+    ),
+)
+```
+
+You can also customize the client on a per-request basis by using `with_options()`:
+
+```python
+client.with_options(http_client=DefaultHttpxClient(...))
+```
+
+### Managing HTTP resources
+
+By default the library closes underlying HTTP connections whenever the client is [garbage collected](https://docs.python.org/3/reference/datamodel.html#object.__del__). You can manually close the client using the `.close()` method if desired, or with a context manager that closes when exiting.
+
+```py
+from atla import Atla
+
+with Atla() as client:
+  # make requests here
+  ...
+
+# HTTP client is now closed
+```
 
 ## Versioning
 
