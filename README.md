@@ -2,13 +2,13 @@
 
 [![PyPI version](https://img.shields.io/pypi/v/atla.svg)](https://pypi.org/project/atla/)
 
-The Atla Python library provides convenient access to the Atla REST API from any Python 3.7+
+The Atla Python library provides convenient access to the Atla REST API from any Python 3.8+
 application. The library includes type definitions for all request params and response fields,
 and offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).
 
 ## Documentation
 
-The REST API documentation can be found [on docs.atla-ai.com](https://docs.atla-ai.com). The full API of this library can be found in [api.md](api.md).
+The REST API documentation can be found on [docs.atla-ai.com](https://docs.atla-ai.com). The full API of this library can be found in [api.md](api.md).
 
 ## Installation
 
@@ -26,8 +26,7 @@ import os
 from atla import Atla
 
 client = Atla(
-    # This is the default and can be omitted
-    api_key=os.environ.get("ATLA_API_KEY"),
+    api_key=os.environ.get("ATLA_API_KEY"),  # This is the default and can be omitted
 )
 
 result = client.evaluation.create(
@@ -66,8 +65,7 @@ import asyncio
 from atla import AsyncAtla
 
 client = AsyncAtla(
-    # This is the default and can be omitted
-    api_key=os.environ.get("ATLA_API_KEY"),
+    api_key=os.environ.get("ATLA_API_KEY"),  # This is the default and can be omitted
 )
 
 
@@ -140,7 +138,7 @@ except atla.APIStatusError as e:
     print(e.response)
 ```
 
-Error codes are as followed:
+Error codes are as follows:
 
 | Status Code | Error Type                 |
 | ----------- | -------------------------- |
@@ -377,13 +375,28 @@ with Atla() as client:
 This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:
 
 1. Changes that only affect static types, without breaking runtime behavior.
-2. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals)_.
+2. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals.)_
 3. Changes that we do not expect to impact the vast majority of users in practice.
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
 We are keen for your feedback; please open an [issue](https://www.github.com/atla-ai/atla-sdk-python/issues) with questions, bugs, or suggestions.
 
+### Determining the installed version
+
+If you've upgraded to the latest version but aren't seeing any new features you were expecting then your python environment is likely still using an older version.
+
+You can determine the version that is being used at runtime with:
+
+```py
+import atla
+print(atla.__version__)
+```
+
 ## Requirements
 
-Python 3.7 or higher.
+Python 3.8 or higher.
+
+## Contributing
+
+See [the contributing documentation](./CONTRIBUTING.md).

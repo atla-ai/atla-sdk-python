@@ -29,10 +29,21 @@ __all__ = ["EvaluationResource", "AsyncEvaluationResource"]
 class EvaluationResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> EvaluationResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/atla-ai/atla-sdk-python#accessing-raw-response-data-eg-headers
+        """
         return EvaluationResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> EvaluationResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/atla-ai/atla-sdk-python#with_streaming_response
+        """
         return EvaluationResourceWithStreamingResponse(self)
 
     def create(
@@ -55,7 +66,7 @@ class EvaluationResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Evaluation:
         """
-        Create Evaluation
+        Run an evaluation directly via the Atla evaluation service.
 
         Args:
           model_id: The ID or name of the Atla evaluator model to use. This may point to a specific
@@ -116,10 +127,21 @@ class EvaluationResource(SyncAPIResource):
 class AsyncEvaluationResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncEvaluationResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/atla-ai/atla-sdk-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncEvaluationResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncEvaluationResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/atla-ai/atla-sdk-python#with_streaming_response
+        """
         return AsyncEvaluationResourceWithStreamingResponse(self)
 
     async def create(
@@ -142,7 +164,7 @@ class AsyncEvaluationResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Evaluation:
         """
-        Create Evaluation
+        Run an evaluation directly via the Atla evaluation service.
 
         Args:
           model_id: The ID or name of the Atla evaluator model to use. This may point to a specific

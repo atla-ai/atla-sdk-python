@@ -12,23 +12,8 @@ class EvaluationCreateParams(TypedDict, total=False):
     model_id: Required[str]
     """The ID or name of the Atla evaluator model to use.
 
-    ```
-    Is it permissible for a cookie banner to obscure the imprint?
-    ```
-
-    Atla is able to generate an evaluation for multi-turn input messages, typically
-    a conversation. The input message should be a list of alternating `user` and
-    `assistant` messages.Each message should be a dictionary with a `role` and
-    `content` key.
-
-    Example with multiple conversational turns:
-
-    ```
-    [
-       {'role': 'user', 'content': 'Is it permissible for a cookie banner to obscure the imprint?'},
-       {'role': 'assistant', 'content': 'I could not find a specific source addressing the permissibility of a cookie banner obscuring the imprint.'}
-    ]
-    ```
+    This may point to a specific model version or a model family. If a model family
+    is provided, the default model version for that family will be used.
     """
 
     model_input: Required[str]
@@ -64,9 +49,7 @@ class EvaluationCreateParams(TypedDict, total=False):
     prompt_version: Optional[int]
     """The version of the prompt to use for the evaluation.
 
-    ```
-    ['recall', 'precision']
-    ```
+    If not set, the active prompt for the metric will be used.
     """
 
 

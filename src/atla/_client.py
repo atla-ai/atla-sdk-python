@@ -8,7 +8,7 @@ from typing_extensions import Self, override
 
 import httpx
 
-from . import resources, _exceptions
+from . import _exceptions
 from ._qs import Querystring
 from ._types import (
     NOT_GIVEN,
@@ -24,6 +24,7 @@ from ._utils import (
     get_async_library,
 )
 from ._version import __version__
+from .resources import evaluation
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import AtlaError, APIStatusError
 from ._base_client import (
@@ -32,21 +33,11 @@ from ._base_client import (
     AsyncAPIClient,
 )
 
-__all__ = [
-    "Timeout",
-    "Transport",
-    "ProxiesTypes",
-    "RequestOptions",
-    "resources",
-    "Atla",
-    "AsyncAtla",
-    "Client",
-    "AsyncClient",
-]
+__all__ = ["Timeout", "Transport", "ProxiesTypes", "RequestOptions", "Atla", "AsyncAtla", "Client", "AsyncClient"]
 
 
 class Atla(SyncAPIClient):
-    evaluation: resources.EvaluationResource
+    evaluation: evaluation.EvaluationResource
     with_raw_response: AtlaWithRawResponse
     with_streaming_response: AtlaWithStreamedResponse
 
@@ -104,7 +95,7 @@ class Atla(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.evaluation = resources.EvaluationResource(self)
+        self.evaluation = evaluation.EvaluationResource(self)
         self.with_raw_response = AtlaWithRawResponse(self)
         self.with_streaming_response = AtlaWithStreamedResponse(self)
 
@@ -215,7 +206,7 @@ class Atla(SyncAPIClient):
 
 
 class AsyncAtla(AsyncAPIClient):
-    evaluation: resources.AsyncEvaluationResource
+    evaluation: evaluation.AsyncEvaluationResource
     with_raw_response: AsyncAtlaWithRawResponse
     with_streaming_response: AsyncAtlaWithStreamedResponse
 
@@ -273,7 +264,7 @@ class AsyncAtla(AsyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.evaluation = resources.AsyncEvaluationResource(self)
+        self.evaluation = evaluation.AsyncEvaluationResource(self)
         self.with_raw_response = AsyncAtlaWithRawResponse(self)
         self.with_streaming_response = AsyncAtlaWithStreamedResponse(self)
 
@@ -385,22 +376,22 @@ class AsyncAtla(AsyncAPIClient):
 
 class AtlaWithRawResponse:
     def __init__(self, client: Atla) -> None:
-        self.evaluation = resources.EvaluationResourceWithRawResponse(client.evaluation)
+        self.evaluation = evaluation.EvaluationResourceWithRawResponse(client.evaluation)
 
 
 class AsyncAtlaWithRawResponse:
     def __init__(self, client: AsyncAtla) -> None:
-        self.evaluation = resources.AsyncEvaluationResourceWithRawResponse(client.evaluation)
+        self.evaluation = evaluation.AsyncEvaluationResourceWithRawResponse(client.evaluation)
 
 
 class AtlaWithStreamedResponse:
     def __init__(self, client: Atla) -> None:
-        self.evaluation = resources.EvaluationResourceWithStreamingResponse(client.evaluation)
+        self.evaluation = evaluation.EvaluationResourceWithStreamingResponse(client.evaluation)
 
 
 class AsyncAtlaWithStreamedResponse:
     def __init__(self, client: AsyncAtla) -> None:
-        self.evaluation = resources.AsyncEvaluationResourceWithStreamingResponse(client.evaluation)
+        self.evaluation = evaluation.AsyncEvaluationResourceWithStreamingResponse(client.evaluation)
 
 
 Client = Atla

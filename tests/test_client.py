@@ -4,12 +4,17 @@ from __future__ import annotations
 
 import gc
 import os
+import sys
 import json
+import time
 import asyncio
 import inspect
+import subprocess
 import tracemalloc
 from typing import Any, Union, cast
+from textwrap import dedent
 from unittest import mock
+from typing_extensions import Literal
 
 import httpx
 import pytest
@@ -17,6 +22,7 @@ from respx import MockRouter
 from pydantic import ValidationError
 
 from atla import Atla, AsyncAtla, APIResponseValidationError
+from atla._types import Omit
 from atla._models import BaseModel, FinalRequestOptions
 from atla._constants import RAW_RESPONSE_HEADER
 from atla._exceptions import AtlaError, APIStatusError, APITimeoutError, APIResponseValidationError
@@ -321,7 +327,8 @@ class TestAtla:
         assert request.headers.get("Authorization") == f"Bearer {api_key}"
 
         with pytest.raises(AtlaError):
-            client2 = Atla(base_url=base_url, api_key=None, _strict_response_validation=True)
+            with update_env(**{"ATLA_API_KEY": Omit()}):
+                client2 = Atla(base_url=base_url, api_key=None, _strict_response_validation=True)
             _ = client2
 
     def test_default_query_option(self) -> None:
@@ -336,11 +343,11 @@ class TestAtla:
             FinalRequestOptions(
                 method="get",
                 url="/foo",
-                params={"foo": "baz", "query_param": "overriden"},
+                params={"foo": "baz", "query_param": "overridden"},
             )
         )
         url = httpx.URL(request.url)
-        assert dict(url.params) == {"foo": "baz", "query_param": "overriden"}
+        assert dict(url.params) == {"foo": "baz", "query_param": "overridden"}
 
     def test_request_extra_json(self) -> None:
         request = self.client._build_request(
@@ -677,6 +684,7 @@ class TestAtla:
             [3, "", 0.5],
             [2, "", 0.5 * 2.0],
             [1, "", 0.5 * 4.0],
+            [-1100, "", 8],  # test large number potentially overflowing
         ],
     )
     @mock.patch("time.time", mock.MagicMock(return_value=1696004797))
@@ -1109,7 +1117,8 @@ class TestAsyncAtla:
         assert request.headers.get("Authorization") == f"Bearer {api_key}"
 
         with pytest.raises(AtlaError):
-            client2 = AsyncAtla(base_url=base_url, api_key=None, _strict_response_validation=True)
+            with update_env(**{"ATLA_API_KEY": Omit()}):
+                client2 = AsyncAtla(base_url=base_url, api_key=None, _strict_response_validation=True)
             _ = client2
 
     def test_default_query_option(self) -> None:
@@ -1124,11 +1133,11 @@ class TestAsyncAtla:
             FinalRequestOptions(
                 method="get",
                 url="/foo",
-                params={"foo": "baz", "query_param": "overriden"},
+                params={"foo": "baz", "query_param": "overridden"},
             )
         )
         url = httpx.URL(request.url)
-        assert dict(url.params) == {"foo": "baz", "query_param": "overriden"}
+        assert dict(url.params) == {"foo": "baz", "query_param": "overridden"}
 
     def test_request_extra_json(self) -> None:
         request = self.client._build_request(
@@ -1468,6 +1477,7 @@ class TestAsyncAtla:
             [3, "", 0.5],
             [2, "", 0.5 * 2.0],
             [1, "", 0.5 * 4.0],
+            [-1100, "", 8],  # test large number potentially overflowing
         ],
     )
     @mock.patch("time.time", mock.MagicMock(return_value=1696004797))
@@ -1525,8 +1535,6 @@ class TestAsyncAtla:
             )
 
         assert _get_open_connections(self.client) == 0
-<<<<<<< HEAD
-=======
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
     @mock.patch("atla._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
@@ -1666,4 +1674,3 @@ class TestAsyncAtla:
                     raise AssertionError("calling get_platform using asyncify resulted in a hung process")
 
                 time.sleep(0.1)
->>>>>>> origin/generated--merge-conflict
