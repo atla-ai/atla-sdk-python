@@ -3,8 +3,7 @@
 from typing import Optional
 from typing_extensions import Literal
 
-from pydantic import Field as FieldInfo
-
+from .._compat import PYDANTIC_V2, ConfigDict
 from .._models import BaseModel
 
 __all__ = ["Evaluation", "Result", "ResultEvaluation"]
@@ -14,16 +13,20 @@ class ResultEvaluation(BaseModel):
     critique: str
     """The critique of the evaluation."""
 
-    score: float
-    """A numeric value representing the evaluation result."""
+    score: str
+    """A value representing the evaluation result."""
 
 
 class Result(BaseModel):
     evaluation: ResultEvaluation
     """The evaluation results."""
 
-    api_model_id: str = FieldInfo(alias="model_id")
+    model_id: str
     """The ID of the Atla evaluator model used."""
+
+    if PYDANTIC_V2:
+        # allow fields with a `model_` prefix
+        model_config = ConfigDict(protected_namespaces=tuple())
 
 
 class Evaluation(BaseModel):

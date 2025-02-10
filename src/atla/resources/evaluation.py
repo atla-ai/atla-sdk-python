@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Iterable, Optional
+
 import httpx
 
 from ..types import evaluation_create_params
@@ -47,9 +49,15 @@ class EvaluationResource(SyncAPIResource):
     def create(
         self,
         *,
-        config: evaluation_create_params.Config,
-        inputs: evaluation_create_params.Inputs,
         model_id: str,
+        model_input: str,
+        model_output: str,
+        evaluation_criteria: Optional[str] | NotGiven = NOT_GIVEN,
+        expected_model_output: str | NotGiven = NOT_GIVEN,
+        few_shot_examples: Iterable[evaluation_create_params.FewShotExample] | NotGiven = NOT_GIVEN,
+        metric_name: Optional[str] | NotGiven = NOT_GIVEN,
+        model_context: str | NotGiven = NOT_GIVEN,
+        prompt_version: Optional[int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -61,13 +69,29 @@ class EvaluationResource(SyncAPIResource):
         Run an evaluation directly via the Atla evaluation service.
 
         Args:
-          config: The configuration for the evaluation request.
-
-          inputs: The inputs for the evaluation request.
-
           model_id: The ID or name of the Atla evaluator model to use. This may point to a specific
               model version or a model family. If a model family is provided, the default
               model version for that family will be used.
+
+          model_input: The input given to a model which produced the `model_output` to be evaluated.
+
+          model_output: The output of the model which is being evaluated. This is the `model_output`
+              from the `model_input`.
+
+          evaluation_criteria: The criteria used to evaluate the `model_output`.
+
+          expected_model_output: An optional reference ("ground-truth" / "gold standard") answer against which to
+              evaluate the `model_output`.
+
+          few_shot_examples: A list of few-shot examples for the evaluation.
+
+          metric_name: The name of the metric to use for the evaluation.
+
+          model_context: Any additional context provided to the model which received the `model_input`
+              and produced the `model_output`.
+
+          prompt_version: The version of the prompt to use for the evaluation. If not set, the active
+              prompt for the metric will be used.
 
           extra_headers: Send extra headers
 
@@ -81,9 +105,15 @@ class EvaluationResource(SyncAPIResource):
             "/v1/eval",
             body=maybe_transform(
                 {
-                    "config": config,
-                    "inputs": inputs,
                     "model_id": model_id,
+                    "model_input": model_input,
+                    "model_output": model_output,
+                    "evaluation_criteria": evaluation_criteria,
+                    "expected_model_output": expected_model_output,
+                    "few_shot_examples": few_shot_examples,
+                    "metric_name": metric_name,
+                    "model_context": model_context,
+                    "prompt_version": prompt_version,
                 },
                 evaluation_create_params.EvaluationCreateParams,
             ),
@@ -117,9 +147,15 @@ class AsyncEvaluationResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        config: evaluation_create_params.Config,
-        inputs: evaluation_create_params.Inputs,
         model_id: str,
+        model_input: str,
+        model_output: str,
+        evaluation_criteria: Optional[str] | NotGiven = NOT_GIVEN,
+        expected_model_output: str | NotGiven = NOT_GIVEN,
+        few_shot_examples: Iterable[evaluation_create_params.FewShotExample] | NotGiven = NOT_GIVEN,
+        metric_name: Optional[str] | NotGiven = NOT_GIVEN,
+        model_context: str | NotGiven = NOT_GIVEN,
+        prompt_version: Optional[int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -131,13 +167,29 @@ class AsyncEvaluationResource(AsyncAPIResource):
         Run an evaluation directly via the Atla evaluation service.
 
         Args:
-          config: The configuration for the evaluation request.
-
-          inputs: The inputs for the evaluation request.
-
           model_id: The ID or name of the Atla evaluator model to use. This may point to a specific
               model version or a model family. If a model family is provided, the default
               model version for that family will be used.
+
+          model_input: The input given to a model which produced the `model_output` to be evaluated.
+
+          model_output: The output of the model which is being evaluated. This is the `model_output`
+              from the `model_input`.
+
+          evaluation_criteria: The criteria used to evaluate the `model_output`.
+
+          expected_model_output: An optional reference ("ground-truth" / "gold standard") answer against which to
+              evaluate the `model_output`.
+
+          few_shot_examples: A list of few-shot examples for the evaluation.
+
+          metric_name: The name of the metric to use for the evaluation.
+
+          model_context: Any additional context provided to the model which received the `model_input`
+              and produced the `model_output`.
+
+          prompt_version: The version of the prompt to use for the evaluation. If not set, the active
+              prompt for the metric will be used.
 
           extra_headers: Send extra headers
 
@@ -151,9 +203,15 @@ class AsyncEvaluationResource(AsyncAPIResource):
             "/v1/eval",
             body=await async_maybe_transform(
                 {
-                    "config": config,
-                    "inputs": inputs,
                     "model_id": model_id,
+                    "model_input": model_input,
+                    "model_output": model_output,
+                    "evaluation_criteria": evaluation_criteria,
+                    "expected_model_output": expected_model_output,
+                    "few_shot_examples": few_shot_examples,
+                    "metric_name": metric_name,
+                    "model_context": model_context,
+                    "prompt_version": prompt_version,
                 },
                 evaluation_create_params.EvaluationCreateParams,
             ),
