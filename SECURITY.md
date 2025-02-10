@@ -20,7 +20,9 @@ or products provided by Atla please follow the respective company's security rep
 
 ### Atla Terms and Policies
 
-Please contact support@atla.com for any questions or concerns regarding security of our services.
+Our Security Policy can be found at [Security Policy URL](https://www.atla-ai.com/terms-of-service).
+
+Please contact support@atla-ai.com for any questions or concerns regarding security of our services.
 
 ---
 
