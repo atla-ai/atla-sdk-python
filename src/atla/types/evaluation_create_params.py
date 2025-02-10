@@ -2,29 +2,13 @@
 
 from __future__ import annotations
 
-from typing import Union, Iterable, Optional
-from typing_extensions import Literal, Required, TypeAlias, TypedDict
+from typing import Iterable, Optional
+from typing_extensions import Required, TypedDict
 
-__all__ = [
-    "EvaluationCreateParams",
-    "Config",
-    "ConfigCriteria",
-    "ConfigCriteriaDirectEvaluationCriteriaConfig",
-    "ConfigCriteriaMetricBasedEvaluationCriteriaConfig",
-    "ConfigFewShotExample",
-    "ConfigFewShotExampleEvalInputs",
-    "ConfigFewShotExampleEvaluation",
-    "Inputs",
-]
+__all__ = ["EvaluationCreateParams", "FewShotExample"]
 
 
 class EvaluationCreateParams(TypedDict, total=False):
-    config: Required[Config]
-    """The configuration for the evaluation request."""
-
-    inputs: Required[Inputs]
-    """The inputs for the evaluation request."""
-
     model_id: Required[str]
     """The ID or name of the Atla evaluator model to use.
 
@@ -32,17 +16,35 @@ class EvaluationCreateParams(TypedDict, total=False):
     is provided, the default model version for that family will be used.
     """
 
+    model_input: Required[str]
+    """The input given to a model which produced the `model_output` to be evaluated."""
 
-class ConfigCriteriaDirectEvaluationCriteriaConfig(TypedDict, total=False):
-    evaluation_criteria: Required[str]
+    model_output: Required[str]
+    """The output of the model which is being evaluated.
+
+    This is the `model_output` from the `model_input`.
+    """
+
+    evaluation_criteria: Optional[str]
     """The criteria used to evaluate the `model_output`."""
 
-    type: Literal["direct"]
+    expected_model_output: str
+    """
+    An optional reference ("ground-truth" / "gold standard") answer against which to
+    evaluate the `model_output`.
+    """
 
+    few_shot_examples: Iterable[FewShotExample]
+    """A list of few-shot examples for the evaluation."""
 
-class ConfigCriteriaMetricBasedEvaluationCriteriaConfig(TypedDict, total=False):
-    metric_name: Required[str]
+    metric_name: Optional[str]
     """The name of the metric to use for the evaluation."""
+
+    model_context: str
+    """
+    Any additional context provided to the model which received the `model_input`
+    and produced the `model_output`.
+    """
 
     prompt_version: Optional[int]
     """The version of the prompt to use for the evaluation.
@@ -50,15 +52,8 @@ class ConfigCriteriaMetricBasedEvaluationCriteriaConfig(TypedDict, total=False):
     If not set, the active prompt for the metric will be used.
     """
 
-    type: Literal["metric"]
 
-
-ConfigCriteria: TypeAlias = Union[
-    ConfigCriteriaDirectEvaluationCriteriaConfig, ConfigCriteriaMetricBasedEvaluationCriteriaConfig
-]
-
-
-class ConfigFewShotExampleEvalInputs(TypedDict, total=False):
+class FewShotExample(TypedDict, total=False):
     model_input: Required[str]
     """The input given to a model which produced the `model_output` to be evaluated."""
 
@@ -68,60 +63,19 @@ class ConfigFewShotExampleEvalInputs(TypedDict, total=False):
     This is the `model_output` from the `model_input`.
     """
 
-    expected_model_output: Optional[str]
-    """
-    An optional reference ("ground-truth" / "gold standard") answer against which to
-    evaluate the `model_output`.
-    """
+    score: Required[str]
+    """A value representing the evaluation result."""
 
-    model_context: Optional[str]
-    """
-    Any additional context provided to the model which received the `model_input`
-    and produced the `model_output`.
-    """
-
-
-class ConfigFewShotExampleEvaluation(TypedDict, total=False):
-    critique: Required[Optional[str]]
+    critique: Optional[str]
     """An optional explanation of the evaluation."""
 
-    score: Required[float]
-    """A numeric value representing the evaluation result."""
-
-
-class ConfigFewShotExample(TypedDict, total=False):
-    eval_inputs: Required[ConfigFewShotExampleEvalInputs]
-    """The complete set of inputs for this example evaluation."""
-
-    evaluation: Required[ConfigFewShotExampleEvaluation]
-    """The demonstration evaluation results for these inputs."""
-
-
-class Config(TypedDict, total=False):
-    criteria: Required[ConfigCriteria]
-    """Configuration for direct evaluation criteria."""
-
-    few_shot_examples: Optional[Iterable[ConfigFewShotExample]]
-    """Optional few-shot examples to guide the evaluation."""
-
-
-class Inputs(TypedDict, total=False):
-    model_input: Required[str]
-    """The input given to a model which produced the `model_output` to be evaluated."""
-
-    model_output: Required[str]
-    """The output of the model which is being evaluated.
-
-    This is the `model_output` from the `model_input`.
-    """
-
-    expected_model_output: Optional[str]
+    expected_model_output: str
     """
     An optional reference ("ground-truth" / "gold standard") answer against which to
     evaluate the `model_output`.
     """
 
-    model_context: Optional[str]
+    model_context: str
     """
     Any additional context provided to the model which received the `model_input`
     and produced the `model_output`.

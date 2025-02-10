@@ -116,6 +116,7 @@ class Atla(SyncAPIClient):
         return {
             **super().default_headers,
             "X-Stainless-Async": "false",
+            "X-Atla-Source": "python-sdk",
             **self._custom_headers,
         }
 
@@ -284,6 +285,7 @@ class AsyncAtla(AsyncAPIClient):
         return {
             **super().default_headers,
             "X-Stainless-Async": f"async:{get_async_library()}",
+            "X-Atla-Source": "python-sdk",
             **self._custom_headers,
         }
 
