@@ -46,7 +46,6 @@ class TestEvaluation:
             ],
             metric_name="metric_name",
             model_context="European privacy laws, including GDPR, allow for the monitoring of employee emails under strict conditions. The employer must demonstrate that the monitoring is necessary for a legitimate purpose, such as protecting company assets or compliance with legal obligations. Employees must be informed about the monitoring in advance, and the privacy impact should be assessed to minimize intrusion.",
-            prompt_version=0,
         )
         assert_matches_type(Evaluation, evaluation, path=["response"])
 
@@ -111,7 +110,6 @@ class TestAsyncEvaluation:
             ],
             metric_name="metric_name",
             model_context="European privacy laws, including GDPR, allow for the monitoring of employee emails under strict conditions. The employer must demonstrate that the monitoring is necessary for a legitimate purpose, such as protecting company assets or compliance with legal obligations. Employees must be informed about the monitoring in advance, and the privacy impact should be assessed to minimize intrusion.",
-            prompt_version=0,
         )
         assert_matches_type(Evaluation, evaluation, path=["response"])
 

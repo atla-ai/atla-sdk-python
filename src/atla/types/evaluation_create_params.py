@@ -26,7 +26,10 @@ class EvaluationCreateParams(TypedDict, total=False):
     """
 
     evaluation_criteria: Optional[str]
-    """The criteria used to evaluate the `model_output`."""
+    """The criteria used to evaluate the `model_output`.
+
+    Only one of `evaluation_criteria` or `metric_name` can be provided.
+    """
 
     expected_model_output: str
     """
@@ -38,18 +41,15 @@ class EvaluationCreateParams(TypedDict, total=False):
     """A list of few-shot examples for the evaluation."""
 
     metric_name: Optional[str]
-    """The name of the metric to use for the evaluation."""
+    """The name of the metric to use for the evaluation.
+
+    Only one of `evaluation_criteria` or `metric_name` can be provided.
+    """
 
     model_context: str
     """
     Any additional context provided to the model which received the `model_input`
     and produced the `model_output`.
-    """
-
-    prompt_version: Optional[int]
-    """The version of the prompt to use for the evaluation.
-
-    If not set, the active prompt for the metric will be used.
     """
 
 
