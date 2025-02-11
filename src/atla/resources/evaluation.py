@@ -57,7 +57,6 @@ class EvaluationResource(SyncAPIResource):
         few_shot_examples: Iterable[evaluation_create_params.FewShotExample] | NotGiven = NOT_GIVEN,
         metric_name: Optional[str] | NotGiven = NOT_GIVEN,
         model_context: str | NotGiven = NOT_GIVEN,
-        prompt_version: Optional[int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -78,20 +77,19 @@ class EvaluationResource(SyncAPIResource):
           model_output: The output of the model which is being evaluated. This is the `model_output`
               from the `model_input`.
 
-          evaluation_criteria: The criteria used to evaluate the `model_output`.
+          evaluation_criteria: The criteria used to evaluate the `model_output`. Only one of
+              `evaluation_criteria` or `metric_name` can be provided.
 
           expected_model_output: An optional reference ("ground-truth" / "gold standard") answer against which to
               evaluate the `model_output`.
 
           few_shot_examples: A list of few-shot examples for the evaluation.
 
-          metric_name: The name of the metric to use for the evaluation.
+          metric_name: The name of the metric to use for the evaluation. Only one of
+              `evaluation_criteria` or `metric_name` can be provided.
 
           model_context: Any additional context provided to the model which received the `model_input`
               and produced the `model_output`.
-
-          prompt_version: The version of the prompt to use for the evaluation. If not set, the active
-              prompt for the metric will be used.
 
           extra_headers: Send extra headers
 
@@ -113,7 +111,6 @@ class EvaluationResource(SyncAPIResource):
                     "few_shot_examples": few_shot_examples,
                     "metric_name": metric_name,
                     "model_context": model_context,
-                    "prompt_version": prompt_version,
                 },
                 evaluation_create_params.EvaluationCreateParams,
             ),
@@ -155,7 +152,6 @@ class AsyncEvaluationResource(AsyncAPIResource):
         few_shot_examples: Iterable[evaluation_create_params.FewShotExample] | NotGiven = NOT_GIVEN,
         metric_name: Optional[str] | NotGiven = NOT_GIVEN,
         model_context: str | NotGiven = NOT_GIVEN,
-        prompt_version: Optional[int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -176,20 +172,19 @@ class AsyncEvaluationResource(AsyncAPIResource):
           model_output: The output of the model which is being evaluated. This is the `model_output`
               from the `model_input`.
 
-          evaluation_criteria: The criteria used to evaluate the `model_output`.
+          evaluation_criteria: The criteria used to evaluate the `model_output`. Only one of
+              `evaluation_criteria` or `metric_name` can be provided.
 
           expected_model_output: An optional reference ("ground-truth" / "gold standard") answer against which to
               evaluate the `model_output`.
 
           few_shot_examples: A list of few-shot examples for the evaluation.
 
-          metric_name: The name of the metric to use for the evaluation.
+          metric_name: The name of the metric to use for the evaluation. Only one of
+              `evaluation_criteria` or `metric_name` can be provided.
 
           model_context: Any additional context provided to the model which received the `model_input`
               and produced the `model_output`.
-
-          prompt_version: The version of the prompt to use for the evaluation. If not set, the active
-              prompt for the metric will be used.
 
           extra_headers: Send extra headers
 
@@ -211,7 +206,6 @@ class AsyncEvaluationResource(AsyncAPIResource):
                     "few_shot_examples": few_shot_examples,
                     "metric_name": metric_name,
                     "model_context": model_context,
-                    "prompt_version": prompt_version,
                 },
                 evaluation_create_params.EvaluationCreateParams,
             ),
