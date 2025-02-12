@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable, Optional
+from typing import Iterable
 from typing_extensions import Required, TypedDict
 
 __all__ = ["EvaluationCreateParams", "FewShotExample"]
@@ -25,7 +25,7 @@ class EvaluationCreateParams(TypedDict, total=False):
     This is the `model_output` from the `model_input`.
     """
 
-    evaluation_criteria: Optional[str]
+    evaluation_criteria: str
     """The criteria used to evaluate the `model_output`.
 
     Only one of `evaluation_criteria` or `metric_name` can be provided.
@@ -40,7 +40,7 @@ class EvaluationCreateParams(TypedDict, total=False):
     few_shot_examples: Iterable[FewShotExample]
     """A list of few-shot examples for the evaluation."""
 
-    metric_name: Optional[str]
+    metric_name: str
     """The name of the metric to use for the evaluation.
 
     Only one of `evaluation_criteria` or `metric_name` can be provided.
@@ -66,7 +66,7 @@ class FewShotExample(TypedDict, total=False):
     score: Required[str]
     """A value representing the evaluation result."""
 
-    critique: Optional[str]
+    critique: str
     """An optional explanation of the evaluation."""
 
     expected_model_output: str
