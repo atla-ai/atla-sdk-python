@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable, Optional
+from typing import Iterable
 
 import httpx
 
@@ -52,10 +52,10 @@ class EvaluationResource(SyncAPIResource):
         model_id: str,
         model_input: str,
         model_output: str,
-        evaluation_criteria: Optional[str] | NotGiven = NOT_GIVEN,
+        evaluation_criteria: str | NotGiven = NOT_GIVEN,
         expected_model_output: str | NotGiven = NOT_GIVEN,
         few_shot_examples: Iterable[evaluation_create_params.FewShotExample] | NotGiven = NOT_GIVEN,
-        metric_name: Optional[str] | NotGiven = NOT_GIVEN,
+        metric_name: str | NotGiven = NOT_GIVEN,
         model_context: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -147,10 +147,10 @@ class AsyncEvaluationResource(AsyncAPIResource):
         model_id: str,
         model_input: str,
         model_output: str,
-        evaluation_criteria: Optional[str] | NotGiven = NOT_GIVEN,
+        evaluation_criteria: str | NotGiven = NOT_GIVEN,
         expected_model_output: str | NotGiven = NOT_GIVEN,
         few_shot_examples: Iterable[evaluation_create_params.FewShotExample] | NotGiven = NOT_GIVEN,
-        metric_name: Optional[str] | NotGiven = NOT_GIVEN,
+        metric_name: str | NotGiven = NOT_GIVEN,
         model_context: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
