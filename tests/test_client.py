@@ -23,10 +23,12 @@ from pydantic import ValidationError
 
 from atla import Atla, AsyncAtla, APIResponseValidationError
 from atla._types import Omit
+from atla._utils import maybe_transform
 from atla._models import BaseModel, FinalRequestOptions
 from atla._constants import RAW_RESPONSE_HEADER
 from atla._exceptions import AtlaError, APIStatusError, APITimeoutError, APIResponseValidationError
 from atla._base_client import DEFAULT_TIMEOUT, HTTPX_DEFAULT_TIMEOUT, BaseClient, make_request_options
+from atla.types.evaluation_create_params import EvaluationCreateParams
 
 from .utils import update_env
 
@@ -706,11 +708,14 @@ class TestAtla:
                 "/v1/eval",
                 body=cast(
                     object,
-                    dict(
-                        model_id="atla-selene",
-                        model_input="What is the capital of France?",
-                        model_output="Paris",
-                        evaluation_criteria="Assign a score of 1 if the answer is factually correct, otherwise assign a score of 0.",
+                    maybe_transform(
+                        dict(
+                            model_id="atla-selene",
+                            model_input="What is the capital of France?",
+                            model_output="Paris",
+                            evaluation_criteria="Assign a score of 1 if the answer is factually correct, otherwise assign a score of 0.",
+                        ),
+                        EvaluationCreateParams,
                     ),
                 ),
                 cast_to=httpx.Response,
@@ -729,11 +734,14 @@ class TestAtla:
                 "/v1/eval",
                 body=cast(
                     object,
-                    dict(
-                        model_id="atla-selene",
-                        model_input="What is the capital of France?",
-                        model_output="Paris",
-                        evaluation_criteria="Assign a score of 1 if the answer is factually correct, otherwise assign a score of 0.",
+                    maybe_transform(
+                        dict(
+                            model_id="atla-selene",
+                            model_input="What is the capital of France?",
+                            model_output="Paris",
+                            evaluation_criteria="Assign a score of 1 if the answer is factually correct, otherwise assign a score of 0.",
+                        ),
+                        EvaluationCreateParams,
                     ),
                 ),
                 cast_to=httpx.Response,
@@ -1500,11 +1508,14 @@ class TestAsyncAtla:
                 "/v1/eval",
                 body=cast(
                     object,
-                    dict(
-                        model_id="atla-selene",
-                        model_input="What is the capital of France?",
-                        model_output="Paris",
-                        evaluation_criteria="Assign a score of 1 if the answer is factually correct, otherwise assign a score of 0.",
+                    maybe_transform(
+                        dict(
+                            model_id="atla-selene",
+                            model_input="What is the capital of France?",
+                            model_output="Paris",
+                            evaluation_criteria="Assign a score of 1 if the answer is factually correct, otherwise assign a score of 0.",
+                        ),
+                        EvaluationCreateParams,
                     ),
                 ),
                 cast_to=httpx.Response,
@@ -1523,11 +1534,14 @@ class TestAsyncAtla:
                 "/v1/eval",
                 body=cast(
                     object,
-                    dict(
-                        model_id="atla-selene",
-                        model_input="What is the capital of France?",
-                        model_output="Paris",
-                        evaluation_criteria="Assign a score of 1 if the answer is factually correct, otherwise assign a score of 0.",
+                    maybe_transform(
+                        dict(
+                            model_id="atla-selene",
+                            model_input="What is the capital of France?",
+                            model_output="Paris",
+                            evaluation_criteria="Assign a score of 1 if the answer is factually correct, otherwise assign a score of 0.",
+                        ),
+                        EvaluationCreateParams,
                     ),
                 ),
                 cast_to=httpx.Response,
