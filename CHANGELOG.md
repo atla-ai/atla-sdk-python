@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.4.0 (2025-02-13)
+
+Full Changelog: [v0.3.0...v0.4.0](https://github.com/atla-ai/atla-sdk-python/compare/v0.3.0...v0.4.0)
+
+### Features
+
+* **api:** api update ([#107](https://github.com/atla-ai/atla-sdk-python/issues/107)) ([7c549a7](https://github.com/atla-ai/atla-sdk-python/commit/7c549a7a72f1afa44de89fdf2e0c1d7eec094335))
+* **api:** api update ([#109](https://github.com/atla-ai/atla-sdk-python/issues/109)) ([2cf5286](https://github.com/atla-ai/atla-sdk-python/commit/2cf52860d2087b00f1d1edb306292c7970133722))
+* **api:** api update ([#110](https://github.com/atla-ai/atla-sdk-python/issues/110)) ([5e4a76c](https://github.com/atla-ai/atla-sdk-python/commit/5e4a76c147a71f25c81b87c382d5cc6596d71b58))
+* **api:** update via SDK Studio ([#101](https://github.com/atla-ai/atla-sdk-python/issues/101)) ([4c91ac0](https://github.com/atla-ai/atla-sdk-python/commit/4c91ac0c9721aebf0d7fb532f5fd79ef834729c8))
+
+
+### Chores
+
+* **internal:** codegen related update ([#104](https://github.com/atla-ai/atla-sdk-python/issues/104)) ([0d2ae0c](https://github.com/atla-ai/atla-sdk-python/commit/0d2ae0cc5f606f449691acdf1b3bc82fbc88c1a8))
+* **internal:** update client tests ([#111](https://github.com/atla-ai/atla-sdk-python/issues/111)) ([2a4ef2b](https://github.com/atla-ai/atla-sdk-python/commit/2a4ef2b89a6803601b35042535a96c37c805b79a))
+* remove custom code ([f5af251](https://github.com/atla-ai/atla-sdk-python/commit/f5af251e2ddadeda7e423cfa88219ac772645389))
+
 ## 0.3.0 (2024-06-12)
 
 Full Changelog: [v0.2.0...v0.3.0](https://github.com/atla-ai/atla-sdk-python/compare/v0.2.0...v0.3.0)
