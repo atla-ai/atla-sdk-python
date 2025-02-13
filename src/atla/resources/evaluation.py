@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Iterable, Optional
+from typing import Iterable
 
 import httpx
 
@@ -20,9 +20,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import (
-    make_request_options,
-)
+from .._base_client import make_request_options
 from ..types.evaluation import Evaluation
 
 __all__ = ["EvaluationResource", "AsyncEvaluationResource"]
@@ -31,21 +29,34 @@ __all__ = ["EvaluationResource", "AsyncEvaluationResource"]
 class EvaluationResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> EvaluationResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/atla-ai/atla-sdk-python#accessing-raw-response-data-eg-headers
+        """
         return EvaluationResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> EvaluationResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/atla-ai/atla-sdk-python#with_streaming_response
+        """
         return EvaluationResourceWithStreamingResponse(self)
 
     def create(
         self,
         *,
-        input: Union[str, Iterable[Dict[str, str]]],
-        metrics: List[str],
-        response: str,
-        context: Optional[str] | NotGiven = NOT_GIVEN,
-        model: str | NotGiven = NOT_GIVEN,
-        reference: Optional[str] | NotGiven = NOT_GIVEN,
+        model_id: str,
+        model_input: str,
+        model_output: str,
+        evaluation_criteria: str | NotGiven = NOT_GIVEN,
+        expected_model_output: str | NotGiven = NOT_GIVEN,
+        few_shot_examples: Iterable[evaluation_create_params.FewShotExample] | NotGiven = NOT_GIVEN,
+        metric_name: str | NotGiven = NOT_GIVEN,
+        model_context: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -54,82 +65,31 @@ class EvaluationResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Evaluation:
         """
-        Create Evaluation
+        Run an evaluation directly via the Atla evaluation service.
 
         Args:
-          input: Input messages to evaluate the assistant's response for.
+          model_id: The ID or name of the Atla evaluator model to use. This may point to a specific
+              model version or a model family. If a model family is provided, the default
+              model version for that family will be used.
 
-              Atla will evaluate an AI response based on the input message that was used to
-              generate the response. Typically the input message is a single question or
-              prompt used within some context.
+          model_input: The input given to a model which produced the `model_output` to be evaluated.
 
-              Example with a single input message:
+          model_output: The output of the model which is being evaluated. This is the `model_output`
+              from the `model_input`.
 
-              ```
-              Is it permissible for a cookie banner to obscure the imprint?
-              ```
+          evaluation_criteria: The criteria used to evaluate the `model_output`. Only one of
+              `evaluation_criteria` or `metric_name` can be provided.
 
-              Atla is able to generate an evaluation for multi-turn input messages, typically
-              a conversation. The input message should be a list of alternating `user` and
-              `assistant` messages.Each message should be a dictionary with a `role` and
-              `content` key.
+          expected_model_output: An optional reference ("ground-truth" / "gold standard") answer against which to
+              evaluate the `model_output`.
 
-              Example with multiple conversational turns:
+          few_shot_examples: A list of few-shot examples for the evaluation.
 
-              ```
-              [
-                  {"role": "user", "content": "Is it permissible for a cookie banner to obscure the imprint?"},
-                  {
-                      "role": "assistant",
-                      "content": "I could not find a specific source addressing the permissibility of a cookie banner obscuring the imprint.",
-                  },
-              ]
-              ```
+          metric_name: The name of the metric to use for the evaluation. Only one of
+              `evaluation_criteria` or `metric_name` can be provided.
 
-          metrics: Metrics to evaluate on.
-
-              Our models have been trained to evaluate on specific metrics ensuring the
-              highest performance. Each metric passed will by default use the best model for
-              that metric.
-
-              You can include multiple metrics to get multiple evaluations in one request or
-              pass just a single metric.
-
-              Example with a single metric:
-
-              ```
-              ["recall"]
-              ```
-
-              Example with multiple metrics:
-
-              ```
-              ["recall", "precision"]
-              ```
-
-          response: The response generated by the AI model which will be evaluated.
-
-              When using multi-turn input messages, the response should be the last
-              `assistant` message in the conversation
-
-          context: The context in which the input message is used.
-
-              In a Retrieval-Augmented Generation (RAG) setting, the context parameter is
-              crucial for evaluating how well the AI system integrates retrieved information
-              with generated responses. By providing the relevant context, Atla can measure
-              the accuracy and relevance of the AI's responses based on the given context.
-
-          model: The model version that will perform the evaluation. By default, the latest
-              `atla` model will be used.
-
-          reference: The reference or ground-truth answer against which the AI response will be
-              evaluated.
-
-              This parameter is used to provide the correct or expected answer for the given
-              input. Atla will compare the AI-generated response against this reference to
-              assess the response's correctness and relevance. By providing a reference, you
-              enable Atla to perform a detailed evaluation of the AI's performance in terms of
-              accuracy and factual consistency.
+          model_context: Any additional context provided to the model which received the `model_input`
+              and produced the `model_output`.
 
           extra_headers: Send extra headers
 
@@ -143,12 +103,14 @@ class EvaluationResource(SyncAPIResource):
             "/v1/eval",
             body=maybe_transform(
                 {
-                    "input": input,
-                    "metrics": metrics,
-                    "response": response,
-                    "context": context,
-                    "model": model,
-                    "reference": reference,
+                    "model_id": model_id,
+                    "model_input": model_input,
+                    "model_output": model_output,
+                    "evaluation_criteria": evaluation_criteria,
+                    "expected_model_output": expected_model_output,
+                    "few_shot_examples": few_shot_examples,
+                    "metric_name": metric_name,
+                    "model_context": model_context,
                 },
                 evaluation_create_params.EvaluationCreateParams,
             ),
@@ -162,21 +124,34 @@ class EvaluationResource(SyncAPIResource):
 class AsyncEvaluationResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncEvaluationResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/atla-ai/atla-sdk-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncEvaluationResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncEvaluationResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/atla-ai/atla-sdk-python#with_streaming_response
+        """
         return AsyncEvaluationResourceWithStreamingResponse(self)
 
     async def create(
         self,
         *,
-        input: Union[str, Iterable[Dict[str, str]]],
-        metrics: List[str],
-        response: str,
-        context: Optional[str] | NotGiven = NOT_GIVEN,
-        model: str | NotGiven = NOT_GIVEN,
-        reference: Optional[str] | NotGiven = NOT_GIVEN,
+        model_id: str,
+        model_input: str,
+        model_output: str,
+        evaluation_criteria: str | NotGiven = NOT_GIVEN,
+        expected_model_output: str | NotGiven = NOT_GIVEN,
+        few_shot_examples: Iterable[evaluation_create_params.FewShotExample] | NotGiven = NOT_GIVEN,
+        metric_name: str | NotGiven = NOT_GIVEN,
+        model_context: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -185,82 +160,31 @@ class AsyncEvaluationResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Evaluation:
         """
-        Create Evaluation
+        Run an evaluation directly via the Atla evaluation service.
 
         Args:
-          input: Input messages to evaluate the assistant's response for.
+          model_id: The ID or name of the Atla evaluator model to use. This may point to a specific
+              model version or a model family. If a model family is provided, the default
+              model version for that family will be used.
 
-              Atla will evaluate an AI response based on the input message that was used to
-              generate the response. Typically the input message is a single question or
-              prompt used within some context.
+          model_input: The input given to a model which produced the `model_output` to be evaluated.
 
-              Example with a single input message:
+          model_output: The output of the model which is being evaluated. This is the `model_output`
+              from the `model_input`.
 
-              ```
-              Is it permissible for a cookie banner to obscure the imprint?
-              ```
+          evaluation_criteria: The criteria used to evaluate the `model_output`. Only one of
+              `evaluation_criteria` or `metric_name` can be provided.
 
-              Atla is able to generate an evaluation for multi-turn input messages, typically
-              a conversation. The input message should be a list of alternating `user` and
-              `assistant` messages.Each message should be a dictionary with a `role` and
-              `content` key.
+          expected_model_output: An optional reference ("ground-truth" / "gold standard") answer against which to
+              evaluate the `model_output`.
 
-              Example with multiple conversational turns:
+          few_shot_examples: A list of few-shot examples for the evaluation.
 
-              ```
-              [
-                  {"role": "user", "content": "Is it permissible for a cookie banner to obscure the imprint?"},
-                  {
-                      "role": "assistant",
-                      "content": "I could not find a specific source addressing the permissibility of a cookie banner obscuring the imprint.",
-                  },
-              ]
-              ```
+          metric_name: The name of the metric to use for the evaluation. Only one of
+              `evaluation_criteria` or `metric_name` can be provided.
 
-          metrics: Metrics to evaluate on.
-
-              Our models have been trained to evaluate on specific metrics ensuring the
-              highest performance. Each metric passed will by default use the best model for
-              that metric.
-
-              You can include multiple metrics to get multiple evaluations in one request or
-              pass just a single metric.
-
-              Example with a single metric:
-
-              ```
-              ["recall"]
-              ```
-
-              Example with multiple metrics:
-
-              ```
-              ["recall", "precision"]
-              ```
-
-          response: The response generated by the AI model which will be evaluated.
-
-              When using multi-turn input messages, the response should be the last
-              `assistant` message in the conversation
-
-          context: The context in which the input message is used.
-
-              In a Retrieval-Augmented Generation (RAG) setting, the context parameter is
-              crucial for evaluating how well the AI system integrates retrieved information
-              with generated responses. By providing the relevant context, Atla can measure
-              the accuracy and relevance of the AI's responses based on the given context.
-
-          model: The model version that will perform the evaluation. By default, the latest
-              `atla` model will be used.
-
-          reference: The reference or ground-truth answer against which the AI response will be
-              evaluated.
-
-              This parameter is used to provide the correct or expected answer for the given
-              input. Atla will compare the AI-generated response against this reference to
-              assess the response's correctness and relevance. By providing a reference, you
-              enable Atla to perform a detailed evaluation of the AI's performance in terms of
-              accuracy and factual consistency.
+          model_context: Any additional context provided to the model which received the `model_input`
+              and produced the `model_output`.
 
           extra_headers: Send extra headers
 
@@ -274,12 +198,14 @@ class AsyncEvaluationResource(AsyncAPIResource):
             "/v1/eval",
             body=await async_maybe_transform(
                 {
-                    "input": input,
-                    "metrics": metrics,
-                    "response": response,
-                    "context": context,
-                    "model": model,
-                    "reference": reference,
+                    "model_id": model_id,
+                    "model_input": model_input,
+                    "model_output": model_output,
+                    "evaluation_criteria": evaluation_criteria,
+                    "expected_model_output": expected_model_output,
+                    "few_shot_examples": few_shot_examples,
+                    "metric_name": metric_name,
+                    "model_context": model_context,
                 },
                 evaluation_create_params.EvaluationCreateParams,
             ),
