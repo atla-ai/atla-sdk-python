@@ -1,5 +1,31 @@
 # Changelog
 
+## 0.5.0 (2025-02-28)
+
+Full Changelog: [v0.4.0...v0.5.0](https://github.com/atla-ai/atla-sdk-python/compare/v0.4.0...v0.5.0)
+
+### Features
+
+* **client:** allow passing `NotGiven` for body ([#115](https://github.com/atla-ai/atla-sdk-python/issues/115)) ([c73de4e](https://github.com/atla-ai/atla-sdk-python/commit/c73de4ee17da540220cbe01023449c24bafcab05))
+
+
+### Bug Fixes
+
+* asyncify on non-asyncio runtimes ([#113](https://github.com/atla-ai/atla-sdk-python/issues/113)) ([afa21ae](https://github.com/atla-ai/atla-sdk-python/commit/afa21ae98bb5da765d50ba242dce29912a8941fc))
+* **client:** mark some request bodies as optional ([c73de4e](https://github.com/atla-ai/atla-sdk-python/commit/c73de4ee17da540220cbe01023449c24bafcab05))
+
+
+### Chores
+
+* **docs:** update client docstring ([#120](https://github.com/atla-ai/atla-sdk-python/issues/120)) ([db77b78](https://github.com/atla-ai/atla-sdk-python/commit/db77b7829379ed7c404a5ae811f84ac3e555a843))
+* **internal:** fix devcontainers setup ([#116](https://github.com/atla-ai/atla-sdk-python/issues/116)) ([517229a](https://github.com/atla-ai/atla-sdk-python/commit/517229a18c0ee608805c51760d7e5a87f54becc4))
+* **internal:** properly set __pydantic_private__ ([#118](https://github.com/atla-ai/atla-sdk-python/issues/118)) ([fca9e4d](https://github.com/atla-ai/atla-sdk-python/commit/fca9e4de8ae7184d7d1ddb9cc55bf28034d57364))
+
+
+### Documentation
+
+* update URLs from stainlessapi.com to stainless.com ([#119](https://github.com/atla-ai/atla-sdk-python/issues/119)) ([d0aa176](https://github.com/atla-ai/atla-sdk-python/commit/d0aa1760adae21a574393009bca22eec4130847a))
+
 ## 0.4.0 (2025-02-13)
 
 Full Changelog: [v0.3.0...v0.4.0](https://github.com/atla-ai/atla-sdk-python/compare/v0.3.0...v0.4.0)
