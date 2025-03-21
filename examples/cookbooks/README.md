@@ -20,9 +20,9 @@ We check for hallucination in AI responses i.e. 'Is the information provided in 
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/atla-ai/atla-sdk-python/blob/main/examples/cookbooks/Atla_Selene_Multi_Criteria_Evals.ipynb)
 
-This cookbook gets you started running multi-criteria evals with Selene, on a processed sample set from the public benchmark [FLASK](https://arxiv.org/pdf/2307.10928). We evaluate datapoints across 12 criteria–including insightfulness, factuality, comprehension, readability, and harmlessness–to get a comprehensive understanding of the model's performance.
+This cookbook gets you started on running multi-criteria evals with Selene, to help you get a comprehensive picture of your model's performance. We follow eval best practices by evaluating each criterion as an individual metric to receive clearer insights and more reliable scores.
 
-Selene excels at fine-grained evaluations on each of these individual criteria, so we provide a "best practices" cookbook to help you get the most out of comprehensive multi-criteria evals.
+The first section will show you how to run multi-criteria evals on one/many datapoints across 3 criteria using our async client. The second section will showcase how our model performs on multi-criteria evals, across 12 criteria on the public [FLASK](https://arxiv.org/pdf/2307.10928) dataset.
 
 # Contact
 Get in touch with us if there's another use case you'd like to see a cookbook for!
