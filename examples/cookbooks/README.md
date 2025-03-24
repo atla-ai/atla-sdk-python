@@ -24,6 +24,10 @@ This cookbook gets you started on running multi-criteria evals with Selene, to h
 
 The first section will show you how to run multi-criteria evals on one/many datapoints across 3 criteria using our async client. The second section will showcase how our model performs on multi-criteria evals, across 12 criteria on the public [FLASK](https://arxiv.org/pdf/2307.10928) dataset.
 
+# Atla on Langfuse
+
+You can use Selene as an LLM Judge in Langfuse to monitor your app’s performance in production using traces, as well as to run experiments over datasets pre-production. We provide demo videos and cookbooks for both use cases. Click [here](https://github.com/atla-ai/atla-sdk-python/blob/main/examples/cookbooks/langfuse) to go to our Langfuse cookbooks.
+
 # Contact
 Get in touch with us if there's another use case you'd like to see a cookbook for!
 
