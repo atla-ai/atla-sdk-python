@@ -1,5 +1,39 @@
 # Changelog
 
+## 0.5.0 (2025-03-24)
+
+Full Changelog: [v0.4.0...v0.5.0](https://github.com/atla-ai/atla-sdk-python/compare/v0.4.0...v0.5.0)
+
+### Features
+
+* **api:** api update ([#129](https://github.com/atla-ai/atla-sdk-python/issues/129)) ([47886f5](https://github.com/atla-ai/atla-sdk-python/commit/47886f567eb23d7ef4e4668a0b4b19f29b97d34b))
+* **client:** allow passing `NotGiven` for body ([#115](https://github.com/atla-ai/atla-sdk-python/issues/115)) ([42b0301](https://github.com/atla-ai/atla-sdk-python/commit/42b0301bab95732525434c2233abf09f75f1ecc0))
+
+
+### Bug Fixes
+
+* asyncify on non-asyncio runtimes ([#113](https://github.com/atla-ai/atla-sdk-python/issues/113)) ([e8a8b0d](https://github.com/atla-ai/atla-sdk-python/commit/e8a8b0dfddea06bf732a18510efb275d9828a4cd))
+* **ci:** ensure pip is always available ([#127](https://github.com/atla-ai/atla-sdk-python/issues/127)) ([d4a29bb](https://github.com/atla-ai/atla-sdk-python/commit/d4a29bb03a0d77d2714cf76c355c35030fdf6e10))
+* **ci:** remove publishing patch ([#128](https://github.com/atla-ai/atla-sdk-python/issues/128)) ([fd583e8](https://github.com/atla-ai/atla-sdk-python/commit/fd583e8a85b0df636221b5a966ef1ea52a94bbcb))
+* **client:** mark some request bodies as optional ([42b0301](https://github.com/atla-ai/atla-sdk-python/commit/42b0301bab95732525434c2233abf09f75f1ecc0))
+* **types:** handle more discriminated union shapes ([#126](https://github.com/atla-ai/atla-sdk-python/issues/126)) ([09dc7cc](https://github.com/atla-ai/atla-sdk-python/commit/09dc7cc0d4df84559e763ce6ee7fa9b40c72c5d2))
+
+
+### Chores
+
+* **docs:** update client docstring ([#120](https://github.com/atla-ai/atla-sdk-python/issues/120)) ([c68ffad](https://github.com/atla-ai/atla-sdk-python/commit/c68ffadd49615f5fd400b4ccfd85eab5ea77494f))
+* **internal:** bump rye to 0.44.0 ([#125](https://github.com/atla-ai/atla-sdk-python/issues/125)) ([d599e2d](https://github.com/atla-ai/atla-sdk-python/commit/d599e2d4c95cd873968ecba553d442ce7d538480))
+* **internal:** codegen related update ([#124](https://github.com/atla-ai/atla-sdk-python/issues/124)) ([9b02ee6](https://github.com/atla-ai/atla-sdk-python/commit/9b02ee6626795e824d95be2862d8eb56d864c2d9))
+* **internal:** fix devcontainers setup ([#116](https://github.com/atla-ai/atla-sdk-python/issues/116)) ([ace8fbc](https://github.com/atla-ai/atla-sdk-python/commit/ace8fbc98af22e073f3ba1c17cd1085c28c30001))
+* **internal:** properly set __pydantic_private__ ([#118](https://github.com/atla-ai/atla-sdk-python/issues/118)) ([e3bf33d](https://github.com/atla-ai/atla-sdk-python/commit/e3bf33d82de7bf00668e3a4d58806ab2053136d3))
+* **internal:** remove extra empty newlines ([#123](https://github.com/atla-ai/atla-sdk-python/issues/123)) ([f15108d](https://github.com/atla-ai/atla-sdk-python/commit/f15108da001b20d22508106010a9c42bc1b5f0c8))
+* **internal:** remove unused http client options forwarding ([#121](https://github.com/atla-ai/atla-sdk-python/issues/121)) ([ef050d0](https://github.com/atla-ai/atla-sdk-python/commit/ef050d0299db92fa7a322325d0e60b4ad687f260))
+
+
+### Documentation
+
+* update URLs from stainlessapi.com to stainless.com ([#119](https://github.com/atla-ai/atla-sdk-python/issues/119)) ([525d208](https://github.com/atla-ai/atla-sdk-python/commit/525d208598a477330996c1b34694b855a3f4d7bc))
+
 ## 0.4.0 (2025-02-13)
 
 Full Changelog: [v0.3.0...v0.4.0](https://github.com/atla-ai/atla-sdk-python/compare/v0.3.0...v0.4.0)
