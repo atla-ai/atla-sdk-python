@@ -1,6 +1,6 @@
 # Monitoring (Tutorial)
 
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/atla-ai/atla-sdk-python/blob/main/examples/cookbooks/langfuse/Atla_Langfuse_Monitoring)
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/atla-ai/atla-sdk-python/blob/main/examples/cookbooks/langfuse/Atla_Langfuse_Monitoring.ipynb)
 
 This cookbook builds a Gradio application with a complete RAG pipeline. The app is a simple chatbot that answers questions based on a single webpage, which is set to Google’s Q4 2024 earnings call transcript. 
 
