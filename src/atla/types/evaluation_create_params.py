@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Iterable, Optional
 from typing_extensions import Required, TypedDict
 
-__all__ = ["EvaluationCreateParams", "FewShotExample"]
+from .metrics.few_shot_example_param import FewShotExampleParam
+
+__all__ = ["EvaluationCreateParams"]
 
 
 class EvaluationCreateParams(TypedDict, total=False):
@@ -25,58 +27,35 @@ class EvaluationCreateParams(TypedDict, total=False):
     This is the `model_output` from the `model_input`.
     """
 
-    evaluation_criteria: str
+    evaluation_criteria: Optional[str]
     """The criteria used to evaluate the `model_output`.
 
     Only one of `evaluation_criteria` or `metric_name` can be provided.
     """
 
-    expected_model_output: str
+    expected_model_output: Optional[str]
     """
     An optional reference ("ground-truth" / "gold standard") answer against which to
     evaluate the `model_output`.
     """
 
-    few_shot_examples: Iterable[FewShotExample]
+    few_shot_examples: Iterable[FewShotExampleParam]
     """A list of few-shot examples for the evaluation."""
 
-    metric_name: str
+    metric_name: Optional[str]
     """The name of the metric to use for the evaluation.
 
     Only one of `evaluation_criteria` or `metric_name` can be provided.
     """
 
-    model_context: str
+    model_context: Optional[str]
     """
     Any additional context provided to the model which received the `model_input`
     and produced the `model_output`.
     """
 
+    prompt_version: Optional[int]
+    """The version of the prompt to use for the evaluation.
 
-class FewShotExample(TypedDict, total=False):
-    model_input: Required[str]
-    """The input given to a model which produced the `model_output` to be evaluated."""
-
-    model_output: Required[str]
-    """The output of the model which is being evaluated.
-
-    This is the `model_output` from the `model_input`.
-    """
-
-    score: Required[str]
-    """A value representing the evaluation result."""
-
-    critique: str
-    """An optional explanation of the evaluation."""
-
-    expected_model_output: str
-    """
-    An optional reference ("ground-truth" / "gold standard") answer against which to
-    evaluate the `model_output`.
-    """
-
-    model_context: str
-    """
-    Any additional context provided to the model which received the `model_input`
-    and produced the `model_output`.
+    If not provided, the active prompt version will be used.
     """

@@ -32,12 +32,14 @@ from ._base_client import (
     SyncAPIClient,
     AsyncAPIClient,
 )
+from .resources.metrics import metrics
 
 __all__ = ["Timeout", "Transport", "ProxiesTypes", "RequestOptions", "Atla", "AsyncAtla", "Client", "AsyncClient"]
 
 
 class Atla(SyncAPIClient):
     evaluation: evaluation.EvaluationResource
+    metrics: metrics.MetricsResource
     with_raw_response: AtlaWithRawResponse
     with_streaming_response: AtlaWithStreamedResponse
 
@@ -67,7 +69,7 @@ class Atla(SyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
-        """Construct a new synchronous atla client instance.
+        """Construct a new synchronous Atla client instance.
 
         This automatically infers the `api_key` argument from the `ATLA_API_KEY` environment variable if it is not provided.
         """
@@ -96,6 +98,7 @@ class Atla(SyncAPIClient):
         )
 
         self.evaluation = evaluation.EvaluationResource(self)
+        self.metrics = metrics.MetricsResource(self)
         self.with_raw_response = AtlaWithRawResponse(self)
         self.with_streaming_response = AtlaWithStreamedResponse(self)
 
@@ -207,6 +210,7 @@ class Atla(SyncAPIClient):
 
 class AsyncAtla(AsyncAPIClient):
     evaluation: evaluation.AsyncEvaluationResource
+    metrics: metrics.AsyncMetricsResource
     with_raw_response: AsyncAtlaWithRawResponse
     with_streaming_response: AsyncAtlaWithStreamedResponse
 
@@ -236,7 +240,7 @@ class AsyncAtla(AsyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
-        """Construct a new async atla client instance.
+        """Construct a new async AsyncAtla client instance.
 
         This automatically infers the `api_key` argument from the `ATLA_API_KEY` environment variable if it is not provided.
         """
@@ -265,6 +269,7 @@ class AsyncAtla(AsyncAPIClient):
         )
 
         self.evaluation = evaluation.AsyncEvaluationResource(self)
+        self.metrics = metrics.AsyncMetricsResource(self)
         self.with_raw_response = AsyncAtlaWithRawResponse(self)
         self.with_streaming_response = AsyncAtlaWithStreamedResponse(self)
 
@@ -377,21 +382,25 @@ class AsyncAtla(AsyncAPIClient):
 class AtlaWithRawResponse:
     def __init__(self, client: Atla) -> None:
         self.evaluation = evaluation.EvaluationResourceWithRawResponse(client.evaluation)
+        self.metrics = metrics.MetricsResourceWithRawResponse(client.metrics)
 
 
 class AsyncAtlaWithRawResponse:
     def __init__(self, client: AsyncAtla) -> None:
         self.evaluation = evaluation.AsyncEvaluationResourceWithRawResponse(client.evaluation)
+        self.metrics = metrics.AsyncMetricsResourceWithRawResponse(client.metrics)
 
 
 class AtlaWithStreamedResponse:
     def __init__(self, client: Atla) -> None:
         self.evaluation = evaluation.EvaluationResourceWithStreamingResponse(client.evaluation)
+        self.metrics = metrics.MetricsResourceWithStreamingResponse(client.metrics)
 
 
 class AsyncAtlaWithStreamedResponse:
     def __init__(self, client: AsyncAtla) -> None:
         self.evaluation = evaluation.AsyncEvaluationResourceWithStreamingResponse(client.evaluation)
+        self.metrics = metrics.AsyncMetricsResourceWithStreamingResponse(client.metrics)
 
 
 Client = Atla
