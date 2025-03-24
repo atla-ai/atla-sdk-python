@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Iterable, Optional
 
 import httpx
 
@@ -22,6 +22,7 @@ from .._response import (
 )
 from .._base_client import make_request_options
 from ..types.evaluation import Evaluation
+from ..types.metrics.few_shot_example_param import FewShotExampleParam
 
 __all__ = ["EvaluationResource", "AsyncEvaluationResource"]
 
@@ -52,11 +53,12 @@ class EvaluationResource(SyncAPIResource):
         model_id: str,
         model_input: str,
         model_output: str,
-        evaluation_criteria: str | NotGiven = NOT_GIVEN,
-        expected_model_output: str | NotGiven = NOT_GIVEN,
-        few_shot_examples: Iterable[evaluation_create_params.FewShotExample] | NotGiven = NOT_GIVEN,
-        metric_name: str | NotGiven = NOT_GIVEN,
-        model_context: str | NotGiven = NOT_GIVEN,
+        evaluation_criteria: Optional[str] | NotGiven = NOT_GIVEN,
+        expected_model_output: Optional[str] | NotGiven = NOT_GIVEN,
+        few_shot_examples: Iterable[FewShotExampleParam] | NotGiven = NOT_GIVEN,
+        metric_name: Optional[str] | NotGiven = NOT_GIVEN,
+        model_context: Optional[str] | NotGiven = NOT_GIVEN,
+        prompt_version: Optional[int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -91,6 +93,9 @@ class EvaluationResource(SyncAPIResource):
           model_context: Any additional context provided to the model which received the `model_input`
               and produced the `model_output`.
 
+          prompt_version: The version of the prompt to use for the evaluation. If not provided, the active
+              prompt version will be used.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -111,6 +116,7 @@ class EvaluationResource(SyncAPIResource):
                     "few_shot_examples": few_shot_examples,
                     "metric_name": metric_name,
                     "model_context": model_context,
+                    "prompt_version": prompt_version,
                 },
                 evaluation_create_params.EvaluationCreateParams,
             ),
@@ -147,11 +153,12 @@ class AsyncEvaluationResource(AsyncAPIResource):
         model_id: str,
         model_input: str,
         model_output: str,
-        evaluation_criteria: str | NotGiven = NOT_GIVEN,
-        expected_model_output: str | NotGiven = NOT_GIVEN,
-        few_shot_examples: Iterable[evaluation_create_params.FewShotExample] | NotGiven = NOT_GIVEN,
-        metric_name: str | NotGiven = NOT_GIVEN,
-        model_context: str | NotGiven = NOT_GIVEN,
+        evaluation_criteria: Optional[str] | NotGiven = NOT_GIVEN,
+        expected_model_output: Optional[str] | NotGiven = NOT_GIVEN,
+        few_shot_examples: Iterable[FewShotExampleParam] | NotGiven = NOT_GIVEN,
+        metric_name: Optional[str] | NotGiven = NOT_GIVEN,
+        model_context: Optional[str] | NotGiven = NOT_GIVEN,
+        prompt_version: Optional[int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -186,6 +193,9 @@ class AsyncEvaluationResource(AsyncAPIResource):
           model_context: Any additional context provided to the model which received the `model_input`
               and produced the `model_output`.
 
+          prompt_version: The version of the prompt to use for the evaluation. If not provided, the active
+              prompt version will be used.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -206,6 +216,7 @@ class AsyncEvaluationResource(AsyncAPIResource):
                     "few_shot_examples": few_shot_examples,
                     "metric_name": metric_name,
                     "model_context": model_context,
+                    "prompt_version": prompt_version,
                 },
                 evaluation_create_params.EvaluationCreateParams,
             ),

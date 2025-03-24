@@ -44,8 +44,9 @@ class TestEvaluation:
                     "model_context": "Employers implementing Bring Your Own Device (BYOD) policies must consider data protection laws and employee privacy rights. Under regulations like GDPR, companies must ensure adequate data security, inform employees of monitoring or data collection practices, and provide alternatives if necessary. Failure to implement safeguards could lead to legal challenges or data breaches.",
                 }
             ],
-            metric_name="metric_name",
+            metric_name="my_metric",
             model_context="European privacy laws, including GDPR, allow for the monitoring of employee emails under strict conditions. The employer must demonstrate that the monitoring is necessary for a legitimate purpose, such as protecting company assets or compliance with legal obligations. Employees must be informed about the monitoring in advance, and the privacy impact should be assessed to minimize intrusion.",
+            prompt_version=1,
         )
         assert_matches_type(Evaluation, evaluation, path=["response"])
 
@@ -108,8 +109,9 @@ class TestAsyncEvaluation:
                     "model_context": "Employers implementing Bring Your Own Device (BYOD) policies must consider data protection laws and employee privacy rights. Under regulations like GDPR, companies must ensure adequate data security, inform employees of monitoring or data collection practices, and provide alternatives if necessary. Failure to implement safeguards could lead to legal challenges or data breaches.",
                 }
             ],
-            metric_name="metric_name",
+            metric_name="my_metric",
             model_context="European privacy laws, including GDPR, allow for the monitoring of employee emails under strict conditions. The employer must demonstrate that the monitoring is necessary for a legitimate purpose, such as protecting company assets or compliance with legal obligations. Employees must be informed about the monitoring in advance, and the privacy impact should be assessed to minimize intrusion.",
+            prompt_version=1,
         )
         assert_matches_type(Evaluation, evaluation, path=["response"])
 
