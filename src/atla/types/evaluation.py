@@ -36,5 +36,4 @@ class Evaluation(BaseModel):
     result: Result
     """The result of the evaluation."""
 
-    status: Optional[Literal["success", "error"]] = None
-    """Response status enum."""
+    status: Optional[Literal["success"]] = None
