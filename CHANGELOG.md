@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.5.1 (2025-03-28)
+
+Full Changelog: [v0.5.0...v0.5.1](https://github.com/atla-ai/atla-sdk-python/compare/v0.5.0...v0.5.1)
+
+### Chores
+
+* fix typos ([#132](https://github.com/atla-ai/atla-sdk-python/issues/132)) ([a7709ef](https://github.com/atla-ai/atla-sdk-python/commit/a7709ef006d96e04766abd27080634312a76cad6))
+
 ## 0.5.0 (2025-03-24)
 
 Full Changelog: [v0.4.0...v0.5.0](https://github.com/atla-ai/atla-sdk-python/compare/v0.4.0...v0.5.0)
