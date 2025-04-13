@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from .metric import Metric as Metric
 from .evaluation import Evaluation as Evaluation
+from .chat_completion import ChatCompletion as ChatCompletion
 from .metric_list_params import MetricListParams as MetricListParams
 from .metric_get_response import MetricGetResponse as MetricGetResponse
 from .metric_create_params import MetricCreateParams as MetricCreateParams

@@ -1,3 +1,17 @@
+# Chat
+
+Types:
+
+```python
+from atla.types import ChatCompletion
+```
+
+## Completions
+
+Methods:
+
+- <code title="post /v1/chat/completions">client.chat.completions.<a href="./src/atla/resources/chat/completions.py">create</a>(\*\*<a href="src/atla/types/chat/completion_create_params.py">params</a>) -> <a href="./src/atla/types/chat_completion.py">ChatCompletion</a></code>
+
 # Evaluation
 
 Types:
