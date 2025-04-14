@@ -65,15 +65,37 @@ class CompletionsResource(SyncAPIResource):
         """
         Run an evaluation via an
         [OpenAI-compatible](https://platform.openai.com/docs/api-reference/chat/create)
-        `/chat/completions` endpoint. **Note that Atla models do not support the full
-        OpenAI API spec.** Specifically, the following OpenAI API `/chat/completions`
-        fields are not supported and will raise an error if provided: `audio`,
-        `frequency_penalty`, `function_call`, `functions`, `logit_bias`, `logprobs`,
-        `metadata`, `modalities`, `n`, `parallel_tool_calls`, `prediction`,
-        `presence_penalty`, `reasoning_effort`, `response_format`, `seed`,
-        `service_tier`, `stop`, `store`, `stream`, `stream_options`, `tool_choice`,
-        `tools`, `top_logprobs`, `user`. See our docs for more information:
-        https://docs.atla-ai.com.
+        `/chat/completions` endpoint.
+
+            **Note that Atla models do not support the full OpenAI API spec.**
+
+            Specifically, the following OpenAI API `/chat/completions` fields are not supported
+            and will raise an error if provided:
+            * `audio`
+
+        - `frequency_penalty`
+        - `function_call`
+        - `functions`
+        - `logit_bias`
+        - `logprobs`
+        - `metadata`
+        - `modalities`
+        - `n`
+        - `parallel_tool_calls`
+        - `prediction`
+        - `presence_penalty`
+        - `reasoning_effort`
+        - `response_format`
+        - `seed`
+        - `service_tier`
+        - `stop`
+        - `store`
+        - `stream`
+        - `stream_options`
+        - `tool_choice`
+        - `tools`
+        - `top_logprobs`
+        - `user`
 
         Args:
           messages: A list of messages comprising the conversation so far. See the
@@ -171,15 +193,37 @@ class AsyncCompletionsResource(AsyncAPIResource):
         """
         Run an evaluation via an
         [OpenAI-compatible](https://platform.openai.com/docs/api-reference/chat/create)
-        `/chat/completions` endpoint. **Note that Atla models do not support the full
-        OpenAI API spec.** Specifically, the following OpenAI API `/chat/completions`
-        fields are not supported and will raise an error if provided: `audio`,
-        `frequency_penalty`, `function_call`, `functions`, `logit_bias`, `logprobs`,
-        `metadata`, `modalities`, `n`, `parallel_tool_calls`, `prediction`,
-        `presence_penalty`, `reasoning_effort`, `response_format`, `seed`,
-        `service_tier`, `stop`, `store`, `stream`, `stream_options`, `tool_choice`,
-        `tools`, `top_logprobs`, `user`. See our docs for more information:
-        https://docs.atla-ai.com.
+        `/chat/completions` endpoint.
+
+            **Note that Atla models do not support the full OpenAI API spec.**
+
+            Specifically, the following OpenAI API `/chat/completions` fields are not supported
+            and will raise an error if provided:
+            * `audio`
+
+        - `frequency_penalty`
+        - `function_call`
+        - `functions`
+        - `logit_bias`
+        - `logprobs`
+        - `metadata`
+        - `modalities`
+        - `n`
+        - `parallel_tool_calls`
+        - `prediction`
+        - `presence_penalty`
+        - `reasoning_effort`
+        - `response_format`
+        - `seed`
+        - `service_tier`
+        - `stop`
+        - `store`
+        - `stream`
+        - `stream_options`
+        - `tool_choice`
+        - `tools`
+        - `top_logprobs`
+        - `user`
 
         Args:
           messages: A list of messages comprising the conversation so far. See the
