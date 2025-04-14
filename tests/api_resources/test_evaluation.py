@@ -20,7 +20,7 @@ class TestEvaluation:
     @parametrize
     def test_method_create(self, client: Atla) -> None:
         evaluation = client.evaluation.create(
-            model_id="atla-selene-20250214",
+            model_id="atla-selene-mini-20250127",
             model_input="Is it legal to monitor employee emails under European privacy laws?",
             model_output="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there is a legitimate purpose.",
         )
@@ -29,7 +29,7 @@ class TestEvaluation:
     @parametrize
     def test_method_create_with_all_params(self, client: Atla) -> None:
         evaluation = client.evaluation.create(
-            model_id="atla-selene-20250214",
+            model_id="atla-selene-mini-20250127",
             model_input="Is it legal to monitor employee emails under European privacy laws?",
             model_output="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there is a legitimate purpose.",
             evaluation_criteria="Evaluate the answer based on its factual correctness. Assign a score of 1 if the answer is factually correct, otherwise assign a score of 0.",
@@ -53,7 +53,7 @@ class TestEvaluation:
     @parametrize
     def test_raw_response_create(self, client: Atla) -> None:
         response = client.evaluation.with_raw_response.create(
-            model_id="atla-selene-20250214",
+            model_id="atla-selene-mini-20250127",
             model_input="Is it legal to monitor employee emails under European privacy laws?",
             model_output="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there is a legitimate purpose.",
         )
@@ -66,7 +66,7 @@ class TestEvaluation:
     @parametrize
     def test_streaming_response_create(self, client: Atla) -> None:
         with client.evaluation.with_streaming_response.create(
-            model_id="atla-selene-20250214",
+            model_id="atla-selene-mini-20250127",
             model_input="Is it legal to monitor employee emails under European privacy laws?",
             model_output="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there is a legitimate purpose.",
         ) as response:
@@ -85,7 +85,7 @@ class TestAsyncEvaluation:
     @parametrize
     async def test_method_create(self, async_client: AsyncAtla) -> None:
         evaluation = await async_client.evaluation.create(
-            model_id="atla-selene-20250214",
+            model_id="atla-selene-mini-20250127",
             model_input="Is it legal to monitor employee emails under European privacy laws?",
             model_output="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there is a legitimate purpose.",
         )
@@ -94,7 +94,7 @@ class TestAsyncEvaluation:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncAtla) -> None:
         evaluation = await async_client.evaluation.create(
-            model_id="atla-selene-20250214",
+            model_id="atla-selene-mini-20250127",
             model_input="Is it legal to monitor employee emails under European privacy laws?",
             model_output="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there is a legitimate purpose.",
             evaluation_criteria="Evaluate the answer based on its factual correctness. Assign a score of 1 if the answer is factually correct, otherwise assign a score of 0.",
@@ -118,7 +118,7 @@ class TestAsyncEvaluation:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncAtla) -> None:
         response = await async_client.evaluation.with_raw_response.create(
-            model_id="atla-selene-20250214",
+            model_id="atla-selene-mini-20250127",
             model_input="Is it legal to monitor employee emails under European privacy laws?",
             model_output="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there is a legitimate purpose.",
         )
@@ -131,7 +131,7 @@ class TestAsyncEvaluation:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncAtla) -> None:
         async with async_client.evaluation.with_streaming_response.create(
-            model_id="atla-selene-20250214",
+            model_id="atla-selene-mini-20250127",
             model_input="Is it legal to monitor employee emails under European privacy laws?",
             model_output="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there is a legitimate purpose.",
         ) as response:

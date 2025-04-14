@@ -777,7 +777,7 @@ class TestAtla:
         respx_mock.post("/v1/eval").mock(side_effect=retry_handler)
 
         response = client.evaluation.with_raw_response.create(
-            model_id="atla-selene-20250214",
+            model_id="atla-selene-mini-20250127",
             model_input="Is it legal to monitor employee emails under European privacy laws?",
             model_output="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there is a legitimate purpose.",
         )
@@ -803,7 +803,7 @@ class TestAtla:
         respx_mock.post("/v1/eval").mock(side_effect=retry_handler)
 
         response = client.evaluation.with_raw_response.create(
-            model_id="atla-selene-20250214",
+            model_id="atla-selene-mini-20250127",
             model_input="Is it legal to monitor employee emails under European privacy laws?",
             model_output="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there is a legitimate purpose.",
             extra_headers={"x-stainless-retry-count": Omit()},
@@ -831,7 +831,7 @@ class TestAtla:
         respx_mock.post("/v1/eval").mock(side_effect=retry_handler)
 
         response = client.evaluation.with_raw_response.create(
-            model_id="atla-selene-20250214",
+            model_id="atla-selene-mini-20250127",
             model_input="Is it legal to monitor employee emails under European privacy laws?",
             model_output="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there is a legitimate purpose.",
             extra_headers={"x-stainless-retry-count": "42"},
@@ -1578,7 +1578,7 @@ class TestAsyncAtla:
         respx_mock.post("/v1/eval").mock(side_effect=retry_handler)
 
         response = await client.evaluation.with_raw_response.create(
-            model_id="atla-selene-20250214",
+            model_id="atla-selene-mini-20250127",
             model_input="Is it legal to monitor employee emails under European privacy laws?",
             model_output="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there is a legitimate purpose.",
         )
@@ -1607,7 +1607,7 @@ class TestAsyncAtla:
         respx_mock.post("/v1/eval").mock(side_effect=retry_handler)
 
         response = await client.evaluation.with_raw_response.create(
-            model_id="atla-selene-20250214",
+            model_id="atla-selene-mini-20250127",
             model_input="Is it legal to monitor employee emails under European privacy laws?",
             model_output="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there is a legitimate purpose.",
             extra_headers={"x-stainless-retry-count": Omit()},
@@ -1636,7 +1636,7 @@ class TestAsyncAtla:
         respx_mock.post("/v1/eval").mock(side_effect=retry_handler)
 
         response = await client.evaluation.with_raw_response.create(
-            model_id="atla-selene-20250214",
+            model_id="atla-selene-mini-20250127",
             model_input="Is it legal to monitor employee emails under European privacy laws?",
             model_output="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there is a legitimate purpose.",
             extra_headers={"x-stainless-retry-count": "42"},
@@ -1656,7 +1656,7 @@ class TestAsyncAtla:
         import threading
 
         from atla._utils import asyncify
-        from atla._base_client import get_platform 
+        from atla._base_client import get_platform
 
         async def test_main() -> None:
             result = await asyncify(get_platform)()
