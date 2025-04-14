@@ -16,6 +16,14 @@ This cookbook presents a structured way to improve your prompts to get the best 
 
 We take Chat as an example use case and demonstrate how Selene can be used to guide the decision.
 
+# Implementing Guardrails (Guide)
+
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/atla-ai/atla-sdk-python/blob/main/examples/cookbooks/Atla_Selene_Mini_Guardrails.ipynb)
+
+This cookbook demonstrates how to implement **inference-time guardrails to validate and filter your AI outputs.** We evaluate GPT-4o outputs against example safety dimensions (toxicity, bias, and medical advice) to replace problematic outputs before they are delivered to users.
+
+We use Selene Mini, our state-of-the-art small-LLM-as-a-Judge that excels in low latency use cases.
+
 # Absolute Scoring (Tutorial)
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/atla-ai/atla-sdk-python/blob/main/examples/cookbooks/Atla_Selene_Absolute_Scoring.ipynb)
