@@ -26,7 +26,7 @@ class TestCompletions:
                     "role": "user",
                 }
             ],
-            model="atla-selene-mini-20250127",
+            model="atla-selene",
         )
         assert_matches_type(ChatCompletion, completion, path=["response"])
 
@@ -40,7 +40,7 @@ class TestCompletions:
                     "name": "name",
                 }
             ],
-            model="atla-selene-mini-20250127",
+            model="atla-selene",
             max_completion_tokens=0,
             max_tokens=0,
             temperature=0,
@@ -57,7 +57,7 @@ class TestCompletions:
                     "role": "user",
                 }
             ],
-            model="atla-selene-mini-20250127",
+            model="atla-selene",
         )
 
         assert response.is_closed is True
@@ -74,7 +74,7 @@ class TestCompletions:
                     "role": "user",
                 }
             ],
-            model="atla-selene-mini-20250127",
+            model="atla-selene",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -97,7 +97,7 @@ class TestAsyncCompletions:
                     "role": "user",
                 }
             ],
-            model="atla-selene-mini-20250127",
+            model="atla-selene",
         )
         assert_matches_type(ChatCompletion, completion, path=["response"])
 
@@ -111,7 +111,7 @@ class TestAsyncCompletions:
                     "name": "name",
                 }
             ],
-            model="atla-selene-mini-20250127",
+            model="atla-selene",
             max_completion_tokens=0,
             max_tokens=0,
             temperature=0,
@@ -128,7 +128,7 @@ class TestAsyncCompletions:
                     "role": "user",
                 }
             ],
-            model="atla-selene-mini-20250127",
+            model="atla-selene",
         )
 
         assert response.is_closed is True
@@ -145,7 +145,7 @@ class TestAsyncCompletions:
                     "role": "user",
                 }
             ],
-            model="atla-selene-mini-20250127",
+            model="atla-selene",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
