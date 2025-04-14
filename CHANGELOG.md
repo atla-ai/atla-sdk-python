@@ -1,5 +1,30 @@
 # Changelog
 
+## 0.6.0 (2025-04-14)
+
+Full Changelog: [v0.5.0...v0.6.0](https://github.com/atla-ai/atla-sdk-python/compare/v0.5.0...v0.6.0)
+
+### Features
+
+* **api:** api update ([d36b35f](https://github.com/atla-ai/atla-sdk-python/commit/d36b35f1dc198ae41c2a5c741976aa5b105b93be))
+* **api:** api update ([bc2fee5](https://github.com/atla-ai/atla-sdk-python/commit/bc2fee50961317625e0801641dcd1762887995ae))
+* **api:** api update ([3437472](https://github.com/atla-ai/atla-sdk-python/commit/3437472ae5ce073ba03ac9bc4cabb36f3297b613))
+
+
+### Bug Fixes
+
+* **perf:** optimize some hot paths ([5aa8b57](https://github.com/atla-ai/atla-sdk-python/commit/5aa8b57e1269fa922d7a90a2726894260ad6014d))
+* **perf:** skip traversing types for NotGiven values ([1e145ff](https://github.com/atla-ai/atla-sdk-python/commit/1e145ffe222c82df9f0fd5bec1574655bfd4fc3f))
+
+
+### Chores
+
+* fix typos ([#132](https://github.com/atla-ai/atla-sdk-python/issues/132)) ([3979281](https://github.com/atla-ai/atla-sdk-python/commit/39792812e510be336d6d74f31a281cd1acb553a2))
+* **internal:** expand CI branch coverage ([01ff614](https://github.com/atla-ai/atla-sdk-python/commit/01ff6144b55bf27bc0c14c23d01e66d982003b12))
+* **internal:** reduce CI branch coverage ([04351c0](https://github.com/atla-ai/atla-sdk-python/commit/04351c006008368d6e45c860ca7908948727f3eb))
+* **internal:** remove trailing character ([#133](https://github.com/atla-ai/atla-sdk-python/issues/133)) ([d361d1a](https://github.com/atla-ai/atla-sdk-python/commit/d361d1a47095eb3e3f7c81477718d4ecaa70f088))
+* **internal:** slight transform perf improvement ([#134](https://github.com/atla-ai/atla-sdk-python/issues/134)) ([ff95726](https://github.com/atla-ai/atla-sdk-python/commit/ff9572643717f2513877d78a3c6ed48c44314b52))
+
 ## 0.5.0 (2025-03-24)
 
 Full Changelog: [v0.4.0...v0.5.0](https://github.com/atla-ai/atla-sdk-python/compare/v0.4.0...v0.5.0)
