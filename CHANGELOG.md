@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.6.1 (2025-04-19)
+
+Full Changelog: [v0.6.0...v0.6.1](https://github.com/atla-ai/atla-sdk-python/compare/v0.6.0...v0.6.1)
+
+### Chores
+
+* **client:** minor internal fixes ([98769c6](https://github.com/atla-ai/atla-sdk-python/commit/98769c631da3ba4c6a15a0788aff3c26e76d59ad))
+* **internal:** base client updates ([374f6f4](https://github.com/atla-ai/atla-sdk-python/commit/374f6f46f2436a4a8167236599e2eb550f2f2f85))
+* **internal:** bump pyright version ([092df12](https://github.com/atla-ai/atla-sdk-python/commit/092df1203ec88752185a004997194b245b6c38f5))
+* **internal:** update models test ([24d9c64](https://github.com/atla-ai/atla-sdk-python/commit/24d9c64f1cd1c1b3bfb1f2c5acf80065f57356e8))
+* **internal:** update pyright settings ([c76026a](https://github.com/atla-ai/atla-sdk-python/commit/c76026a4812a1bfed98cc86358f4ce52707864de))
+
 ## 0.6.0 (2025-04-14)
 
 Full Changelog: [v0.5.0...v0.6.0](https://github.com/atla-ai/atla-sdk-python/compare/v0.5.0...v0.6.0)
