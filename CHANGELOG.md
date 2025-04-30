@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.6.2 (2025-04-24)
+
+Full Changelog: [v0.6.1...v0.6.2](https://github.com/atla-ai/atla-sdk-python/compare/v0.6.1...v0.6.2)
+
+### Bug Fixes
+
+* **pydantic v1:** more robust ModelField.annotation check ([5919672](https://github.com/atla-ai/atla-sdk-python/commit/59196726f98bc0f819b44e5f034751c97970dfca))
+
+
+### Chores
+
+* broadly detect json family of content-type headers ([c721850](https://github.com/atla-ai/atla-sdk-python/commit/c721850d816b19d0f3608ada5e04c1f0e32f9885))
+* **ci:** add timeout thresholds for CI jobs ([2ba1e97](https://github.com/atla-ai/atla-sdk-python/commit/2ba1e97a1f315ec12888bc149ef5720752136d0b))
+* **ci:** only use depot for staging repos ([a01e4ca](https://github.com/atla-ai/atla-sdk-python/commit/a01e4ca853d85f2956d6ad6ba774ee73007be307))
+* **internal:** codegen related update ([a32151e](https://github.com/atla-ai/atla-sdk-python/commit/a32151ed0ebccb2d0d16555f7d6f89bafa6295ad))
+* **internal:** fix list file params ([c378b4e](https://github.com/atla-ai/atla-sdk-python/commit/c378b4ed71cf1c96e0391fde8bc7dd84deadb8fc))
+* **internal:** import reformatting ([ccac7d2](https://github.com/atla-ai/atla-sdk-python/commit/ccac7d240a5e972af6d139313acc97adb3256d9f))
+* **internal:** refactor retries to not use recursion ([ec2d65a](https://github.com/atla-ai/atla-sdk-python/commit/ec2d65af8069409fd37ad610aef4474401bdd16e))
+
 ## 0.6.1 (2025-04-19)
 
 Full Changelog: [v0.6.0...v0.6.1](https://github.com/atla-ai/atla-sdk-python/compare/v0.6.0...v0.6.1)
