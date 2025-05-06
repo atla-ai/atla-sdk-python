@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Union, Mapping
+from typing import TYPE_CHECKING, Any, Union, Mapping
 from typing_extensions import Self, override
 
 import httpx
@@ -20,8 +20,8 @@ from ._types import (
     RequestOptions,
 )
 from ._utils import is_given, get_async_library
+from ._compat import cached_property
 from ._version import __version__
-from .resources import evaluation
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import AtlaError, APIStatusError
 from ._base_client import (
@@ -29,19 +29,17 @@ from ._base_client import (
     SyncAPIClient,
     AsyncAPIClient,
 )
-from .resources.chat import chat
-from .resources.metrics import metrics
+
+if TYPE_CHECKING:
+    from .resources import chat, metrics, evaluation
+    from .resources.chat.chat import ChatResource, AsyncChatResource
+    from .resources.evaluation import EvaluationResource, AsyncEvaluationResource
+    from .resources.metrics.metrics import MetricsResource, AsyncMetricsResource
 
 __all__ = ["Timeout", "Transport", "ProxiesTypes", "RequestOptions", "Atla", "AsyncAtla", "Client", "AsyncClient"]
 
 
 class Atla(SyncAPIClient):
-    chat: chat.ChatResource
-    evaluation: evaluation.EvaluationResource
-    metrics: metrics.MetricsResource
-    with_raw_response: AtlaWithRawResponse
-    with_streaming_response: AtlaWithStreamedResponse
-
     # client options
     api_key: str
 
@@ -96,11 +94,31 @@ class Atla(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.chat = chat.ChatResource(self)
-        self.evaluation = evaluation.EvaluationResource(self)
-        self.metrics = metrics.MetricsResource(self)
-        self.with_raw_response = AtlaWithRawResponse(self)
-        self.with_streaming_response = AtlaWithStreamedResponse(self)
+    @cached_property
+    def chat(self) -> ChatResource:
+        from .resources.chat import ChatResource
+
+        return ChatResource(self)
+
+    @cached_property
+    def evaluation(self) -> EvaluationResource:
+        from .resources.evaluation import EvaluationResource
+
+        return EvaluationResource(self)
+
+    @cached_property
+    def metrics(self) -> MetricsResource:
+        from .resources.metrics import MetricsResource
+
+        return MetricsResource(self)
+
+    @cached_property
+    def with_raw_response(self) -> AtlaWithRawResponse:
+        return AtlaWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AtlaWithStreamedResponse:
+        return AtlaWithStreamedResponse(self)
 
     @property
     @override
@@ -209,12 +227,6 @@ class Atla(SyncAPIClient):
 
 
 class AsyncAtla(AsyncAPIClient):
-    chat: chat.AsyncChatResource
-    evaluation: evaluation.AsyncEvaluationResource
-    metrics: metrics.AsyncMetricsResource
-    with_raw_response: AsyncAtlaWithRawResponse
-    with_streaming_response: AsyncAtlaWithStreamedResponse
-
     # client options
     api_key: str
 
@@ -269,11 +281,31 @@ class AsyncAtla(AsyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.chat = chat.AsyncChatResource(self)
-        self.evaluation = evaluation.AsyncEvaluationResource(self)
-        self.metrics = metrics.AsyncMetricsResource(self)
-        self.with_raw_response = AsyncAtlaWithRawResponse(self)
-        self.with_streaming_response = AsyncAtlaWithStreamedResponse(self)
+    @cached_property
+    def chat(self) -> AsyncChatResource:
+        from .resources.chat import AsyncChatResource
+
+        return AsyncChatResource(self)
+
+    @cached_property
+    def evaluation(self) -> AsyncEvaluationResource:
+        from .resources.evaluation import AsyncEvaluationResource
+
+        return AsyncEvaluationResource(self)
+
+    @cached_property
+    def metrics(self) -> AsyncMetricsResource:
+        from .resources.metrics import AsyncMetricsResource
+
+        return AsyncMetricsResource(self)
+
+    @cached_property
+    def with_raw_response(self) -> AsyncAtlaWithRawResponse:
+        return AsyncAtlaWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncAtlaWithStreamedResponse:
+        return AsyncAtlaWithStreamedResponse(self)
 
     @property
     @override
@@ -382,31 +414,103 @@ class AsyncAtla(AsyncAPIClient):
 
 
 class AtlaWithRawResponse:
+    _client: Atla
+
     def __init__(self, client: Atla) -> None:
-        self.chat = chat.ChatResourceWithRawResponse(client.chat)
-        self.evaluation = evaluation.EvaluationResourceWithRawResponse(client.evaluation)
-        self.metrics = metrics.MetricsResourceWithRawResponse(client.metrics)
+        self._client = client
+
+    @cached_property
+    def chat(self) -> chat.ChatResourceWithRawResponse:
+        from .resources.chat import ChatResourceWithRawResponse
+
+        return ChatResourceWithRawResponse(self._client.chat)
+
+    @cached_property
+    def evaluation(self) -> evaluation.EvaluationResourceWithRawResponse:
+        from .resources.evaluation import EvaluationResourceWithRawResponse
+
+        return EvaluationResourceWithRawResponse(self._client.evaluation)
+
+    @cached_property
+    def metrics(self) -> metrics.MetricsResourceWithRawResponse:
+        from .resources.metrics import MetricsResourceWithRawResponse
+
+        return MetricsResourceWithRawResponse(self._client.metrics)
 
 
 class AsyncAtlaWithRawResponse:
+    _client: AsyncAtla
+
     def __init__(self, client: AsyncAtla) -> None:
-        self.chat = chat.AsyncChatResourceWithRawResponse(client.chat)
-        self.evaluation = evaluation.AsyncEvaluationResourceWithRawResponse(client.evaluation)
-        self.metrics = metrics.AsyncMetricsResourceWithRawResponse(client.metrics)
+        self._client = client
+
+    @cached_property
+    def chat(self) -> chat.AsyncChatResourceWithRawResponse:
+        from .resources.chat import AsyncChatResourceWithRawResponse
+
+        return AsyncChatResourceWithRawResponse(self._client.chat)
+
+    @cached_property
+    def evaluation(self) -> evaluation.AsyncEvaluationResourceWithRawResponse:
+        from .resources.evaluation import AsyncEvaluationResourceWithRawResponse
+
+        return AsyncEvaluationResourceWithRawResponse(self._client.evaluation)
+
+    @cached_property
+    def metrics(self) -> metrics.AsyncMetricsResourceWithRawResponse:
+        from .resources.metrics import AsyncMetricsResourceWithRawResponse
+
+        return AsyncMetricsResourceWithRawResponse(self._client.metrics)
 
 
 class AtlaWithStreamedResponse:
+    _client: Atla
+
     def __init__(self, client: Atla) -> None:
-        self.chat = chat.ChatResourceWithStreamingResponse(client.chat)
-        self.evaluation = evaluation.EvaluationResourceWithStreamingResponse(client.evaluation)
-        self.metrics = metrics.MetricsResourceWithStreamingResponse(client.metrics)
+        self._client = client
+
+    @cached_property
+    def chat(self) -> chat.ChatResourceWithStreamingResponse:
+        from .resources.chat import ChatResourceWithStreamingResponse
+
+        return ChatResourceWithStreamingResponse(self._client.chat)
+
+    @cached_property
+    def evaluation(self) -> evaluation.EvaluationResourceWithStreamingResponse:
+        from .resources.evaluation import EvaluationResourceWithStreamingResponse
+
+        return EvaluationResourceWithStreamingResponse(self._client.evaluation)
+
+    @cached_property
+    def metrics(self) -> metrics.MetricsResourceWithStreamingResponse:
+        from .resources.metrics import MetricsResourceWithStreamingResponse
+
+        return MetricsResourceWithStreamingResponse(self._client.metrics)
 
 
 class AsyncAtlaWithStreamedResponse:
+    _client: AsyncAtla
+
     def __init__(self, client: AsyncAtla) -> None:
-        self.chat = chat.AsyncChatResourceWithStreamingResponse(client.chat)
-        self.evaluation = evaluation.AsyncEvaluationResourceWithStreamingResponse(client.evaluation)
-        self.metrics = metrics.AsyncMetricsResourceWithStreamingResponse(client.metrics)
+        self._client = client
+
+    @cached_property
+    def chat(self) -> chat.AsyncChatResourceWithStreamingResponse:
+        from .resources.chat import AsyncChatResourceWithStreamingResponse
+
+        return AsyncChatResourceWithStreamingResponse(self._client.chat)
+
+    @cached_property
+    def evaluation(self) -> evaluation.AsyncEvaluationResourceWithStreamingResponse:
+        from .resources.evaluation import AsyncEvaluationResourceWithStreamingResponse
+
+        return AsyncEvaluationResourceWithStreamingResponse(self._client.evaluation)
+
+    @cached_property
+    def metrics(self) -> metrics.AsyncMetricsResourceWithStreamingResponse:
+        from .resources.metrics import AsyncMetricsResourceWithStreamingResponse
+
+        return AsyncMetricsResourceWithStreamingResponse(self._client.metrics)
 
 
 Client = Atla
