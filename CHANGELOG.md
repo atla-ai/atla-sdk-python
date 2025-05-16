@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.6.3 (2025-05-16)
+
+Full Changelog: [v0.6.2...v0.6.3](https://github.com/atla-ai/atla-sdk-python/compare/v0.6.2...v0.6.3)
+
+### Bug Fixes
+
+* **package:** support direct resource imports ([c2a3eb0](https://github.com/atla-ai/atla-sdk-python/commit/c2a3eb0b7e20c996831b9750cf85935549d76a78))
+
+
+### Chores
+
+* **ci:** fix installation instructions ([eb1dcb3](https://github.com/atla-ai/atla-sdk-python/commit/eb1dcb3026ca48ff402bc9bdedf6c621c0fb388c))
+* **ci:** upload sdks to package manager ([ad6b379](https://github.com/atla-ai/atla-sdk-python/commit/ad6b379ed1048d2843a9ca7b46d81021a876634b))
+* **internal:** avoid errors for isinstance checks on proxies ([038486d](https://github.com/atla-ai/atla-sdk-python/commit/038486d798b18b7458436896999191f37d774e6a))
+* use lazy imports for resources ([46b43ab](https://github.com/atla-ai/atla-sdk-python/commit/46b43ab729fe2b2d04fb4c44bd9f56d320d17029))
+
 ## 0.6.2 (2025-04-24)
 
 Full Changelog: [v0.6.1...v0.6.2](https://github.com/atla-ai/atla-sdk-python/compare/v0.6.1...v0.6.2)
