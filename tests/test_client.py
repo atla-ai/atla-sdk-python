@@ -23,9 +23,7 @@ from pydantic import ValidationError
 
 from atla import Atla, AsyncAtla, APIResponseValidationError
 from atla._types import Omit
-from atla._utils import maybe_transform
 from atla._models import BaseModel, FinalRequestOptions
-from atla._constants import RAW_RESPONSE_HEADER
 from atla._exceptions import AtlaError, APIStatusError, APITimeoutError, APIResponseValidationError
 from atla._base_client import (
     DEFAULT_TIMEOUT,
@@ -35,7 +33,6 @@ from atla._base_client import (
     DefaultAsyncHttpxClient,
     make_request_options,
 )
-from atla.types.evaluation_create_params import EvaluationCreateParams
 
 from .utils import update_env
 
@@ -707,54 +704,29 @@ class TestAtla:
 
     @mock.patch("atla._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
+    def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter, client: Atla) -> None:
         respx_mock.post("/v1/eval").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
-            self.client.post(
-                "/v1/eval",
-                body=cast(
-                    object,
-                    maybe_transform(
-                        dict(
-                            model_id="atla-selene",
-                            model_input="What is the capital of France?",
-                            model_output="Paris",
-                            evaluation_criteria="Assign a score of 1 if the answer is factually correct, otherwise assign a score of 0.",
-                        ),
-                        EvaluationCreateParams,
-                    ),
-                ),
-                cast_to=httpx.Response,
-                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
-            )
+            client.evaluation.with_streaming_response.create(
+                model_id="atla-selene-mini-20250127",
+                model_input="Is it legal to monitor employee emails under European privacy laws?",
+                model_output="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there is a legitimate purpose.",
+            ).__enter__()
 
         assert _get_open_connections(self.client) == 0
 
     @mock.patch("atla._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
+    def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter, client: Atla) -> None:
         respx_mock.post("/v1/eval").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
-            self.client.post(
-                "/v1/eval",
-                body=cast(
-                    object,
-                    maybe_transform(
-                        dict(
-                            model_id="atla-selene",
-                            model_input="What is the capital of France?",
-                            model_output="Paris",
-                            evaluation_criteria="Assign a score of 1 if the answer is factually correct, otherwise assign a score of 0.",
-                        ),
-                        EvaluationCreateParams,
-                    ),
-                ),
-                cast_to=httpx.Response,
-                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
-            )
-
+            client.evaluation.with_streaming_response.create(
+                model_id="atla-selene-mini-20250127",
+                model_input="Is it legal to monitor employee emails under European privacy laws?",
+                model_output="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there is a legitimate purpose.",
+            ).__enter__()
         assert _get_open_connections(self.client) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
@@ -1556,54 +1528,29 @@ class TestAsyncAtla:
 
     @mock.patch("atla._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    async def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
+    async def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter, async_client: AsyncAtla) -> None:
         respx_mock.post("/v1/eval").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
-            await self.client.post(
-                "/v1/eval",
-                body=cast(
-                    object,
-                    maybe_transform(
-                        dict(
-                            model_id="atla-selene",
-                            model_input="What is the capital of France?",
-                            model_output="Paris",
-                            evaluation_criteria="Assign a score of 1 if the answer is factually correct, otherwise assign a score of 0.",
-                        ),
-                        EvaluationCreateParams,
-                    ),
-                ),
-                cast_to=httpx.Response,
-                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
-            )
+            await async_client.evaluation.with_streaming_response.create(
+                model_id="atla-selene-mini-20250127",
+                model_input="Is it legal to monitor employee emails under European privacy laws?",
+                model_output="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there is a legitimate purpose.",
+            ).__aenter__()
 
         assert _get_open_connections(self.client) == 0
 
     @mock.patch("atla._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    async def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
+    async def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter, async_client: AsyncAtla) -> None:
         respx_mock.post("/v1/eval").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
-            await self.client.post(
-                "/v1/eval",
-                body=cast(
-                    object,
-                    maybe_transform(
-                        dict(
-                            model_id="atla-selene",
-                            model_input="What is the capital of France?",
-                            model_output="Paris",
-                            evaluation_criteria="Assign a score of 1 if the answer is factually correct, otherwise assign a score of 0.",
-                        ),
-                        EvaluationCreateParams,
-                    ),
-                ),
-                cast_to=httpx.Response,
-                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
-            )
-
+            await async_client.evaluation.with_streaming_response.create(
+                model_id="atla-selene-mini-20250127",
+                model_input="Is it legal to monitor employee emails under European privacy laws?",
+                model_output="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there is a legitimate purpose.",
+            ).__aenter__()
         assert _get_open_connections(self.client) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
