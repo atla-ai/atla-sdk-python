@@ -2,7 +2,7 @@
 > [!CAUTION]
 > This repository was archived on July 21, 2025. The Atla API is no longer active.
 
-[![PyPI version](https://img.shields.io/pypi/v/atla.svg)](https://pypi.org/project/atla/)
+[![PyPI version](<https://img.shields.io/pypi/v/atla.svg?label=pypi%20(stable)>)](https://pypi.org/project/atla/)
 
 The Atla Python library provides convenient access to the Atla REST API from any Python 3.8+
 application. The library includes type definitions for all request params and response fields,
