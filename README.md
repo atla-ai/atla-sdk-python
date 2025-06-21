@@ -98,6 +98,55 @@ asyncio.run(main())
 
 Functionality between the synchronous and asynchronous clients is otherwise identical.
 
+### With aiohttp
+
+By default, the async client uses `httpx` for HTTP requests. However, for improved concurrency performance you may also use `aiohttp` as the HTTP backend.
+
+You can enable this by installing `aiohttp`:
+
+```sh
+# install from PyPI
+pip install atla[aiohttp]
+```
+
+Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
+
+```python
+import os
+import asyncio
+from atla import DefaultAioHttpClient
+from atla import AsyncAtla
+
+
+async def main() -> None:
+    async with AsyncAtla(
+        api_key=os.environ.get("ATLA_API_KEY"),  # This is the default and can be omitted
+        http_client=DefaultAioHttpClient(),
+    ) as client:
+        result = await client.evaluation.create(
+            model_id="atla-selene",
+            model_input="Is it legal to monitor employee emails under European privacy laws?",
+            model_output="Monitoring employee emails is permissible under European privacy laws like GDPR, provided there's a legitimate purpose.",
+            evaluation_criteria="Assign a score of 1 if the answer is factually correct, otherwise assign a score of 0.",
+            expected_model_output="Yes, but only under strict conditions. European privacy laws, including GDPR, require that monitoring be necessary for a legitimate purpose, employees be informed in advance, and privacy impact be minimized.",
+            few_shot_examples=[
+                {
+                    "model_input": "Can employers require employees to use personal devices for work?",
+                    "model_output": "Employers can require employees to use personal devices for work, but legal and privacy considerations must be addressed.",
+                    "model_context": "Employers implementing Bring Your Own Device (BYOD) policies must consider data protection laws and employee privacy rights. Under regulations like GDPR, companies must ensure adequate data security, inform employees of monitoring or data collection practices, and provide alternatives if necessary. Failure to implement safeguards could lead to legal challenges or data breaches.",
+                    "expected_model_output": "Yes, but privacy and security concerns must be addressed. Employers must ensure compliance with data protection laws, inform employees about data handling, and offer alternatives where necessary.",
+                    "score": "1",
+                    "critique": "The model output is factually correct and accurately describes the Bring Your Own Device (BYOD) policy that an employer may choose to implement while highlighting the relevant legal and privacy considerations.",
+                }
+            ],
+            model_context="European privacy laws, including GDPR, allow for the monitoring of employee emails under strict conditions. The employer must demonstrate that the monitoring is necessary for a legitimate purpose, such as protecting company assets or compliance with legal obligations. Employees must be informed about the monitoring in advance, and the privacy impact should be assessed to minimize intrusion.",
+        )
+        print(result.result)
+
+
+asyncio.run(main())
+```
+
 ## Using types
 
 Nested request parameters are [TypedDicts](https://docs.python.org/3/library/typing.html#typing.TypedDict). Responses are [Pydantic models](https://docs.pydantic.dev) which also provide helper methods for things like:
