@@ -1,5 +1,45 @@
 # Changelog
 
+## 0.7.0 (2025-06-30)
+
+Full Changelog: [v0.6.2...v0.7.0](https://github.com/atla-ai/atla-sdk-python/compare/v0.6.2...v0.7.0)
+
+### Features
+
+* **client:** add follow_redirects request option ([9737378](https://github.com/atla-ai/atla-sdk-python/commit/97373788360c8cdfffc4ed6b5ad1274d9f2ce96e))
+* **client:** add support for aiohttp ([d725bc0](https://github.com/atla-ai/atla-sdk-python/commit/d725bc01f03d6667105d13e598dd32ae8421d2a3))
+
+
+### Bug Fixes
+
+* **ci:** correct conditional ([c034771](https://github.com/atla-ai/atla-sdk-python/commit/c0347712f1304291f443af537cefc6e4841a332b))
+* **ci:** release-doctor — report correct token name ([2c634c5](https://github.com/atla-ai/atla-sdk-python/commit/2c634c5907ed3e99ba69b737275bd38fbdcbbe7a))
+* **client:** correctly parse binary response | stream ([b55f484](https://github.com/atla-ai/atla-sdk-python/commit/b55f484c18a132936b26f8f9acf4d4bf22503351))
+* **package:** support direct resource imports ([c2a3eb0](https://github.com/atla-ai/atla-sdk-python/commit/c2a3eb0b7e20c996831b9750cf85935549d76a78))
+* **tests:** fix: tests which call HTTP endpoints directly with the example parameters ([3ed53b1](https://github.com/atla-ai/atla-sdk-python/commit/3ed53b136f1d1df24a16132004b027dfeaba3f4f))
+
+
+### Chores
+
+* **ci:** enable for pull requests ([df61bcb](https://github.com/atla-ai/atla-sdk-python/commit/df61bcb3a1395650fda4a72229d3b8008598752d))
+* **ci:** fix installation instructions ([eb1dcb3](https://github.com/atla-ai/atla-sdk-python/commit/eb1dcb3026ca48ff402bc9bdedf6c621c0fb388c))
+* **ci:** only run for pushes and fork pull requests ([db689c5](https://github.com/atla-ai/atla-sdk-python/commit/db689c56e30a196f11a2d9dc976d1f22934fabc9))
+* **ci:** upload sdks to package manager ([ad6b379](https://github.com/atla-ai/atla-sdk-python/commit/ad6b379ed1048d2843a9ca7b46d81021a876634b))
+* **docs:** grammar improvements ([def21d3](https://github.com/atla-ai/atla-sdk-python/commit/def21d31bc53c1909563b83dff46bed5835076d4))
+* **docs:** remove reference to rye shell ([90cc95d](https://github.com/atla-ai/atla-sdk-python/commit/90cc95d97c60794d1131332fa69541dbbed8d19f))
+* **internal:** avoid errors for isinstance checks on proxies ([038486d](https://github.com/atla-ai/atla-sdk-python/commit/038486d798b18b7458436896999191f37d774e6a))
+* **internal:** update conftest.py ([1c4f24e](https://github.com/atla-ai/atla-sdk-python/commit/1c4f24e1ea32a3b3efe7d4d2df0e0865da1363d2))
+* **readme:** update badges ([8adbd5f](https://github.com/atla-ai/atla-sdk-python/commit/8adbd5f14d551a1120d81fd9f8ba7a48471e0ef3))
+* **tests:** add tests for httpx client instantiation & proxies ([6964cdd](https://github.com/atla-ai/atla-sdk-python/commit/6964cdd0bd003d12e18c6b199815151af7eeebe8))
+* **tests:** run tests in parallel ([d39e99e](https://github.com/atla-ai/atla-sdk-python/commit/d39e99e854a8e551681fb319e57be068666adffb))
+* **tests:** skip some failing tests on the latest python versions ([417c125](https://github.com/atla-ai/atla-sdk-python/commit/417c1250c1ddf1d6af5cccf3b6b8eb358e1b2f61))
+* use lazy imports for resources ([46b43ab](https://github.com/atla-ai/atla-sdk-python/commit/46b43ab729fe2b2d04fb4c44bd9f56d320d17029))
+
+
+### Documentation
+
+* **client:** fix httpx.Timeout documentation reference ([021b0c5](https://github.com/atla-ai/atla-sdk-python/commit/021b0c5482ae3378834136f5394a0ef1aea96667))
+
 ## 0.6.2 (2025-04-24)
 
 Full Changelog: [v0.6.1...v0.6.2](https://github.com/atla-ai/atla-sdk-python/compare/v0.6.1...v0.6.2)
