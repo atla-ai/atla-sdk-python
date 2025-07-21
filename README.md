@@ -1,4 +1,6 @@
 # Atla Python API library
+> [!CAUTION]
+> This repository was archived on July 21, 2025. The Atla API is no longer active.
 
 [![PyPI version](https://img.shields.io/pypi/v/atla.svg)](https://pypi.org/project/atla/)
 
